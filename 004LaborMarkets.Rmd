@@ -1,0 +1,935 @@
+---
+title: "Labor Markets and Unemployment"
+author: "Matt Dobra"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: 
+    ioslides_presentation:
+        widescreen: TRUE
+        incremental: false
+        transition: faster
+        css: dobraslidestyle.css
+      
+---
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+library(dplyr)
+library(kableExtra)
+library(ggthemes)
+library(ggpubr)
+library(DiagrammeR)
+library(WDI) # World Development Indicators
+library(quantmod) # Gets FRED data
+library(scales)
+theme_set(theme_classic())
+knitr::opts_chunk$set(echo = FALSE, dev.args=list(bg="transparent"))
+
+demand <- tibble(p = c(2,8), q = c(8,2))
+demandright <- tibble(p = c(3,9), q = c(9,3))
+demandleft <- tibble(p = c(1,7), q = c(7,1))
+supply <- tibble(p=c(2,8), q=c(2,8))
+supplyright <- tibble(p=c(1,7), q=c(3,9))
+supplyleft <- tibble(p = c(3,9), q = c(1, 7))
+
+###Color Themes
+color1 <- "#FFFFFF" # white
+color2 <- "#00205B" # med blue
+color3 <- "#0A863D" # green
+color4 <- "#99999A" # gray
+color5 <- "#041C2C" # Navy
+
+######
+# 
+# demand <- tibble(p= c(2,8), q=c(8,2))
+# demandright <- tibble(p = c(3,9), q = c(9,3))
+# demandleft <- tibble(p = c(1,7), q = c(7,1))
+# supply <- tibble(p=c(2,8), q=c(2,8))
+# supplyright <- tibble(p=c(1,7), q=c(3,9))
+# supplyleft <- tibble(p = c(3,9), q = c(1, 7))
+
+
+## Create Recession dataframe
+getSymbols("USREC",src="FRED")
+USREC <- USREC["1855/"]
+start <- index(USREC[which(diff(USREC$USREC)==1)])
+end   <- index(USREC[which(diff(USREC$USREC)==-1)-1])
+if(length(end)<length(start)){
+end <- c(end, Sys.Date())    
+}
+recession.df <- data.frame(start=start, end=end)
+rm(start)
+rm(end)
+rm(USREC)
+
+```
+
+# Measuring Unemployment
+## Unemployment
+
+There are a variety of types of unemployment, and all types are not created equal.
+
+Some unemployment is an unavoidable and necessary consequence of economic growth, as economic progress inevitably renders some jobs obsolete.
+
+- Employment in fields like farming have declined significantly over the past 150 years, and some jobs have essentially disappeared (telephone switchboard operators, wagonmakers, etc.).
+- These jobs are destroyed becasue of the appearance of new jobs in areas like IT server technician and automotive engineer.
+
+## Unemployment
+
+<div style="float:right; width:70%;">
+```{r get_unrate, include = FALSE}
+getSymbols("UNRATE", src = "FRED", return.class = "data.frame") # U3 Unemployment Rate
+unrate <- UNRATE
+rm(UNRATE)
+unrate <- rename(unrate, unrate = UNRATE)
+unrate <- rownames_to_column(unrate, "date")
+unrate$date <- as.Date(unrate$date)
+
+curunemp <- unrate[length(unrate$unrate), ]
+
+lubridate::month(as.Date(curunemp$date[1]), label = TRUE, abbr = FALSE)
+
+```
+
+```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
+
+ggplot() +
+    geom_line(data = unrate, aes(x = date, y = unrate), color = color2, size = 1.2) + 
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+     theme_classic()+
+    scale_y_continuous(breaks = seq(0,20, by = 2), 
+                       limits = c(0,NA),
+                       expand = c(0,0)) +
+    scale_x_date(limits = as.Date(c("1948-01-01", Sys.Date())),
+        expand = c(0,0),   
+        labels = date_format("%Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1940-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "10 years"
+            )) +
+    labs(
+        title = "Unemployment",
+        subtitle = "U-3 unemployment, monthy data since 1948",
+        x = "Date",
+        y = "Unemloyment Rate",
+        caption = "Data from FRED, created by Matt Dobra @mattdobra"
+    ) 
+```
+</div>
+
+<div style="float:left; width:30%;">
+
+<br> 
+The key measure that economists look at in the US is the U-3 Unemployment rate.
+
+The unemployment rate as of `r lubridate::month(as.Date(curunemp$date[1]), label = TRUE, abbr = FALSE)`, `r lubridate::year(as.Date(curunemp$date[1]))` is `r curunemp$unrate[1]`%.
+
+</div>
+
+## Unemployment
+
+To calculate the unemployment rate, the population must first be subdivided into a number of smaller groups.
+
+
+## Unemployment
+
+<div style="float:right; width:70%;">
+```{r get_civpop, include = FALSE}
+getSymbols("CNP16OV", src = "FRED", return.class = "data.frame") # U3 Unemployment Rate
+civpop <- CNP16OV
+rm(CNP16OV)
+civpop <- rename(civpop, civpop = CNP16OV)
+civpop <- rownames_to_column(civpop, "date")
+civpop$date <- as.Date(civpop$date)
+
+curcivpop <- civpop[length(civpop$civpop), ]
+```
+
+```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
+
+ggplot() +
+    geom_line(data = civpop, aes(x = date, y = civpop), color = color2, size = 1.2) + 
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+     theme_classic()+
+    scale_y_continuous(breaks = seq(0,300000, by = 25000), 
+                       limits = c(0,NA),
+                       expand = c(0,10000)) +
+    scale_x_date(limits = as.Date(c("1948-01-01", Sys.Date())),
+        expand = c(0,0),   
+        labels = date_format("%Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1940-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "10 years"
+            )) +
+    labs(
+        title = "Population",
+        subtitle = "US civilian population, monthy data since 1948",
+        x = "Date",
+        y = "Millions of persons",
+        caption = "Data from FRED, created by Matt Dobra @mattdobra"
+    ) 
+```
+</div>
+
+<div style="float:left; width:30%;">
+
+**Civilian Noninstitutional Population**: Number of people in the US or DC, over 16, not inmates or institutionalized, or in the Armed Forces.
+
+As of `r lubridate::month(as.Date(curcivpop$date[1]), label = TRUE, abbr = FALSE)`, `r lubridate::year(as.Date(curcivpop$date[1]))`, this figure for the US is `r round(curcivpop$civpop[1]/1000, 2)` million.
+
+</div>
+
+## Unemployment
+
+<div style="float:right; width:70%;">
+```{r get_labforce, include = FALSE}
+getSymbols("CLF16OV", src = "FRED", return.class = "data.frame") # Labor Force
+labforce <- CLF16OV
+rm(CLF16OV)
+labforce <- rename(labforce, labforce = CLF16OV)
+labforce <- rownames_to_column(labforce, "date")
+labforce$date <- as.Date(labforce$date)
+
+curlabforce <- labforce[length(labforce$labforce), ]
+```
+
+```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
+
+ggplot() +
+    geom_line(data = labforce, aes(x = date, y = labforce), color = color2, size = 1.2) + 
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+     theme_classic()+
+    scale_y_continuous(breaks = seq(0,300000, by = 20000), 
+                       limits = c(0,NA),
+                       expand = c(0,10000)) +
+    scale_x_date(limits = as.Date(c("1948-01-01", Sys.Date())),
+        expand = c(0,0),   
+        labels = date_format("%Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1940-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "10 years"
+            )) +
+    labs(
+        title = "Labor Force",
+        subtitle = "Total labor force, data since 1948",
+        x = "Date",
+        y = "Persons in Labor Force",
+        caption = "Data from FRED, created by Matt Dobra @mattdobra"
+    ) 
+```
+</div>
+
+<div style="float:left; width:30%;">
+
+**Labor Force**: Civilian noninstitutionalized population, less retirees, students, homemakers, and people just not looking for work.  
+
+As of `r lubridate::month(as.Date(curlabforce$date[1]), label = TRUE, abbr = FALSE)`, `r lubridate::year(as.Date(curlabforce$date[1]))`, the US labor force numbered  `r round(curlabforce$labforce[1]/1000, 2)` million people.
+
+</div>
+
+## Unemployment
+
+<div style="float:right; width:70%;">
+```{r get_partrate, include = FALSE}
+getSymbols("CIVPART", src = "FRED", return.class = "data.frame") # Labor Force
+partrate <- CIVPART
+rm(CIVPART)
+partrate <- rename(partrate, partrate = CIVPART)
+partrate <- rownames_to_column(partrate, "date")
+partrate$date <- as.Date(partrate$date)
+
+curpartrate <- partrate[length(partrate$partrate), ]
+```
+
+```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
+
+ggplot() +
+    geom_line(data = partrate, aes(x = date, y = partrate), color = color2, size = 1.2) + 
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+     theme_classic()+
+    scale_y_continuous(breaks = seq(0,100, by = 1), 
+                       limits = c(NA,NA),
+                       expand = c(NA,1)) +
+    scale_x_date(limits = as.Date(c("1948-01-01", Sys.Date())),
+        expand = c(0,0),   
+        labels = date_format("%Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1940-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "10 years"
+            )) +
+    labs(
+        title = "Labor Force Participation",
+        subtitle = "US labor force participation rate, data since 1948",
+        x = "Date",
+        y = "Percent in Labor Force",
+        caption = "Data from FRED, created by Matt Dobra @mattdobra"
+    ) 
+```
+</div>
+
+<div style="float:left; width:30%;">
+
+**Labor Force Participation Rate**: The percentage of the civilian population that is in the labor force.  
+
+As of `r lubridate::month(as.Date(curpartrate$date[1]), label = TRUE, abbr = FALSE)`, `r lubridate::year(as.Date(curpartrate$date[1]))`, the US labor force participation rate was  `r curpartrate$partrate[1]`\%.
+
+</div>
+
+## Unemployment
+
+```{r get_partratebyage, include = FALSE}
+getSymbols("LNS11300012", src = "FRED", return.class = "data.frame") # Participation Rage 16 - 19
+getSymbols("LNS11300060", src = "FRED", return.class = "data.frame") # Participation Rage 25 - 54
+getSymbols("LNS11324230", src = "FRED", return.class = "data.frame") # Participation Rage 55 +
+
+LNS11300012 <- rownames_to_column(LNS11300012, "date")
+LNS11300012$date <- as.Date(LNS11300012$date)
+
+LNS11300060 <- rownames_to_column(LNS11300060, "date")
+LNS11300060$date <- as.Date(LNS11300060$date)
+
+LNS11324230 <- rownames_to_column(LNS11324230, "date")
+LNS11324230$date <- as.Date(LNS11324230$date)
+
+
+LNS11300012 <- rename(LNS11300012, partrate = LNS11300012) %>% mutate(group = "16-19") 
+LNS11300060 <- rename(LNS11300060, partrate = LNS11300060) %>% mutate(group = "25-54")
+LNS11324230 <- rename(LNS11324230, partrate = LNS11324230) %>% mutate(group = "55+")
+
+partratebyage <- LNS11300012 %>% 
+    bind_rows(LNS11300060) %>% 
+    bind_rows(LNS11324230)
+
+
+```
+
+<div style="float:left; width:30%;">
+
+The labor force participation rate is heavily influenced by demographics.
+
+it is also influenced by incentives -- high tax rates and generous welfare benefits reduce the participation rate. 
+
+</div>
+
+<div style="float:right; width:70%;">
+
+
+```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
+
+ggplot() +
+    geom_line(data = partratebyage, aes(x = date, y = partrate, color = group), size = 1.2) + 
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+     theme_classic()+
+    scale_y_continuous(breaks = seq(0,100, by = 5), 
+                       limits = c(NA,NA),
+                       expand = c(NA,1)) +
+    scale_x_date(limits = as.Date(c("1948-01-01", Sys.Date())),
+        expand = c(0,0),   
+        labels = date_format("%Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1940-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "10 years"
+            )) +
+    labs(
+        title = "Labor Force Participation",
+        subtitle = "US labor force participation rate by age group, data since 1948",
+        x = "Date",
+        y = "Percent in Labor Force",
+        caption = "Data from FRED, created by Matt Dobra @mattdobra",
+        color = "Age Group"
+    ) +
+    scale_color_manual(values = c(color2, color3, color4))
+    
+```
+</div>
+
+
+
+## Unemployment
+
+A person is **unemployed** only if he or she is in the labor force, is actively looking for work, but cannot find a job.
+
+The **unemployment rate** is then given by:
+
+$Unemployment \: Rate = \frac{\# \: of \: Unemployed}{Labor \: Force}$
+
+```{r get_unemploy, include = FALSE}
+getSymbols("UNEMPLOY", src = "FRED", return.class = "data.frame") # Labor Force
+unemploy <- UNEMPLOY
+rm(UNEMPLOY)
+unemploy <- rename(unemploy, unemploy = UNEMPLOY)
+unemploy <- rownames_to_column(unemploy, "date")
+unemploy$date <- as.Date(unemploy$date)
+
+curunemploy <- unemploy[length(unemploy$unemploy), ]
+```
+
+As of `r lubridate::month(as.Date(curlabforce$date[1]), label = TRUE, abbr = FALSE)`, `r lubridate::year(as.Date(curlabforce$date[1]))`, the US labor force numbered `r round(curlabforce$labforce[1]/1000, 2)` million people, of which `r round(curunemploy$unemploy[1]/1000, 2)` million were unemployed.  This implies an unemployment rate of:
+
+$`r round(100*curunemploy$unemploy[1]/curlabforce$labforce[1],1)`\% = \frac{`r round(curunemploy$unemploy[1]/1000, 2)` \: million }{`r round(curlabforce$labforce[1]/1000,2)` \: million}$
+
+## Unemployment
+
+From an individual perspective, unemployment, especially if it is long term unemployment, can be both financial and psychologically devastating.
+
+From a economy-wide perspective, unemployment means that the economy is underperforming.
+
+While the unemployment rate is arguably the *best* indicator of the labor market, it is not the whole story.
+
+- The unemployment rate misses discouraged and underemployed workers.
+
+## Unemployment
+
+<div style = "float: left; width:30%">
+
+A **discouraged worker** is someone who is not currently looking for a job because they believe they will not find one, but has looked for work within the past year.  
+
+Discouraged workers are included in the U-4, which is typically a little higher than the U-3.
+
+</div>
+
+<div style = "float: right; width:70%;">
+
+```{r get_u4, include = FALSE}
+getSymbols("U4RATE", src = "FRED", return.class = "data.frame") # U3 Unemployment Rate
+unrate4 <- U4RATE
+rm(U4RATE)
+unrate4 <- rename(unrate4, unrate4 = U4RATE)
+unrate4 <- rownames_to_column(unrate4, "date")
+unrate4$date <- as.Date(unrate4$date)
+
+curunemp4 <- unrate4[length(unrate4$unrate4), ]
+
+lubridate::month(as.Date(curunemp4$date[1]), label = TRUE, abbr = FALSE)
+
+```
+
+```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
+
+ggplot() +
+    geom_line(data = unrate, aes(x = date, y = unrate), color = color2, size = 1.2) + 
+    geom_line(data = unrate4, aes(x = date, y = unrate4), color = color3, size = 1.2) + 
+    annotate(geom = "text", x = as.Date("2011-01-01"), y = 11.5, label = "U-4 Rate", color = color3, size = 5)+
+    annotate(geom = "text", x = as.Date("2011-01-01"), y = 7.5, label = "U-3 Rate", color = color2, size = 5)+
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+     theme_classic()+
+    scale_y_continuous(breaks = seq(0,20, by = 2), 
+                       limits = c(0,NA),
+                       expand = c(0,0)) +
+    scale_x_date(limits = as.Date(c("1994-01-01", Sys.Date())),
+        expand = c(0,0),   
+        labels = date_format("%Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1990-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "5 years"
+            )) +
+    labs(
+        title = "Unemployment",
+        subtitle = "U-4 unemployment, monthy data since 1994",
+        x = "Date",
+        y = "Unemloyment Rate",
+        caption = "Data from FRED, created by Matt Dobra @mattdobra"
+    ) 
+```
+
+## Unemployment
+
+The broadest measure of unemployment is the U-6, which includes discouraged, marginally attached, and underemployed workers.
+
+A **marginally attached worker** someone who has either looked for work or held a job in the past year, but is not currently looking.  
+
+U-3 considers somebody employed if they worked as little as one hour.  However, many people working part time would prefer to work full time but cannot find a full time job.  These people are classified as **underemployed workers**.  
+
+
+## Unemployment
+
+```{r get_u6, include = FALSE}
+getSymbols("U6RATE", src = "FRED", return.class = "data.frame") # U3 Unemployment Rate
+unrate6 <- U6RATE
+rm(U6RATE)
+unrate6 <- rename(unrate6, unrate6 = U6RATE)
+unrate6 <- rownames_to_column(unrate6, "date")
+unrate6$date <- as.Date(unrate6$date)
+
+curunemp6 <- unrate6[length(unrate6$unrate6), ]
+
+lubridate::month(as.Date(curunemp6$date[1]), label = TRUE, abbr = FALSE)
+
+```
+<div style = "float: left; width:30%">
+
+While the U-3 unemployment rate in `r lubridate::month(as.Date(curunemp$date[1]), label = TRUE, abbr = FALSE)`, `r lubridate::year(as.Date(curunemp$date[1]))` was `r curunemp$unrate[1]`%, the U-6 unemployment rate was `r curunemp6$unrate6[1]`%.
+
+The gap between the U-6 and the U-3 is large and grew following the great recession.
+
+</div>
+
+<div style = "float: right; width:70%;">
+
+
+
+```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
+
+ggplot() +
+    geom_line(data = unrate, aes(x = date, y = unrate), color = color2, size = 1.2) + 
+    geom_line(data = unrate6, aes(x = date, y = unrate6), color = color3, size = 1.2) + 
+    annotate(geom = "text", x = as.Date("2004-01-01"), y = 11.5, label = "U-6 Rate", color = color3, size = 5)+
+    annotate(geom = "text", x = as.Date("2004-01-01"), y = 7.5, label = "U-3 Rate", color = color2, size = 5)+
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+     theme_classic()+
+    scale_y_continuous(breaks = seq(0,30, by = 2), 
+                       limits = c(0,NA),
+                       expand = c(0,0)) +
+    scale_x_date(limits = as.Date(c("1994-01-01", Sys.Date())),
+        expand = c(0,0),   
+        labels = date_format("%Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1990-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "5 years"
+            )) +
+    labs(
+        title = "Unemployment",
+        subtitle = "U-6 unemployment, monthy data since 1994",
+        x = "Date",
+        y = "Unemloyment Rate",
+        caption = "Data from FRED, created by Matt Dobra @mattdobra"
+    ) 
+```
+
+
+
+# Types of Unemployment
+## Types of Unemployment
+
+The three main types of unemployment are:
+
+- Frictional Unemployment
+- Structural Unemployment
+- Cyclical Unemployment
+
+## Frictional Unemployment
+
+**Frictional Unemployment** is (typically) short term unemployment caused by the difficulties that exist in matching potential employees with jobs.
+
+Many people who are frictionally unemployed are unemployed by choice, as this includes people leaving their jobs to find new ones.  It also includes recent college graduates, stay-at-home parents returning to the workforce, etc.
+
+For the most part, frictional unemployment is good for the economy.
+
+
+## Frictional Unemployment
+
+Economist Joseph Schumpeter coined the term **creative destruction** to describe the constant process of product and process innovation that replaces old products and processes. 
+
+Schumpeter called creative destruction "the essential fact of capitalism"
+
+Innovation and competition drive economic growth, creating new jobs and destroying old jobs.
+
+Official government figures mask the creative destruction process.  
+
+- For example, the number people focus on in the jobs report is the number of new jobs in a month.  In August 2018, this number was 78,000.  
+
+- The 78,000 figure is arrived at by taking the difference between the number of new hires, 5.784 million, and the number of job separations, 5.706 million.  
+
+## Structural Unemployment
+
+**Structural unemployment** is persistent, typically long-term unemployment that is caused by long-lasting shocks or permanent features of an economy that prevent the labor market from working effectively.
+
+Structural unemployment can result from a number of economic forces:
+
+- economy-wide shocks, like oil shocks (or pandemics?).
+- globalization
+- new IT
+- shifting from manufacturing to services
+
+## Structural Unemployment
+
+Structural unemployment has significant economic and social costs.
+
+- Lowered economic output
+- Psychological costs on the unemployed, such as elevated suicide rates and reduced happiness.
+
+## Structural Unemployment
+
+<div style = "float:left; width:40%;">
+
+Structural unemployment is a larger problem in countries with strong labor market regulations. 
+
+A 2013 OECD study measured the strictness of labor market regulations.  
+
+Having more and stronger regulations is positively correlated with duration of unemployment
+</div>
+
+<div style = "float:right; width:60%;">
+
+
+```{r include = FALSE}
+trgtyear <- 2013
+prot <- OECD::get_dataset("EPL_OV", start_time = trgtyear, end_time = trgtyear)
+prot1 <- prot %>% 
+    filter(SERIES == "EPRC_V3") %>% 
+    select(COUNTRY, obsValue) %>% 
+    rename(prot = obsValue)
+filter_list <- list("", "MW", "900000", "UN5")
+dur <- OECD::get_dataset("DUR_I", start_time = trgtyear, end_time = trgtyear, filter = filter_list)
+dur1 <- dur %>% 
+    select(COUNTRY, obsValue) %>% 
+    rename(duration = obsValue)
+
+dat <- prot1 %>% 
+    inner_join(dur1)
+
+```
+
+```{r warning = FALSE, message = FALSE}
+ggplot(data = dat, aes(x = prot, y = duration, label = COUNTRY)) +
+    ggrepel::geom_text_repel() +
+    geom_smooth(method = lm, color = color3, fill = color4) +
+    labs(
+        title = "Labor Market Protection",
+        subtitle = "Stricter labor market regulation results in longer average unemployment duration",
+        x = "Index of Labor Market Regulations",
+        y = "Average Length of Unemployment (weeks)",
+        caption = "Data from OECD, created by Matt Dobra @mattdobra"
+    ) 
+
+```
+</div>
+
+## Structural Unemployment
+
+Labor market regulations generally have the following effects:
+
+- Create insurance for workers, particularly those workers who have full-time jobs.
+- Make it harder to find a full-time job.
+- Reduce the efficiency of labor markets.
+- Increase the duration of unemployment.
+- Increase the amount of unemployment, particularly among young, minority, or "risky" workers. 
+    - e.g. ex-convicts, people you know little about, high variance workers...
+
+## Structural Unemployment
+
+
+<div style="float: left; width: 50%;">
+
+Minimum wages also increase unemployment.  
+
+The higher the minimum wage is relative to the market wage, the greater the unemployment created.
+
+This implies that countries with higher minimum wages (relative to market wages) should have more unemployment.
+
+</div>
+
+```{r fig.width=5,fig.height=5, out.extra='style="float:right; padding:1px"'}
+demand2 <- tibble(p= c(1,10), q= c(9,0))
+supply2 <- tibble(p= c(0,9), q= c(0,9))
+
+ggplot(mapping = aes(x = q, y = p)) + 
+  ## Base Graph Begin**
+  geom_path(data = demand2, color = color2, size = 1.2) + 
+  annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
+  geom_path(data = supply2, color = color3, size = 1.2) + 
+  annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
+  geom_bracket(xmin = 3, xmax = 7, y.position = 7.5, label = "Unemployment", tip.length = .05) +
+  coord_equal() +
+  theme_classic(base_family = "sans") +
+  theme(plot.title = element_text(size = rel(1.4))) +
+  ## End Base Graph ##
+
+    ## Graph Labels -- Change title and subtitle as needed ##
+  labs(x = "Quantity", y = "Wage",
+       title = "Minimum Wage",
+       subtitle = expression(paste("The distance between ", Q[S], "&", Q[D], " represents unemployment"))) + # Subtitle
+  
+  ##editing the x and y axes for the equilibria.  If dots aren't needed, still need to keep limit and expand##
+  scale_x_continuous(expand = c(0,0), limit = c(0,10), breaks = c(5,3,7), labels = expression(Q[1], Q[D], Q[S])) + ## Set breaks = equilibrium Q
+  scale_y_continuous(expand = c(0,0), limit = c(0,10), breaks = c(5,7), labels = expression(P[1], P[mw])) + ## Set breaks = equilibrium P
+  
+  ## P/Q Arrows (delete if no changes, edit points otherwise. 
+  ## Leave .4 from axes and 0.2 from start/end point 
+  annotate("segment", x = .4, xend = .4, y = 5.2, yend = 6.8,
+           arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+  
+  
+  ## Dashed Lines for initial equilibrium
+  annotate("segment", x=0, xend = 5, y = 5, yend = 5, linetype = "dotted") + # horizontal line
+  annotate("segment", x=5, xend = 5, y = 0, yend = 5, linetype = "dotted") + # vertical line
+  annotate("segment", x=0, xend = 7, y = 7, yend = 7, linetype = "dotted") + # horizontal line
+  annotate("segment", x=3, xend = 3, y = 0, yend = 7, linetype = "dotted") + # vertical line
+  annotate("segment", x=7, xend = 7, y = 0, yend = 7, linetype = "dotted") # vertical line
+```
+
+## Structural Unemployment
+
+The **Kaitz index** is a measure of how high the minimum wage is in any given area.
+
+$Kaitz\;Index=\frac{Minimum\:Wage}{Median\:Wage}$
+
+The median wage is the wage such that half of all workers earn more the median and half of all workers earn less than the median.
+
+## Structural Unemployment
+
+The Kaitz index is often use as a shorthand to estimate the potential harm of a minimum wage.  
+
+- If Kaitz<40%, the general consensus is that the minimum wage is too low to have a noticeable unemployemnt effect.
+- If Kaitz>60%, most economists believe that the minimum wage will have a large unemployment effect.
+- There is no general consensus on the 40%-60% range.
+
+## Structural Unemployment
+
+<div style = "float:left; width:40%;">
+
+The Kaitz index varies widely across OECD countries.
+
+Countries tend to lie in the range between 40% and 60%, but not all do.
+
+Note that this graph is based on federal minimum wages, and local minimum wages may be higher.
+
+</div>
+
+<div style = "float:right; width:60%;">
+
+
+```{r include = FALSE}
+trgtyear <- lubridate::year(as.Date(Sys.time())) - 2
+filter_list <- list("", "MEDIAN")
+min2ave <- OECD::get_dataset("MIN2AVE", start_time = trgtyear, end_time = trgtyear, filter = filter_list)
+
+min2ave2 <- min2ave %>% 
+  rename(kaitz = obsValue) %>% 
+  select(COUNTRY, kaitz) %>% 
+  mutate(country = countrycode::countrycode(COUNTRY, origin = "wb", destination = "country.name")) %>% 
+  arrange(kaitz)
+
+```
+
+```{r warning = FALSE, message = FALSE, fig.height = 6}
+ggplot(min2ave2) +
+  geom_col(aes(x = reorder(country, kaitz), y = kaitz), fill = color2) +
+  coord_flip() +
+  scale_y_continuous(labels = scales::percent, expand = c(0,NA)) +
+ # theme(axis.text.y = element_text(size = 11)) +
+  labs(title = "Kaitz Index",
+       subtitle = paste("Ratio of minimum wage to median wage in ", trgtyear),
+       x = "Kaitz Index",
+       y = "",
+       caption = "Data from OECD, created by Matt Dobra @mattdobra")
+  
+
+
+```
+
+## Structural Unemployment
+
+<div style = "float:left; width:40%;">
+
+<br>
+<br>
+There is generally an increasing relationship between the Kaitz Index and unemployment rates.
+
+
+</div>
+
+<div style = "float:right; width:60%;">
+
+
+```{r include = FALSE}
+trgtyear <- lubridate::year(as.Date(Sys.time())) - 2
+filter_list <- list("", "MW", "900000", "UR")
+unemp <- OECD::get_dataset("LFS_SEXAGE_I_R", start_time = trgtyear, end_time = trgtyear, filter = filter_list)
+
+unemp2 <- unemp %>% 
+  rename(unemp = obsValue) %>% 
+  select(COUNTRY, unemp) %>% 
+  inner_join(min2ave2)
+
+stargazer::stargazer(lm(unemp ~ kaitz, data = unemp2), type = "text")
+```
+
+```{r warning = FALSE, message = FALSE}
+ggplot(data = unemp2, aes(x = kaitz, y = unemp, label = COUNTRY)) +
+    ggrepel::geom_text_repel() +
+    labs(
+        title = "Kaitz Index and Unemployment",
+        subtitle = "",
+        x = "Kaitz Index",
+        y = "Unemployment Rate (%)",
+        caption = "Data from OECD, created by Matt Dobra @mattdobra"
+    ) +
+  scale_x_continuous(labels =scales::percent_format(accuracy = 1))
+
+```
+
+## Structural Unemployment
+
+There are also policies that can reduce structural unemployment:
+
+**At-Will Employment** refers to a labor market in which a worker can be fired or quit at any time for any reason, so long as that reason is not illegal (discrimination, etc.).  
+
+**Active Labor Market Policies** are (typically) government programs designed to help unemployed workers find jobs by:
+
+- enhancing their motivation and incentives to find work
+- improving their job readiness and skills through education or job retraining programs
+- improving their job search skills and assisting with their job search
+
+## Cycylical Unemployment
+
+**Cyclical Unemployment** is unemployment that is correlated with the business cycle.
+
+Generally speaking, unemployment increases during a recession.
+
+When GDP falls, firms fire workers, thus increasing unemployment.
+
+## Cyclical Unemployment
+
+<div style="float:right; width:70%;">
+
+```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
+
+ggplot() +
+    geom_line(data = unrate, aes(x = date, y = unrate), color = color2, size = 1.2) + 
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+     theme_classic()+
+    scale_y_continuous(breaks = seq(0,20, by = 2), 
+                       limits = c(0,NA),
+                       expand = c(0,0)) +
+    scale_x_date(limits = as.Date(c("1948-01-01", Sys.Date())),
+        expand = c(0,0),   
+        labels = date_format("%Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1940-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "10 years"
+            )) +
+    labs(
+        title = "Unemployment",
+        subtitle = "U-3 unemployment, monthy data since 1948",
+        x = "Date",
+        y = "Unemloyment Rate",
+        caption = "Data from FRED, created by Matt Dobra @mattdobra"
+    ) 
+```
+</div>
+
+<div style="float:left; width:30%;">
+
+Consider again the U-3 unemployment graph.  
+
+Unemployment rates generally spike during recessions and slowly fall afterwards.
+
+</div>
+
+## Natural Rate of Unemployment
+
+<div style = "float:left; width:50%;">
+
+<br>
+
+Cyclical unemployment can change dramatically in a very short time period.  
+
+For example, consider the unemployment rate for the months immediately surrounding the Covid-19 crisis in 2020:
+
+</div>
+
+<div style = "float:right; width:50%;">
+
+<br>
+
+```{r}
+
+unrate %>% 
+    filter(date >= as.Date("2020-01-01")) %>% 
+    filter(date <= as.Date("2020-06-01")) %>% 
+    mutate(date = lubridate::month(date, label = TRUE, abbr = FALSE)) %>% 
+    rename(Month = date) %>% 
+    rename(Unemployment = unrate) %>% 
+    knitr::kable(format = "html", table.attr = "class=\"rmdtable\"", col.names = c("Month",
+                           "Unemploment Rate")) %>% 
+    column_spec(1, background = color2, color = color1)
+
+```
+
+</div>
+
+## Natural Rate of Unemployment
+
+The **Natural Rate of Unemployment** is calculated by summing the frictional and structural rates of unemployment.
+
+The natural rate changes very slowly
+- The factors that influence structural and frictional unemployment change slowly
+
+
+This is unlike the regular unemployment rate which includes cyclical unemployment
+
+## Natural Rate of Unemployment
+
+
+<div style="float:right; width:70%;">
+
+```{r get_nrou, include = FALSE}
+getSymbols("NROU", src = "FRED", return.class = "data.frame") # U3 Unemployment Rate
+natrate <- NROU
+rm(NROU)
+natrate <- rename(natrate, natrate = NROU)
+natrate <- rownames_to_column(natrate, "date")
+natrate$date <- as.Date(natrate$date)
+
+natrate <- natrate %>% 
+    filter(date<as.Date(Sys.Date()))
+
+```
+
+```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
+
+ggplot() +
+    geom_line(data = unrate, aes(x = date, y = unrate), color = color2, size = 1.2) + 
+    annotate(geom = "text", x = as.Date("1968-01-01"), y = 3, label = "Unemployment rate", color = color2) +
+    geom_line(data = natrate, aes(x = date, y = natrate), color = color3, size = 1.2) +
+    annotate(geom = "text", x = as.Date("1968-01-01"), y = 6.7, label = "Natural rate", color = color3) +
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+     theme_classic()+
+    scale_y_continuous(breaks = seq(0,20, by = 2), 
+                       limits = c(0,NA),
+                       expand = c(0,0)) +
+    scale_x_date(limits = as.Date(c("1949-01-01", Sys.Date())),
+        expand = c(0,0),   
+        labels = date_format("%Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1940-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "10 years"
+            )) +
+    labs(
+        title = "Natural Rate of Unemployment",
+        subtitle = "Natural rate and U-3 unemployment, monthy data since 1949",
+        x = "Date",
+        y = "Unemloyment Rate",
+        caption = "Data from FRED, created by Matt Dobra @mattdobra"
+    ) 
+```
+</div>
+
+<div style="float:left; width:30%;">
+
+<br> 
+
+The natural rate is far more stable than the U-3 rate.
+
+Some economists believe that the risk of inflation increases when unemployment falls below the natural rate.
+
+</div>
+
