@@ -198,7 +198,7 @@ Economists talk about the **margin** a lot, and it has a lot of different meanin
 
 - Most generally, it means "additional." Some examples in use:
   - **Marginal Cost** is the change in cost for producing one more thing.
-  - **Marginal Tax Rate** is the change in total tazes owed if your income goes up by a dollar.
+  - **Marginal Tax Rate** is the change in total taxes owed if your income goes up by a dollar.
   - **Marginal Revenue** is the extra revenue earned by selling one more unit.
 
 ## Resources and Scarcity
