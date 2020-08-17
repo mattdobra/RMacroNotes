@@ -71,14 +71,14 @@ d %>%
 ```{r, fig.width=5,fig.height=5, out.extra='style="float:right; padding:1px"'}
 
 d %>% 
-    ggplot(aes(p, q)) +
+    ggplot(aes(y = p, x = q)) +
     geom_point(size = 4, color = color2) +
     geom_line(color = color3) +
     labs(y = "Price",
          x = "Quantity") +
-    scale_y_continuous(breaks=c(0,2,4,6,8,10)) +
-    scale_x_continuous(breaks=c(0,10,20,30,40,50)) +
-    annotate(geom = "text", x = 47, y = 2.5, label = "Demand", color = color2) +
+    scale_x_continuous(breaks=c(0,2,4,6,8,10)) +
+    scale_y_continuous(breaks=c(0,10,20,30,40,50)) +
+    annotate(geom = "text", x = 8.7, y = 20, label = "Demand", color = color2) +
     theme_classic()
 
 ```
@@ -120,13 +120,13 @@ s %>%
 ```{r, fig.width=5,fig.height=5, out.extra='style="float:right; padding:1px"'}
 
 s %>% 
-    ggplot(aes(p, q)) +
+    ggplot(aes(y = p, x = q)) +
     geom_point(size = 4, color = color2) +
     geom_line(color = color3) +
     labs(y = "Price",
          x = "Quantity") +
-    scale_y_continuous(breaks=c(0,2,4,6,8,10)) +
-    scale_x_continuous(breaks=c(0,10,20,30,40,50)) +
+    scale_x_continuous(breaks=c(0,2,4,6,8,10)) +
+    scale_y_continuous(breaks=c(0,10,20,30,40,50)) +
 
 theme_classic()
 
