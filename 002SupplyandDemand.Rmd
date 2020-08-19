@@ -342,7 +342,7 @@ ggplot(mapping = aes(x = q, y = p)) +
 
 <div style="float: left; width: 50%;">
 
-- Demanders competing against each other creates a bidding war, putting upward pressure on the price..
+- Demanders competing against each other creates a bidding war, putting upward pressure on the price.
 - As prices rise from $P_{L}$ toward $P_{1}$, $Q_{S}$ and $Q_{D}$ converge back toward $Q_{1}$
 - The upward pressure on prices ends when the price is $P_{1}$
 
@@ -638,14 +638,14 @@ knitr::include_graphics("images/trumpkfc.png")
 ## Prices of other Goods
 
 
-- Goods are **substitutes** if you generally choose between one ore the other.  
+- Goods are **substitutes** if you generally choose between one or the other.  
 - Goods are **complements** if you generally consume them together.  
 
 <br>
 <br>
 
 ```{r}
-subcom <- tibble(Blank = c("Other Good Increases in Price", "Other Good Dncreases in Price"), Substitutes= c("Demand Shifts Right", "Demand Shifts Left"), Complements = c("Demand Shifts Left", "Demand Shifts Right"))
+subcom <- tibble(Blank = c("Other Good Increases in Price", "Other Good Decreases in Price"), Substitutes= c("Demand Shifts Right", "Demand Shifts Left"), Complements = c("Demand Shifts Left", "Demand Shifts Right"))
 subcom %>% 
     kable(format = "html", table.attr = "class=\"rmdtable\"", col.names = c("", "Other Good is Substitute",
                            "Other Good is Complement")) %>% 
@@ -687,7 +687,7 @@ People tend to buy what they like, and what they like can change.
 
 ## Tastes and Preferences
 
-The increasingly common calling for boycotts of various companie (for any number of reasons) can radically alter preferences.
+The increasingly common calling for boycotts of various companies (for any number of reasons) can radically alter preferences.
 
 <div style="float: left; width: 50%;">
 <center>
