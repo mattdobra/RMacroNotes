@@ -889,7 +889,7 @@ Comparative statics is comparing equilibria.
 
 1. Start with a market in equlibrium.
 2. Determine whether or not some **shock** shifts the supply curve, demand curve, or both.
-  - Remember: curves only shift when something *other* than the price of the good changes!
+      - Remember: curves only shift when something *other* than the price of the good changes!
 3. Shift the curve as appropriate
 4. Compare the new equilibrium with the old equilibrium
 
@@ -1135,7 +1135,7 @@ They may, however, have differential impacts on consumer relative to producer su
 
 Such policies include:
 
-- **Quantity Controls**: **Price Floors** and **Price Ceilings**
+- **Price Controls**: **Price Floors** and **Price Ceilings**
 - **Quantity Controls**
 - **Tariffs** and **Import Quotas**
 
@@ -1854,8 +1854,6 @@ ggplot(mapping = aes(x = q, y = p)) +
 
 ## Quantity Controls
 
-## Quantity Controls
-
 <div style="float: left; width: 50%;">
 
 Comparing free markets vs. production quotas:
@@ -1945,6 +1943,7 @@ ggplot(mapping = aes(x = q, y = p)) +
 
 
 ```
+
 # Trade and Globalization
 ## Why Trade?
 
