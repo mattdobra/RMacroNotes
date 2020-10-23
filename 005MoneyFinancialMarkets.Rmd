@@ -178,9 +178,9 @@ For example, imagine a product cost \$100 in 1972 and \$400 today.
 
 While the price of this product has clearly increased in *nominal* terms, has it increased in *real* terms?  The CPI in 1972 was `r round(cpi1972$cpi[1],1)`.
 
-$Real\;Price=Nominal\;Price\frac{CPI_{`r lubridate::year(as.Date(curcpi$date[1]))`}}{CPI_{1972}}=100\frac{`r round(curcpi$cpi[1],1)`}{`r round(cpi1972$cpi[1],1)`}=\$`r round(100*curcpi$cpi[1]/cpi1972$cpi[1],2)`$
+$Real\;Price=Nominal\;Price\frac{CPI_{`r lubridate::year(as.Date(curcpi$date[1]))`}}{CPI_{1972}}=\$100\frac{`r round(curcpi$cpi[1],1)`}{`r round(cpi1972$cpi[1],1)`}=\$`r round(100*curcpi$cpi[1]/cpi1972$cpi[1],2)`$
 
-Therefore, this product has actually become *cheaper* in real terms: the *real* price, in current dollars, is $`r round(100*curcpi$cpi[1]/cpi1972$cpi[1],2)`$!
+Therefore, this product has actually become *cheaper* in real terms: the *real* price, in current dollars, is $\$`r round(100*curcpi$cpi[1]/cpi1972$cpi[1],2)`$!
 
 ## Inflation
 
@@ -442,7 +442,7 @@ $\dot{V}$ is also generally a very small number.  Intuitively, it measures incre
 
 If $\dot{V}$ and $\dot{Y}$ tend to be very small numbers, and $\dot{P}$ is large, it can only mean one thing.  $\dot{M}$ must be a large number.
 
-As Milton Friedman said, "Inflation is always and everywhere a monetary phenomeonn."
+As Milton Friedman said, "Inflation is always and everywhere a monetary phenomenon."
 
 </div>
 

@@ -784,7 +784,7 @@ There are also policies that can reduce structural unemployment:
 - improving their job readiness and skills through education or job retraining programs
 - improving their job search skills and assisting with their job search
 
-## Cycylical Unemployment
+## Cyclical Unemployment
 
 **Cyclical Unemployment** is unemployment that is correlated with the business cycle.
 
@@ -832,7 +832,7 @@ Unemployment rates generally spike during recessions and slowly fall afterwards.
 
 </div>
 
-## Natural Rate of Unemployment
+## Cyclical Unemployment
 
 <div style = "float:left; width:50%;">
 

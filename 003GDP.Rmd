@@ -765,7 +765,7 @@ During the Great Depression, spending was roughly 20% of GDP.
 
 Between WWI and the Depression, spending was around 12%.
 
-Prior to WWWI, government spending accounted for about 7% of GDP.
+Prior to WWI, government spending accounted for about 7% of GDP.
 
 </div>
  
@@ -851,7 +851,7 @@ dat <- mutate(dat, date = as.Date(date))
     ) +
     labs(
         title = "Growth of Government",
-        subtitle = "Consumption plus transfers as a share of GDP",
+        subtitle = "Government consumption plus transfers as a share of GDP",
         x = "Year",
         y = "Size of Government",
         caption = "Data from BEA, Retrieved from FRED
@@ -1338,6 +1338,14 @@ Between 1972 and 1992, North Korea grew at a rate of `r scales::percent((log(nk1
 
 In 1992, North Korea's GDP per capita was `r scales::dollar(nk1992)`, but South Korea jumped considerably ahead with GDP per capita of `r scales::dollar(sk1992)`.
 
+## Everyone Used to be Poor
+
+Another way to think about this idea:
+
+Poverty is not the phenomenon to be explained. The 200,000 year history of Homo sapiens is roughly 190,000 years of poverty, 9,900 years of very slow growth, and 100 years of massive increases in prosperity in a small handful of places.   
+
+Poverty is the norm. Prosperity is the outlier and is the thing to be explained.  
+
 ## Miracles and Disasters
 
 Many of the developed countries in the world (US, Canada, Australia, New Zealand, Western Europe) became developed by sustaining moderate growth rates over the past century or two.
@@ -1491,77 +1499,77 @@ knitr::include_graphics("images/koreanight.jpg")
 
 ## Institutions
 
-Private property rights are essential for economic growth and development. They:
+**Private property rights** are essential for economic growth and development. They:
 
 - Provide incentives for hard work.
 - Encourage investment in physical capital
 - Encourage education and protcts against "brain drain"
 - Encourage innovation
 
-<!-- ## Institutions CODE IS BROKEN BECAUSE DATAHUB.IO IS DEAD?--> 
+## Institutions
 
-<!-- ```{r include = FALSE} -->
-<!-- library("jsonlite") -->
+```{r include = FALSE}
+library("jsonlite")
 
-<!-- json_file <- 'https://datahub.io/core/corruption-perceptions-index/datapackage.json' -->
-<!-- json_data <- fromJSON(paste(readLines(json_file), collapse="")) -->
+json_file <- 'https://datahub.io/core/corruption-perceptions-index/datapackage.json'
+json_data <- fromJSON(paste(readLines(json_file), collapse=""))
 
-<!-- # get list of all resources: -->
-<!-- print(json_data$resources$name) -->
+# get list of all resources:
+print(json_data$resources$name)
 
-<!-- # print all tabular data(if exists any) -->
-<!-- for(i in 1:length(json_data$resources$datahub$type)){ -->
-<!--     if(json_data$resources$datahub$type[i]=='derived/csv'){ -->
-<!--         path_to_file = json_data$resources$path[i] -->
-<!--         transparency <- read.csv(url(path_to_file)) -->
-<!--         print(data) -->
-<!--     } -->
-<!-- } -->
-<!-- ``` -->
+# print all tabular data(if exists any)
+for(i in 1:length(json_data$resources$datahub$type)){
+    if(json_data$resources$datahub$type[i]=='derived/csv'){
+        path_to_file = json_data$resources$path[i]
+        transparency <- read.csv(url(path_to_file))
+        print(data)
+    }
+}
+```
 
-<!-- <div style = "float:left; width:30%;"> -->
-<!-- ```{r} -->
-<!-- transparency %>%  -->
-<!--   select(c(Jurisdiction, X2015)) %>%  -->
-<!--   filter(X2015 != "-") %>%  -->
-<!--   mutate(X2015 = as.numeric(X2015)) %>%  -->
-<!--   slice_max(X2015, n = 10) %>%  -->
-<!--   kable(format = "html", table.attr = "class=\"rmdtable\"", col.names = c("Country", "CPI")) %>%   column_spec(1, background = color2, color = color1) -->
-<!-- ``` -->
-<!-- </div> -->
-<!-- <div style = "float:left; width:30%;"> -->
+<div style = "float:left; width:30%;">
+```{r}
+transparency %>%
+  select(c(Jurisdiction, X2015)) %>%
+  filter(X2015 != "-") %>%
+  mutate(X2015 = as.numeric(X2015)) %>%
+  slice_max(X2015, n = 10) %>%
+  kable(format = "html", table.attr = "class=\"rmdtable\"", col.names = c("Country", "CPI")) %>%   column_spec(1, background = color2, color = color1)
+```
+</div>
+<div style = "float:left; width:30%;">
 
 
-<!-- ```{r} -->
-<!-- transparency %>%  -->
-<!--   select(c(Jurisdiction, X2015)) %>%  -->
-<!--   filter(X2015 != "-") %>%  -->
-<!--   mutate(X2015 = as.numeric(X2015)) %>%  -->
-<!--   slice_min(X2015, n = 10) %>%  -->
-<!--   kable(format = "html", table.attr = "class=\"rmdtable\"", col.names = c("Country", "CPI")) %>%  -->
-<!--   column_spec(1, background = color2, color = color1) -->
-<!-- ``` -->
-<!-- </div> -->
-<!-- <div style = "float:right; width:35%;"> -->
+```{r}
+transparency %>%
+  select(c(Jurisdiction, X2015)) %>%
+  filter(X2015 != "-") %>%
+  mutate(X2015 = as.numeric(X2015)) %>%
+  slice_min(X2015, n = 10) %>%
+  kable(format = "html", table.attr = "class=\"rmdtable\"", col.names = c("Country", "CPI")) %>%
+  column_spec(1, background = color2, color = color1)
+```
+</div>
+<div style = "float:right; width:35%;">
 
-<!-- These tables show the most and least corrupt countries in 2015 according to Transparency International's Corruption Perception Index (CPI). -->
+These tables show the most and least corrupt countries in 2015 according to Transparency International's Corruption Perception Index (CPI).
 
-<!-- CPI ranges from 0 (very corrupt) to 100 (very transparent). -->
+CPI ranges from 0 (very corrupt) to 100 (very transparent).
 
-<!-- In 2015, the United States was tied with Austria as the 16th least corrupt country with CPI=76. -->
+In 2015, the United States was tied with Austria as the 16th least corrupt country with CPI=76.
 
-<!-- ```{r include = FALSE} -->
-<!-- transparency %>%  -->
-<!--     select(c(Jurisdiction, X2015)) %>%  -->
-<!--   filter(X2015 != "-") %>%  -->
-<!--   mutate(X2015 = as.numeric(X2015)) %>%  -->
-<!--   mutate(rank = rank(desc(X2015))) %>%  -->
-<!--   arrange(desc(X2015)) -->
-<!-- ``` -->
+```{r include = FALSE}
+transparency %>%
+    select(c(Jurisdiction, X2015)) %>%
+  filter(X2015 != "-") %>%
+  mutate(X2015 = as.numeric(X2015)) %>%
+  mutate(rank = rank(desc(X2015))) %>%
+  arrange(desc(X2015))
+```
 
 ## Institutions
 
-Open and transparent governments are essential for protecting the rights (including property rights) of citizens.
+**Open and transparent governments** are essential for protecting the rights (including property rights) of citizens.
 
 Corrupt governments severely hamper an economy by siphoning resources out of the private sector and government to corrupt officials. 
 
@@ -1569,7 +1577,7 @@ Corrupt governments severely hamper an economy by siphoning resources out of the
 
 ## Institutions
 
-Political stability is essential for economic growth
+**Political stability** is essential for economic growth
 
 When governments change via violent means (e.g. civil war, military coup), economic agents face uncertainty and invest far less in human and/or physical capital.
 
@@ -1583,7 +1591,7 @@ In the economic context, this facilitates contracts and allows for trade, withou
 
 ## Institutions
 
-Free and competitive markets allow for resources to be used in ways that enhance growth and well being. Governments often impede markets in a variety of ways:
+**Free and competitive markets** allow for resources to be used in ways that enhance growth and well being. Governments often impede markets in a variety of ways:
 
 - Regulation
 - Red tape
