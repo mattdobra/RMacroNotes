@@ -665,7 +665,7 @@ ggplot() +
 
 ```
 
-## The New classical Model
+## The New Classical Model
 
 The only causes of the business cycle in the RBC model are productivity shocks.  
 
@@ -1160,7 +1160,9 @@ knitr::include_graphics("images/greatrecession.jpg")
 
 <div style = "float: right; width:30%;">
 
-If a recession will fix itself, what is the point of macroeconomic policy?  Typically, the goal is to *speed up* the recovery. 
+If a recession will fix itself, what is the point of macroeconomic policy?  
+
+Typically, the goal is to *speed up* the recovery. 
 
 ## The New Keynesian Model
 
@@ -1188,7 +1190,7 @@ Factors that might increase the AD:
 
 <div style = "float:left; width:49%;">
 
-Factors that might idecrease the AD:
+Factors that might decrease the AD:
 
 - Cutting the money supply
 - Consumer fear
@@ -1420,6 +1422,25 @@ In 2008, Bush distributed \$80 billion in tax rebates, a flat amount of $300 per
 
 - Because this didn't change tax rates, there was no incentive effect.
 - Because it was a one-time event, there was little income effect.
+
+
+## Crowding Out
+
+<div style = "float: left; width:65%;">
+
+```{r out.width = "100%"}
+knitr::include_graphics("images/coronavirusstimulus.png")
+```
+
+</div>
+
+<div style = "float: right; width:33%;">
+
+Similar to the Bush rebates from 2008, the Covid stimulus was a one-time flat amount per recipient (\$1200) and consequently had minimal income and incentive effects.  
+
+Early estimates of the stimulus impact found that only 42% of the stimulus was spent, while 27% was saved and 31% paid off debts.
+
+</div>
 
 ## Crowding Out
 

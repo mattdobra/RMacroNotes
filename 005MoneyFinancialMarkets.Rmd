@@ -765,7 +765,7 @@ The Federal Reserve wants to control M1 and M2, however they only have direct co
 
 M1 and M2 are created by banks due to Fractional reserve banking.
 
-**Fractional reserve banking** refers to a system in which banks only keep a fraction of their deposits on reserve.  
+**Fractional Reserve Banking** refers to a system in which banks only keep a fraction of their deposits on reserve.  
 
 ## Money
 
@@ -775,7 +775,7 @@ How much money the create depends on the **reserve ratio**--the fraction of depo
 
 $Reserve\;Ratio=\frac{Value\;of\;Reserves}{Value\;of\;Deposits}$
 
-While the Fed sets a minimum Reserve ratio, if banks want to be more liquid they can set their  reserve ratio higher.
+While the Fed sets a minimum Reserve ratio, if banks want to be more liquid they can set their reserve ratio higher.
 
 ## Money
 
@@ -795,7 +795,7 @@ Also, assume and that the Fed creates \$10,000 in new money that they simply put
 
 - Thus, M goes up by \$10,000.
 
-Because the reserve ratio is 10\%, the bank keps \$1,000 on reserve and loans out \$9,000.
+Because the reserve ratio is 10\%, the bank keeps \$1,000 on reserve and loans out \$9,000.
 
 ## Money
 
@@ -847,7 +847,7 @@ The two major crises that banks might face are solvency crises and liquidity cri
 ## The Fed as a Lender
 
 
-A **Solvency crisis** is when a bank's liabilities exceeds its liabilities.
+A **Solvency crisis** is when the value of a bank's liabilities exceeds the value of its assets.
 
 - This tends to happen when a lot of a bank's loans default at once.
 - To ensure against this, banks hold "capital" - safe assets like government bonds.
@@ -865,13 +865,13 @@ What happens if a bank is insolvent?
 
 - Typically, the FDIC steps in and pays depositors and the bank is closed.
 - In 2008, so many banks were insolvent at the same time that the fed many of them out instead.
-  - The Fed lent an estimated \$9 trillion in overnight loans between March 2008 and May 2009 to try to stave off a full-blown recession.
+  - The Fed lent an estimated \$9 trillion in overnight loans between March 2008 and May 2009 to try to stave off a full-blown depression.
   
 ## Bank Reserves
 
 The Fed can adjust the required reserve ratio (recall that the money multiplier is a function of the reserve ratio).
 
-- Increasing the reserve requirment decreases the money supply, decreasing the requirement increases the money supply
+- Increasing the reserve requirement decreases the money supply, decreasing the requirement increases the money supply
 - But, the required reserve ratio is a *minimum*, and cautious banks can choose to keep their ratio higher.  
 
 ## Bank Reserves

@@ -54,3 +54,20 @@ rm(USREC)
 ```
 
 
+## Crowding Out
+
+<div style = "float: left; width:65%;">
+
+```{r out.width = "100%"}
+knitr::include_graphics("images/coronavirusstimulus.png")
+```
+
+</div>
+
+<div style = "float: right; width:33%;">
+
+Similar to the Bush rebates from 2008, the Covid stimulus was a one-time flat amount per recipient ($1200) and consequently had minimal income and incentive effects.  
+
+Early estimates of the stimulus impact found that only 42% of the stimulus was spent, while 27% was saved and 31% paid off debts.
+
+</div>
