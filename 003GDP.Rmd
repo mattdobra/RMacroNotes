@@ -495,6 +495,20 @@ CPI <- CPI %>%
     filter(lubridate::month(date) == 01) %>% 
     mutate(year = lubridate::year(date)) %>% 
     mutate(year = as.numeric(year))
+
+curyear <- lubridate::year(Sys.Date())
+
+CPIlastdate<-lubridate::year(CPI[nrow(CPI),1])
+
+
+if(curyear!=CPIlastdate) {
+  CPIlastrow<-slice_tail(CPI, 1)
+  CPIlastrow$year <- 2021
+  CPI <- rbind(CPI, CPIlastrow)
+  }
+
+
+
 ```
 
 ## US Growth in Pictures
@@ -1026,7 +1040,7 @@ ggplot() +
     geom_line(data = grossdebt, aes(x = date, y = grossdebt), color = color2, size = 1.2) + 
     geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
     theme_classic()+
-    scale_y_continuous(breaks = seq(30,120, by = 10)) +
+    scale_y_continuous(breaks = seq(30,140, by = 10)) +
     scale_x_date(limits = as.Date(c("1966-01-01", Sys.Date())),
         expand = c(0,0),          
         labels = date_format("%Y"),
