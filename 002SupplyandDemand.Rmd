@@ -225,7 +225,7 @@ ggplot(mapping = aes(x = q, y = p)) +
     ## Graph Labels -- Change title and subtitle as needed ##
     labs(x = "Quantity", y = "Price",
          title = "Supply and Demand",
-         subtitle = expression(paste("If ", Q[D], ">", Q[S], ", there is a surplus"))) + # Subtitle
+         subtitle = expression(paste("If ", Q[D], "<", Q[S], ", there is a surplus"))) + # Subtitle
     
     ##editing the x and y axes for the equilibria.  If dots aren't needed, still need to keep limit and expand##
     scale_x_continuous(expand = c(0,0), limit = c(0,10), breaks = c(3,5,7), labels = expression(Q[D],Q[1], Q[S])) + ## Set breaks = equilibrium Q
@@ -320,7 +320,7 @@ ggplot(mapping = aes(x = q, y = p)) +
     ## Graph Labels -- Change title and subtitle as needed ##
     labs(x = "Quantity", y = "Price",
          title = "Supply and Demand",
-         subtitle = expression(paste("If ", Q[S], ">", Q[D], ", there is a shortage"))) + # Subtitle
+         subtitle = expression(paste("If ", Q[S], "<", Q[D], ", there is a shortage"))) + # Subtitle
     
     ##editing the x and y axes for the equilibria.  If dots aren't needed, still need to keep limit and expand##
     scale_x_continuous(expand = c(0,0), limit = c(0,10), breaks = c(3,5,7), labels = expression(Q[S],Q[1], Q[D])) + ## Set breaks = equilibrium Q
