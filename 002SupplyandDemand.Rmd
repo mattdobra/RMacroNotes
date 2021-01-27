@@ -682,7 +682,7 @@ subcom %>%
 
 People tend to buy what they like, and what they like can change.  
 
-- You might simply decide that you like a product more (or less) than before--this would chane your demand for tat good.
+- You might simply decide that you like a product more (or less) than before--this would change your demand for that good.
 - You could discover a new product that you didn't know existed.
 
 ## Tastes and Preferences
