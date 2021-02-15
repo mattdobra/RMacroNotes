@@ -2161,7 +2161,7 @@ ggplot(mapping = aes(x = q, y = p)) +
   
   ##editing the x and y axes for the equilibria.  If dots aren't needed, still need to keep limit and expand##
   scale_x_continuous(expand = c(0,0), limit = c(0,10), breaks = c(5,3,7), labels = expression(Q[1], Q[D], Q[S])) + ## Set breaks = equilibrium Q
-  scale_y_continuous(expand = c(0,0), limit = c(0,10), breaks = c(5,7), labels = expression(P[1], P[mw])) + ## Set breaks = equilibrium P
+  scale_y_continuous(expand = c(0,0), limit = c(0,10), breaks = c(5,7), labels = expression(P[1], P[w])) + ## Set breaks = equilibrium P
   
   
   ## Dashed Lines for initial equilibrium
