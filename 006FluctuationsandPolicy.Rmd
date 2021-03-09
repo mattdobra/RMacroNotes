@@ -1399,6 +1399,152 @@ Borrowing money to finance fiscal policy crowds out private spending as well.
 
 Crowding out is only avoided if there is little saving/borrowing activity in the private sector.
 
+To see why, let's look at the **Market for Loanable Funds**.
+
+## Market for Loanable Funds
+
+<div style="float: left; width: 50%;">
+
+- The **Market for Loanable Funds** looks at the **supply** of loans and the **demand** for borrowing. 
+- The **price** in this market is the **nominal interest rate**.
+- We start with this market in equilibrium of **private** borrowing only: D~1~ only includes demand from the private sector.
+- The amount of **private borrowing** is Q~1~.
+
+</div>
+```{r fig.width=5,fig.height=5, out.extra='style="float:right; padding:1px"'}
+
+
+ggplot(mapping = aes(x = q, y = p)) + 
+    ## Base Graph Begin**
+    geom_path(data = demand, color = color2, size = 1.2) + 
+    annotate("text", x=8.4, y=2, label = "D[1]", color = color2, size = 6, parse = TRUE) +
+    geom_path(data = supply, color = color3, size = 1.2) + 
+    annotate("text", x=8.4, y=8, label = "S[1]", color = color3, size = 6, parse = TRUE) +
+    coord_equal() +
+    theme_classic(base_family = "sans") +
+    theme(plot.title = element_text(size = rel(1.4))) +
+    ## End Base Graph ##
+    ## Graph Labels -- Change title and subtitle as needed ##
+    labs(x = "Quantity of Loans", y = "Interest Rate",
+         title = "Market for Loanable Funds",
+         subtitle = "The interest rate serves as the price in this market") + # Subtitle
+    
+    ##editing the x and y axes for the equilibria.  If dots aren't needed, still need to keep limit and expand##
+    scale_x_continuous(expand = c(0,0), limit = c(0,10), breaks = c(5), labels = expression(Q[1])) + ## Set breaks = equilibrium Q
+    scale_y_continuous(expand = c(0,0), limit = c(0,10), breaks = c(5), labels = expression(i[1])) + ## Set breaks = equilibrium Q
+  
+    ## Dashed Lines for equilibria
+    
+    annotate("segment", x=0, xend = 5, y = 5, yend = 5, linetype = "dotted") + # horizontal line
+    annotate("segment", x=5, xend = 5, y = 0, yend = 5, linetype = "dotted") # vertical line
+
+
+
+```
+
+## Market for Loanable Funds
+
+<div style="float: left; width: 50%;">
+
+- Increased government borrowing shifts demand to D~2~.
+- Demand shifting right **increases** interest rates to i~2~.
+- At i~2~, **total** borrowing increases to Q~2~, *but this includes both public and private borrowing*!
+
+
+</div>
+
+```{r fig.width=5,fig.height=5, out.extra='style="float:left; padding:1px"'}
+ggplot(mapping = aes(x = q, y = p)) + 
+    ## Base Graph Begin**
+    geom_path(data = demand, color = color2, size = 1.2) + 
+    annotate("text", x=8.4, y=2, label = "D[1]", color = color2, size = 6, parse = TRUE) +
+    geom_path(data = supply, color = color3, size = 1.2) + 
+    annotate("text", x=8.4, y=8, label = "S[1]", color = color3, size = 6, parse = TRUE) +
+    coord_equal() +
+    theme_classic(base_family = "sans") +
+    theme(plot.title = element_text(size = rel(1.4))) +
+    ## End Base Graph ##
+    
+    ## Demand Right Shift ##
+    geom_path(data = demandright, color = color2, size = 1.2, linetype = "dashed") + 
+    annotate("text", x=9.4, y=3, label = "D[2]", color = color2, size = 6, parse = TRUE) +
+    annotate("segment", x = 3.2, xend = 3.8, y = 7.2, yend = 7.8,
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+    annotate("segment", x = 7.2, xend = 7.8, y = 3.2, yend = 3.8,
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+    
+        ## Graph Labels -- Change title and subtitle as needed ##
+    labs(x = "Quantity of Loans", y = "Interest Rate",
+         title = "Market for Loanable Funds",
+         subtitle = "Government borrowing crowds out private borrowing") + # Subtitle
+    
+    ##editing the x and y axes for the equilibria.  If dots aren't needed, still need to keep limit and expand##
+    scale_x_continuous(expand = c(0,0), limit = c(0,10), breaks = c(4,5,6), labels = expression(Q[0],Q[1], Q[2])) + ## Set breaks = equilibrium Q
+    scale_y_continuous(expand = c(0,0), limit = c(0,10), breaks = c(5,6), labels = expression(i[1], i[2])) + ## Set breaks = equilibrium Q
+    ## Arrows
+       annotate("segment", x = .4, xend = .4, y = 5.2, yend = 5.8,
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+  
+    ## Dashed Lines for equilibria
+    annotate("segment", x=0, xend = 5, y = 5, yend = 5, linetype = "dotted") + # horizontal line
+    annotate("segment", x=5, xend = 5, y = 0, yend = 5, linetype = "dotted") + # vertical line
+    annotate("segment", x=0, xend = 6, y = 6, yend = 6, linetype = "dotted") + # horizontal line
+    annotate("segment", x=4, xend = 4, y = 0, yend = 6, linetype = "dotted") + # vertical line
+    annotate("segment", x=6, xend = 6, y = 0, yend = 6, linetype = "dotted") # vertical line
+
+```
+
+## Market for Loanable Funds
+
+<div style="float: left; width: 50%;">
+
+- Recall that D~1~ is still **private** borrowing demand, so Q~0~ is the amount of private borrowing.
+- Q~2~ - Q~0~ is government borrowing, but some of that government borrowing is **crowding out** private borrowing that would have happened had the interest rate been lower!
+- Q~1~ - Q~0~ is the amount of private borrowing that has been crowded out.
+
+</div>
+
+```{r fig.width=5,fig.height=5, out.extra='style="float:left; padding:1px"'}
+ggplot(mapping = aes(x = q, y = p)) + 
+    ## Base Graph Begin**
+    geom_path(data = demand, color = color2, size = 1.2) + 
+    annotate("text", x=8.4, y=2, label = "D[1]", color = color2, size = 6, parse = TRUE) +
+    geom_path(data = supply, color = color3, size = 1.2) + 
+    annotate("text", x=8.4, y=8, label = "S[1]", color = color3, size = 6, parse = TRUE) +
+    coord_equal() +
+    theme_classic(base_family = "sans") +
+    theme(plot.title = element_text(size = rel(1.4))) +
+    ## End Base Graph ##
+    
+    ## Demand Right Shift ##
+    geom_path(data = demandright, color = color2, size = 1.2, linetype = "dashed") + 
+    annotate("text", x=9.4, y=3, label = "D[2]", color = color2, size = 6, parse = TRUE) +
+    annotate("segment", x = 3.2, xend = 3.8, y = 7.2, yend = 7.8,
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+    annotate("segment", x = 7.2, xend = 7.8, y = 3.2, yend = 3.8,
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+    
+        ## Graph Labels -- Change title and subtitle as needed ##
+    labs(x = "Quantity of Loans", y = "Interest Rate",
+         title = "Market for Loanable Funds",
+         subtitle = "Government borrowing crowds out private borrowing") + # Subtitle
+    
+    ##editing the x and y axes for the equilibria.  If dots aren't needed, still need to keep limit and expand##
+    scale_x_continuous(expand = c(0,0), limit = c(0,10), breaks = c(4,5,6), labels = expression(Q[0],Q[1], Q[2])) + ## Set breaks = equilibrium Q
+    scale_y_continuous(expand = c(0,0), limit = c(0,10), breaks = c(5,6), labels = expression(i[1], i[2])) + ## Set breaks = equilibrium Q
+    ## Arrows
+       annotate("segment", x = .4, xend = .4, y = 5.2, yend = 5.8,
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+  
+    ## Dashed Lines for equilibria
+    annotate("segment", x=0, xend = 5, y = 5, yend = 5, linetype = "dotted") + # horizontal line
+    annotate("segment", x=5, xend = 5, y = 0, yend = 5, linetype = "dotted") + # vertical line
+    annotate("segment", x=0, xend = 6, y = 6, yend = 6, linetype = "dotted") + # horizontal line
+    annotate("segment", x=4, xend = 4, y = 0, yend = 6, linetype = "dotted") + # vertical line
+    annotate("segment", x=6, xend = 6, y = 0, yend = 6, linetype = "dotted") # vertical line
+
+```
+
 ## Crowding Out
 
 Does crowding out apply if the government cuts taxes instead of increases government spending? 

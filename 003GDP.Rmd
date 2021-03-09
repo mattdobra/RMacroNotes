@@ -386,7 +386,7 @@ Whenever one is looking at changes in a monetary variable over time, it is essen
 
 ## Nominal vs. Real GDP
 
-In 2005, Nominal GDP was \$$12.4T
+In 2005, Nominal GDP was \$12.4T
 in 1995, Nominal GDP was \$7.4T
 
 The Growth of Nominal GDP was therefore $\frac{\$12.4T-\$7.4T}{\$7.4T} = 67.6\%$
