@@ -203,7 +203,7 @@ What creates this tendency?
 To see how prices lead to equilibrium, imagine the price is not $P_{1}$ but rather is higher: $P_{H}$.
 
 - At price $P_{H}$, the quantity buyers want to purchase is $Q_{D}$, which is considerably less than the amount Suppliers want to sell, which is $Q_{S}$
-  - This is called a **Surplus**
+  - This is called a **Surplus** or **Excess Supply**
 - In order to sell their products, suppliers are forced to compete with each other. 
 
 
@@ -298,7 +298,7 @@ ggplot(mapping = aes(x = q, y = p)) +
 What happens if the price is too low?  Now, imagine the price is not $P_{1}$ but instead is lower: $P_{L}$.
 
 - At price $P_{L}$, the quantity buyers want to purchase is $Q_{D}$, which is a lot more than the amount Suppliers want to sell, which is $Q_{S}$
-  - This is called a **Shortage**
+  - This is called a **Shortage** or **Excess Demand**
 - Now, buyers are forced to compete with each other to convince sellers to sell to them.
 
 
