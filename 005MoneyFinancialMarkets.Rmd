@@ -524,7 +524,7 @@ ggplot(qtom20) +
                 to = as.Date(Sys.Date()),
                 by = "5 years"
             )) +
-    scale_y_continuous(labels = percent_format(accuracy = 1))+
+    scale_y_continuous(labels = percent_format(accuracy = 0.1))+
     annotate(
         geom = "text",
         x = as.Date("2010-1-01"),
@@ -674,7 +674,7 @@ Nominal interest rates, $i$, have *expected inflation* $\pi^{e}$ built in to the
 If actual inflation is *higher* than unexpected inflation $(\pi>\pi^{e})$ then inflation transfers wealth from lenders to borrowers.
 
 If actual inflation is *lower* than unexpected inflation $(\pi<\pi^{e})$ then inflation transfers wealth from borrowers to lenders.
-What if 
+
 
 ## Inflation Undermines Financial Markets
 
