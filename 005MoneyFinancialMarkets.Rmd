@@ -559,9 +559,13 @@ Were corporations *less* greedy when inflation was lower?
 
 ## Causes of Inflation
 
-While it is true that, *ceteris paribus*, prices tend to be higher in less competitive industries, there still needs to be a mechanism for *why* prices would rise.  Is industry concentration rising in the industries in which prices are going up?
+While it is true that, *ceteris paribus*, prices tend to be higher in less competitive industries, there still needs to be a mechanism for *why* prices would rise:  
 
-Moreover, this view misunderstands inflation--inflation is not a rise in a specific price or set of prices, it is a rise in all prices, and most industries carry such small weights in the CPI calculations that this mechanism can't explain inflation
+* Is industry concentration rising in the industries in which prices are going up?
+
+Moreover, this view misunderstands inflation--inflation is not a rise in a specific price or set of prices, it is a rise in all prices.
+
+* Most industries carry such small weights in the CPI calculations that this mechanism can't explain inflation.
 
 ## Causes of Inflation
 
@@ -569,7 +573,9 @@ Supply chain issues are an example of what is termed "cost-push inflation," the 
 
 If inflation refers to prices rising across the economy, the cost-push needs to be economy wide, otherwise the result is just changing relative prices at the microeconomic level.
 
-Moreover, the supply chain in the global economy is worldwide; if supply chain issues are the cause of US Inflation, they should cause inflation everywhere, but many developed countries did not experience higher than usual inflation in 2021.
+The supply chain in the global economy is worldwide; if supply chain issues are the cause of US inflation, they should cause inflation everywhere.
+
+* Many developed countries did not experience higher than usual inflation in 2021, and none had as big a jump as did the US.
 
 ## Causes of Inflation
 
@@ -581,7 +587,7 @@ What is true: deficit spending done *outside* of a recession is likely to increa
 
 ## Causes of Inflation
 
-The upshot is that policies targeting these issues will not affect inflation.  
+The upshot is that policies targeting these issues will not affect inflation. 
 
 <div style = "float:left; width:50%;">
 

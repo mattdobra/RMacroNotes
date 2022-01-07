@@ -500,10 +500,10 @@ curyear <- lubridate::year(Sys.Date())
 
 CPIlastdate<-lubridate::year(CPI[nrow(CPI),1])
 
-
+## not sure what these next 4 lines are supposed to do? I think this is solving the January problem.
 if(curyear!=CPIlastdate) {
-  CPIlastrow<-slice_tail(CPI, 1)
-  CPIlastrow$year <- 2021
+  CPIlastrow<-slice_tail(CPI, n = 1)
+  CPIlastrow$year <- curyear 
   CPI <- rbind(CPI, CPIlastrow)
   }
 
