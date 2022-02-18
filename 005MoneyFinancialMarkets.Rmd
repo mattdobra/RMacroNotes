@@ -215,7 +215,7 @@ ggplot() +
             )) +
     labs(
         title = "Inflation",
-        subtitle = "Anunal change in the CPI, monthly data since 1914",
+        subtitle = "Annual change in the CPI, monthly data since 1914",
         x = "Date",
         y = "Inflation Rate",
         caption = "Data from FRED, created by Matt Dobra @mattdobra"
@@ -309,7 +309,7 @@ inflation %>%
             )) +
     labs(
         title = "Inflation",
-        subtitle = "Anunal change in the CPI, monthly data since 2018",
+        subtitle = "Annual change in the CPI, monthly data since 2018",
         x = "Date",
         y = "Inflation Rate",
         caption = "Data from FRED, created by Matt Dobra @mattdobra"
