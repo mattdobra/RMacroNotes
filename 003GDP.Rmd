@@ -63,7 +63,7 @@ recession.df <- data.frame(start=start, end=end)
 # GDP
 ## Introduction
 
-GDP and GDP per capita are measures used to measure the size of an economy and the economic well being of people within that economy.
+Gross Domestic Product (GDP) and GDP per capita are measures used to measure the size of an economy and the economic well being of people within that economy.
 
 While not perfect measures, they are widely regarded as the best measures for measuring differences in standards of living and tracking those changes over time.
 
@@ -168,8 +168,6 @@ ggplot() +
     ) 
 
 
-
-   
 
 ```
 </div>
@@ -1139,7 +1137,7 @@ There are significant negative consequences of a large and growing federal debt:
 
 Development Economics focuses on understanding the economic and social conditions in developing countries.
 
-- Why are some nations wealthy why others are poor?
+- Why are some nations wealthy while others are poor?
 - Why are some nations getting wealthier faster than others?
 - Does a poverty trap exist?
 - What sort of concerns are specific to developing countries?
