@@ -71,7 +71,7 @@ There are a variety of types of unemployment, and all types are not created equa
 Some unemployment is an unavoidable and necessary consequence of economic growth, as economic progress inevitably renders some jobs obsolete.
 
 - Employment in fields like farming have declined significantly over the past 150 years, and some jobs have essentially disappeared (telephone switchboard operators, wagonmakers, etc.).
-- These jobs are destroyed becasue of the appearance of new jobs in areas like IT server technician and automotive engineer.
+- These jobs are destroyed because of the appearance of new jobs in areas like IT server technician and automotive engineer.
 
 ## Unemployment
 
@@ -863,6 +863,48 @@ unrate %>%
 ```
 
 </div>
+
+## Cyclical Unemployment
+
+<div style="float:right; width:70%;">
+
+```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
+
+ggplot() +
+    geom_line(data = unrate, aes(x = date, y = unrate), color = color2, size = 1.2) + 
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+     theme_classic()+
+    scale_y_continuous(breaks = seq(0,20, by = 2), 
+                       limits = c(0,NA),
+                       expand = c(0,0)) +
+    scale_x_date(limits = as.Date(c("2020-01-01", "2021-12-01")),
+        expand = c(0,0),   
+        labels = date_format("%b %Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1940-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "3 months"
+            )) +
+    labs(
+        title = "Covid and Cyclical Unemployment",
+        subtitle = "U-3 unemployment, 2020 and 2021",
+        x = "Month and Year",
+        y = "Unemloyment Rate",
+        caption = "Data from FRED, created by Matt Dobra @mattdobra"
+    ) 
+```
+</div>
+
+<div style="float:left; width:30%;">
+
+Zooming in on the U-3 graph to 2020 and 2021 shows the cyclical unemployment impact of Covid.  
+
+Even with the Covid recovery being remarkably quick, the recovery is still much slower than the initial shock.
+
+</div>
+
+
 
 ## Natural Rate of Unemployment
 
