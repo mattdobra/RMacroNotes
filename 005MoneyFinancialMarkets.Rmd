@@ -401,7 +401,7 @@ Many governments inflate their currency to fund government deficits or pay off d
 
 While this may solve short term budgetary problems, this typically creates far worse long run issues.
 
-Left unchecked, this often leads to **hyperinflation**.  **Hyperinflation** refers to very high rates of inflation; a common defitition is that hyperinflation is when inflation exceeds 50% *per month*. 
+Left unchecked, this often leads to **hyperinflation**.  **Hyperinflation** refers to very high rates of inflation; a common definition is that hyperinflation is when inflation exceeds 50% *per month*. 
 
 ## Hyperinflation
 
@@ -980,7 +980,7 @@ M1 and M2 are created by banks due to Fractional reserve banking.
 
 Fractional reserve banking allows banks to simply create money.
 
-How much money the create depends on the **reserve ratio**--the fraction of deposits banks keep as reserve.
+How much money they create depends on the **reserve ratio**--the fraction of deposits banks keep as reserve.
 
 $Reserve\;Ratio=\frac{Value\;of\;Reserves}{Value\;of\;Deposits}$
 
@@ -1073,7 +1073,7 @@ A **Liquidity crisis** is when a lot of a bank's depositors want to get their mo
 What happens if a bank is insolvent?
 
 - Typically, the FDIC steps in and pays depositors and the bank is closed.
-- In 2008, so many banks were insolvent at the same time that the fed many of them out instead.
+- In 2008, so many banks were insolvent at the same time that the fed bailed many of them out instead.
   - The Fed lent an estimated \$9 trillion in overnight loans between March 2008 and May 2009 to try to stave off a full-blown depression.
   
 ## Bank Reserves
