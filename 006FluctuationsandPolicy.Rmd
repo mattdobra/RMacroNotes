@@ -674,7 +674,7 @@ If the RBC model is correct, then most of what the government does to stave off 
 - This is a result of the model's assumption -- that prices in microeconomic markets adjust very quickly.
 - Most economists believe this assumption to be false.  While prices may adjust in the long run, they may not in the short run.
 
-# THe New Keynesian Model
+# The New Keynesian Model
 ## The New Keynesian Model
 
 <div style = "float: left; width:70%;">
