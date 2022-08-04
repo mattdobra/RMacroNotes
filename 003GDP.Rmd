@@ -671,6 +671,58 @@ Who cares?
 - If it started in March, it is fairly clear that the Covid-19 crisis is to blame, but...
 - If it started in February, one could claim that the recession may actually be the result of bad Trump policies and Covid-19 simply made it worse.
 
+## Recessions
+
+<div style = "float: left; width: 65%;">
+
+In the summer of 2022, there was a major political battle in the US over the definition of a recession. 
+
+Consider this tweet from a Fox News anchor in advance of the Second Quarter's GDP announcement:
+
+That's a lot of likes and retweets, and a great many of those likes and retweets were from Republican politicians and right-leaning media and pundits.
+
+Did the White House actually attempt to redefine the word recession?
+
+</div>
+
+<div style = "float: right; width: 35%;">
+
+```{r fig.align = 'center'}
+knitr::include_graphics("images/foxrecession.png")
+```
+</div>
+
+## Recessions
+
+"Two consecutive quarters of negative economic growth" is not, and never has been, the primary definition used among economists for identifying recessions.
+
+"Two consecutive quarters..." is more of a rule-of-thumb that:
+
+* *usually* (but not always) coincides with the official definition, is
+
+* easy for the public, media, and politicians to understand, and 
+
+* has the benefit of being able to be identified in real time.
+
+The reality, though, is that there is not a hard-and-fast rule for identifying recessions, and the White House did not redefine the meaning of the word "recession" as they were accused of doing. 
+
+## Recessions
+
+The practical benefit of the two-quarters rule-of-thumb is that it allows for the identification of recessions in real time, which the NBER definition does not.  
+
+* The recession beginning in December 2007 was not identified by the NBER until December 2008.
+
+* The NBER did not declare the 1969-1970 recession until September 1971.
+
+## Recessions
+
+There is considerable overlap between the two-quarters rule and the official NBER recessions, but it is not identical.
+
+* The two-quarters rule would not have identified 2001 as a recession.
+
+* The two-quarters rule would suggest that the 1973-1975 recession actually started in 1974.
+
+Moreover, it is worth noting that GDP data gets updated months, sometimes even years, after the initial reports, which could impact dating them using the two-quarter rule.
 
 # National Income Accounting
 
@@ -1241,46 +1293,43 @@ The US, which is more representative of developed countries than `r country2`, h
 
 ## Everyone Used to be Poor
 
-
 ```{r include = FALSE}
+
 library(maddison)
-max1 <- max(maddison$gdp_pc[maddison$year == as.Date("0001-01-01")], na.rm = TRUE)
-maddison %>% 
-  filter(year == as.Date("0001-01-01")) %>% 
-  filter(gdp_pc == max1)
-
-max1 <- max(maddison$gdp_pc[maddison$year == as.Date("1500-01-01")], na.rm = TRUE)
-maddison %>% 
-  filter(year == as.Date("1500-01-01")) %>% 
-  filter(gdp_pc == max1)
+data(maddison)
 
 
-max1 <- max(maddison$gdp_pc[maddison$year == as.Date("1800-01-01")], na.rm = TRUE)
-maddison %>% 
-  filter(year == as.Date("1800-01-01")) %>% 
-  filter(gdp_pc == max1)
-
-max1 <- max(maddison$gdp_pc[maddison$year == as.Date("1870-01-01")], na.rm = TRUE)
-maddison %>% 
-  filter(year == as.Date("1870-01-01")) %>% 
-  filter(gdp_pc == max1)
-
-max1 <- max(maddison$gdp_pc[maddison$year == as.Date("1900-01-01")], na.rm = TRUE)
-maddison %>% 
-  filter(year == as.Date("1900-01-01")) %>% 
-  filter(gdp_pc == max1)
-
+tempdat <- maddison %>% 
+    filter(year == 1 | year == 1500 | year == 1800 | year == 1870 | year == 1900 | year == 1950) %>% 
+    group_by(year) %>% 
+    slice(which.max(rgdpnapc)) %>% 
+    select(year,country, rgdpnapc)
 
 ```
-Economic Historian Angus Maddison has Approximated GDP per Capita for various civilizations throughout history all the way back to the year 1 AD.
 
-In 1 AD, the richest regions in the world were what is modern day Greece and Italy, with per capita GDP around $800.
 
-1500 years later, Italy was still the richest region in the world with GDP per capita near $1,500.
+<div style = "float:left; width: 60%;">
 
-300 years after that, in 1800 AD, the Netherlands was the richest region of the world with $2,600 per capita GDP.
+This table shows Angus Maddison's GDP per capita in the then-richest regions of the world at various points over the past 2000 years. Three important takeaways:
 
-The divergence between rich and poor countries doesn't really begin until the late 1800s.
+* Everyone used to be poor,
+
+* Capitalism and the industrial revolution caused modern growth, and
+
+* The inequality generated is from rich countries pulling away from poor countries, not pushing them down.
+
+</div>
+
+<div style = "float:right; width:40%;">
+
+```{r}
+tempdat %>% 
+    kable(format = "html", table.attr = "class=\"rmdtable\"", col.names = c("Year", "Region", "Real GDP Per Capita")) %>% 
+    kable_styling(full_width = F, position = "center") %>% 
+    column_spec(1, background = color2, color = color1)
+```
+
+</div>
 
 ## Everyone Used to be Poor
 

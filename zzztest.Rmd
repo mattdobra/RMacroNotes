@@ -197,3 +197,23 @@ ggplot(mapping = aes(x = q, y = p)) +
     annotate("segment", x=6, xend = 6, y = 0, yend = 6, linetype = "dotted") # vertical line
 
 ```
+
+## Recessions
+
+<div style = "float: left; width: 65%;">
+
+<br>
+<br>
+
+In the summer of 2022, there was a major political battle in the US over the definition of a recession. 
+
+Consider this tweet from a Fox News anchor in advance of the Second Quarter's GDP announcement:
+
+</div>
+
+<div style = "float: right; width: 35%;">
+
+```{r fig.align = 'center'}
+knitr::include_graphics("images/foxrecession.png")
+```
+</div>

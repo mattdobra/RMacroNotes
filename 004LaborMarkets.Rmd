@@ -580,13 +580,13 @@ trgtyear <- 2013
 prot <- OECD::get_dataset("EPL_OV", start_time = trgtyear, end_time = trgtyear)
 prot1 <- prot %>% 
     filter(SERIES == "EPRC_V3") %>% 
-    select(COUNTRY, obsValue) %>% 
-    rename(prot = obsValue)
+    select(COUNTRY, ObsValue) %>% 
+    rename(prot = ObsValue)
 filter_list <- list("", "MW", "900000", "UN5")
 dur <- OECD::get_dataset("DUR_I", start_time = trgtyear, end_time = trgtyear, filter = filter_list)
 dur1 <- dur %>% 
-    select(COUNTRY, obsValue) %>% 
-    rename(duration = obsValue)
+    select(COUNTRY, ObsValue) %>% 
+    rename(duration = ObsValue)
 
 dat <- prot1 %>% 
     inner_join(dur1)
@@ -594,9 +594,13 @@ dat <- prot1 %>%
 ```
 
 ```{r warning = FALSE, message = FALSE}
+dat$prot <- as.numeric(dat$prot)
+dat$duration <- as.numeric(dat$duration)
 ggplot(data = dat, aes(x = prot, y = duration, label = COUNTRY)) +
     ggrepel::geom_text_repel() +
     geom_smooth(method = lm, color = color3, fill = color4) +
+    # scale_y_continuous(limits = c(0,70)) +
+    # scale_x_continuous(limits = c(0,4)) +
     labs(
         title = "Labor Market Protection",
         subtitle = "Stricter labor market regulation results in longer average unemployment duration",
@@ -708,10 +712,11 @@ filter_list <- list("", "MEDIAN")
 min2ave <- OECD::get_dataset("MIN2AVE", start_time = trgtyear, end_time = trgtyear, filter = filter_list)
 
 min2ave2 <- min2ave %>% 
-  rename(kaitz = obsValue) %>% 
+  rename(kaitz = ObsValue) %>% 
   select(COUNTRY, kaitz) %>% 
   mutate(country = countrycode::countrycode(COUNTRY, origin = "wb", destination = "country.name")) %>% 
   arrange(kaitz)
+min2ave2$kaitz <- as.numeric(min2ave2$kaitz)
 
 ```
 
@@ -751,11 +756,12 @@ filter_list <- list("", "MW", "900000", "UR")
 unemp <- OECD::get_dataset("LFS_SEXAGE_I_R", start_time = trgtyear, end_time = trgtyear, filter = filter_list)
 
 unemp2 <- unemp %>% 
-  rename(unemp = obsValue) %>% 
+  rename(unemp = ObsValue) %>% 
   select(COUNTRY, unemp) %>% 
   inner_join(min2ave2)
 
 stargazer::stargazer(lm(unemp ~ kaitz, data = unemp2), type = "text")
+unemp2$unemp <- as.numeric(unemp2$unemp)
 ```
 
 ```{r warning = FALSE, message = FALSE}
