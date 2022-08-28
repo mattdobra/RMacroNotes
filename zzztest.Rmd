@@ -217,3 +217,33 @@ Consider this tweet from a Fox News anchor in advance of the Second Quarter's GD
 knitr::include_graphics("images/foxrecession.png")
 ```
 </div>
+
+## Recessions
+
+"Two consecutive quarters of negative economic growth" is not, and never has been, the actual definition used among economists for identifying recessions.
+
+"Two consecutive quarters..." is more of a rule of thumb:
+
+* *Usually* (but not always) coincides with the official definition.
+
+* Easy for the public, media, and politicians to understand.
+
+The reality, though, is that there is not a hard-and-fast rule for identifying recessions: In other words, recessions are a vibe!
+
+## Recessions
+
+The practical benefit of the "two consecutive quarters" rule of thumb is that it allows for the identification of recessions in real time, which the NBER definition does not.  
+
+* The recession beginning in December 2007 was not identified by the NBER until December 2008
+
+* The NBER did not declare the 1969-1970 recession until September 1971
+
+## Recessions
+
+There is considerable overlap between the "two consecutive quarters" rule and the official NBER recessions, but it is not identical.
+
+* The two-quarters rule would not have identified 2001 as a recession.
+
+* The two-quarters rule would suggest that the 1973-1975 recession actually started in 1974.
+
+Moreover, it is worth noting that GDP data gets updated months, sometimes even years, after the initial reports, which could impact  dating with the two-quarter rule.
