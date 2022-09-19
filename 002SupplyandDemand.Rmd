@@ -2949,7 +2949,7 @@ labor %>%
     guides(size = FALSE) +
     labs(title = "Prevalence of Child Labor",
          subtitle = "Child labor is more intensive in countries with lower GDP per capita", 
-         y = "Average Weekly Hours of Child Labor",
+         y = "Percentage of Working 7-14 Year Olds",
          x = "GDP per Capita (2017 USD)", 
          caption = "Data from World Bank WDI using most recent available data for each country") 
   
