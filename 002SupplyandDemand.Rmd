@@ -2912,8 +2912,18 @@ So are environmental quality and strict workplace safety regulations.
 
 ```{r include=FALSE}
 curyear <- lubridate::year(Sys.Date())
-labor <- tibble(WDI(country = "all", indicator = c("labor" = "SL.TLF.0714.SW.TM", "gdp" = "NY.GDP.PCAP.PP.KD", "pop" = "SP.POP.TOTL"), start = 2005, end = curyear, extra = TRUE, cache = NULL))
+labor <- tibble(WDI(country = "all", 
+                    indicator = c("mlabor" = "SL.TLF.0714.MA.ZS",
+                                  "flabor" = "SL.TLF.0714.FE.ZS", 
+                                  gdp = "NY.GDP.PCAP.PP.KD", 
+                                  "pop" = "SP.POP.TOTL"), 
+                    start = 2005, 
+                    end = curyear, 
+                    extra = TRUE, 
+                    cache = NULL))
 
+# labor <- lab %>% mutate(labor = row_mean)
+labor$labor <- (labor$mlabor + labor$flabor)/2
 labor <- na.omit(labor)
 # labor$region[labor$region == list(c("8S", "Z4", "ZQ"))] <- "Asia"
 # labor$region[labor$region == list(c("Z7"))] <- "Europe"
@@ -2924,19 +2934,24 @@ labor$region <- factor(labor$region)
 ```
 
 
-```{r fig.width=6,fig.height=5, out.extra='style="float:right; padding:1px"'}
+```{r fig.width=6 , fig.height=5, out.extra = 'style="float:right; padding:1px"', message = FALSE, warning = FALSE}
 
 labor %>% 
   group_by(iso2c) %>% 
   slice(which.max(year)) %>% 
-  mutate(continent = ifelse(region == "ZG" | country == "Egypt, Arab Rep." | country == "Algeria", "Africa", ifelse(region == "Z7", "Europe", ifelse(region == "8S" | region == "Z4" | region == "ZQ", "Asia", "Americas")))) %>% 
+  mutate(continent = ifelse(region == "Sub-Saharan Africa" | country == "Egypt, Arab Rep." | country == "Algeria" | region == "Middle East & North Africa", "Africa", ifelse(region == "Europe & Central Asia", "Europe", ifelse(region == "East Asia & Pacific" | region == "South Asia", "Asia", "Americas")))) %>% 
   arrange(desc(pop)) %>% 
-  ggplot(aes(gdp, labor, color = continent)) +
-  geom_point(aes(size = pop)) +
-  geom_text(aes(label = country), size = 4, check_overlap = TRUE, vjust = "inward", hjust = "inward", show.legend = FALSE) +
-  scale_color_manual(name = "Continent", values = c(color2, color3, color4, color5)) +
-  guides(size = FALSE) +
-  labs(title = "Prevalence of Child Labor", subtitle = "Child labor is more intensive in countries with lower GDP per capita", y = "Average Weekly Hours of Child Labor", x = "GDP per Capita (2017 USD)", caption = "Data from World Bank WDI using most recent available data for each country") 
+  ggplot(aes(x = gdp, y = labor)) +
+    geom_point(aes(size = pop, color = continent)) +
+    geom_smooth(aes(x = gdp, y = labor)) +
+    geom_text(aes(label = country), size = 4, check_overlap = TRUE, vjust = "inward", hjust = "inward", show.legend = FALSE) +
+    scale_color_manual(name = "Continent", values = c(color2, color3, color4, color5)) +
+    guides(size = FALSE) +
+    labs(title = "Prevalence of Child Labor",
+         subtitle = "Child labor is more intensive in countries with lower GDP per capita", 
+         y = "Average Weekly Hours of Child Labor",
+         x = "GDP per Capita (2017 USD)", 
+         caption = "Data from World Bank WDI using most recent available data for each country") 
   
 
 ```
