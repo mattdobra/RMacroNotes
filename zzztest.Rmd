@@ -198,52 +198,87 @@ ggplot(mapping = aes(x = q, y = p)) +
 
 ```
 
-## Recessions
+## 
 
-<div style = "float: left; width: 65%;">
+```{r}
+getSymbols("GDPC1", src = "FRED", return.class = "data.frame") # Real Quarterly US GDP 
+getSymbols("A261RX1Q020SBEA", src = "FRED", return.class = "data.frame") # Real Quarterly US GDI
+getSymbols("USREC", src = "FRED", return.class = "data.frame") # Recession dates
 
-<br>
-<br>
+GDPC1 <- rownames_to_column(GDPC1, var = "date")
+A261RX1Q020SBEA <- rownames_to_column(A261RX1Q020SBEA, var = "date")
+USREC <- rownames_to_column(USREC, var = "date")
 
-In the summer of 2022, there was a major political battle in the US over the definition of a recession. 
+gdpdata <- GDPC1 %>% 
+    left_join(A261RX1Q020SBEA,
+              by = c("date" = "date")) %>% 
+    left_join(USREC,
+              by = c("date" = "date")) %>% 
+    rename(gdp = GDPC1) %>% 
+    rename(gdi = A261RX1Q020SBEA) %>% 
+    rename(rec = USREC)
 
-Consider this tweet from a Fox News anchor in advance of the Second Quarter's GDP announcement:
+gdpdata$date <-as.Date(gdpdata$date)
 
-</div>
-
-<div style = "float: right; width: 35%;">
-
-```{r fig.align = 'center'}
-knitr::include_graphics("images/foxrecession.png")
 ```
-</div>
 
-## Recessions
+```{r warning = FALSE}
 
-"Two consecutive quarters of negative economic growth" is not, and never has been, the actual definition used among economists for identifying recessions.
+ggplot() +
+    geom_line(data = gdpdata, aes(x = date, y = gdp), color = color2, size = 1.2) + 
+    geom_line(data = gdpdata, aes(x = date, y = gdi), color = color3, size = 1.2) +
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+    scale_x_date(
+        limits = as.Date(c("1948-01-01", Sys.Date())),
+        labels = date_format("%Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1950-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "10 years"
+            )) +
+    # ylim(0,max(usgdp$gdp)) +
+    theme_classic()+
+    labs(
+        title = "US GDP and GDI",
+        subtitle = "Quarterly data since 1947",
+        x = "Date",
+        y = "Constant 2012 USD",
+        caption = "Data from U.S. BEA, Retrieved from FRED, Real GDI and GDP
+        created by Matt Dobra @mattdobra"
+    ) 
 
-"Two consecutive quarters..." is more of a rule of thumb:
 
-* *Usually* (but not always) coincides with the official definition.
 
-* Easy for the public, media, and politicians to understand.
+```
 
-The reality, though, is that there is not a hard-and-fast rule for identifying recessions: In other words, recessions are a vibe!
 
-## Recessions
+```{r warning = FALSE}
 
-The practical benefit of the "two consecutive quarters" rule of thumb is that it allows for the identification of recessions in real time, which the NBER definition does not.  
+ggplot() +
+    geom_line(data = gdpdata, aes(x = date, y = gdp), color = color2, size = 1.2) + 
+    geom_line(data = gdpdata, aes(x = date, y = gdi), color = color3, size = 1.2) +
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+    scale_x_date(
+        limits = as.Date(c("2016-01-01", Sys.Date())),
+        labels = date_format("%Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("2016-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "1 years"
+            )) +
+    ylim(17000,max(gdpdata$gdi)) +
+    theme_classic()+
+    labs(
+        title = "US GDP and GDI",
+        subtitle = "Quarterly data since 2016",
+        x = "Year",
+        y = "Constant 2012 USD",
+        caption = "Data from U.S. BEA, Retrieved from FRED, Real GDI and GDP
+        created by Matt Dobra @mattdobra"
+    ) 
 
-* The recession beginning in December 2007 was not identified by the NBER until December 2008
 
-* The NBER did not declare the 1969-1970 recession until September 1971
 
-## Recessions
-
-There is considerable overlap between the "two consecutive quarters" rule and the official NBER recessions, but it is not identical.
-
-* The two-quarters rule would not have identified 2001 as a recession.
-
-* The two-quarters rule would suggest that the 1973-1975 recession actually started in 1974.
-
-Moreover, it is worth noting that GDP data gets updated months, sometimes even years, after the initial reports, which could impact  dating with the two-quarter rule.
+```

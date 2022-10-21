@@ -423,7 +423,8 @@ Real Growth per Capita is the best reflection of changing living standards.
 ```{r include = FALSE}
 
 usgdp <- usgdp %>% 
-    mutate(growth = (gdp - lag(gdp, 4))/lag(gdp,4))
+    mutate(growth = (gdp - lag(gdp, 4))/lag(gdp, 4)) %>% 
+    mutate(growthqq = (1 + (gdp - lag(gdp, 1))/lag(gdp, 1))^4 - 1)
 
 ```
 
@@ -1090,7 +1091,7 @@ The next few slides have some examples of the problems these issues may cause.
 
 The entry of women into the workplace since the 1950s may have biased GDP growth upward.
 
-- The share of woomen in the labor force has almost doubled since 1950
+- The share of women in the labor force has almost doubled since 1950
 - When women were at home, unpaid work was not counted in GDP
 - Now, much of the same work is paid for and therefore counted 
     - e.g., use of paid nannies, preschools, housekeepers, dining out
