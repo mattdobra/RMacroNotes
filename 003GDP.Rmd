@@ -321,7 +321,7 @@ GDP only calculates what is produced, not what already exists. Thus:
 
 GDP only includes production that takes place within the borders.
 
-- Typically we talk about national GDP, but we can also talk about subnational GDP (state GDP, county GDP, etc).
+- Typically we talk about national GDP, but we can also talk about sub-national GDP (state GDP, county GDP, etc).
 
 Examples:
 
@@ -652,7 +652,7 @@ Defining when a recession begins and ends is not easy.
 Example: Dating the 2001 Recession.
 
 - The official NBER starting date is March 2001.
-- Data revisions have led many economists to conclude that the recession actually begain in late 2000.
+- Data revisions have led many economists to conclude that the recession actually began in late 2000.
 
 Who cares?  
 
@@ -746,7 +746,7 @@ The national spending identity is:
     - $Y =$ Nominal GDP
     - $C =$ The market value of consumption goods and  services
     - $I =$ The market value of investment goods
-    - $G =$ The market value of government purchases (not incuding transfers!)
+    - $G =$ The market value of government purchases (not including transfers!)
     - $NX =$ Net exports (market value of exports minus market value of imports)
 
 ## National Income Accounting
@@ -1082,7 +1082,7 @@ A major issue with GDP calculations is that there are many products for which we
 - GDP doesn't include the underground economy
     - Purchase of illegal goods/services, working "under the table"
     
-- GDP doesn't count nonmarket production
+- GDP doesn't count non-market production
     - Household work, bartered goods/services
 
 The next few slides have some examples of the problems these issues may cause.
@@ -1126,7 +1126,7 @@ Let's look more closely at the taxing and spending plan of the US Federal govern
 
 - A **budget deficit** exists in years when the amount of money the government spends is greater than tax revenues.  
 
-- Typically, buget deficits are financed by borrowing, If the government has a deficit, this gets added to the **National Debt**
+- Typically, budget deficits are financed by borrowing, If the government has a deficit, this gets added to the **National Debt**
 
 - A **budget surplus** occurs when the government spends less than it collects in taxes.  Budget surpluses reduce the debt
 
@@ -1316,7 +1316,7 @@ There are significant negative consequences of a large and growing federal debt:
 - Lowered long-run savings and growth
 - Rising costs of debt servicing, which limits what government can spend on.
 - Limit the government's ability to deal with crises.  
-- Increase governmnet interest rate risk: if interest rates rise quickly, the government will be in a very bad fiscal position.
+- Increase government interest rate risk: if interest rates rise quickly, the government will be in a very bad fiscal position.
 
 # Development
 
@@ -1699,7 +1699,7 @@ knitr::include_graphics("images/koreanight.jpg")
 
 - Provide incentives for hard work.
 - Encourage investment in physical capital
-- Encourage education and protcts against "brain drain"
+- Encourage education and protects against "brain drain"
 - Encourage innovation
 
 ## Institutions

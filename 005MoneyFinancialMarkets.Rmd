@@ -421,9 +421,9 @@ hyper %>%
 
 ## Hyperinflation
 
-The worst hyperinflation on record: Hungarian pengo, 1945 - 1946.
+The worst hyperinflation on record: Hungarian Pengo, 1945 - 1946.
 
-An item that would have cost 1 pengo in 1945 would cost 1.3 septillion pengo by the end of the hyperinflation!
+An item that would have cost 1 Pengo in 1945 would cost 1.3 septillion Pengo by the end of the hyperinflation!
 
 - A septillion is a big number: 1,300,000,000,000,000,000,000,000
 
@@ -815,7 +815,7 @@ Inflation increases the likelihood that decision makers will make the wrong econ
 
 ## Noisy Prices
 
-**Money Illusion** is the notion that pepole think in nominal terms, not real terms.  
+**Money Illusion** is the notion that people think in nominal terms, not real terms.  
 
 If a person gets a raise, what has happened to their real purchasing power?  
 
@@ -907,7 +907,7 @@ If Financial institutions cannot operate, markets that rely on lending are disru
 
 A final reason to avoid inflation is that ending inflation has the potential to create a recession.
 
-The Volcker Disinflation provides a good exmaple.
+The Volcker Disinflation provides a good example.
 
 US inflation in the 70s hovered around 10\%. The Volcker Disinflation reduced inflation to around 3\%.
 
@@ -937,7 +937,7 @@ Each piece of paper currency is marked with the Federal Reserve branch that issu
 
 ## The Federal Reserve
 
-The Federal Reserve performs anumber of functions. They:
+The Federal Reserve performs a number of functions. They:
 
 - Issue and create money
 - Have two sets of customers 
@@ -964,7 +964,7 @@ In the US, the three most important definitions of the money supply are:
 
 **Liquidity** refers to how quickly an asset can be converted into cash.  
 
-MB is perfectly liquid since it *is* cash, M1 is very liquid since it incldues immediately accessible deposits, and M2 is pretty liquid as well since it is money that people could access very quickly if they chose.
+MB is perfectly liquid since it *is* cash, M1 is very liquid since it includes immediately accessible deposits, and M2 is pretty liquid as well since it is money that people could access very quickly if they chose.
 
 ## Money
 

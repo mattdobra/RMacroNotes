@@ -381,7 +381,7 @@ $`r round(100*curunemploy$unemploy[1]/curlabforce$labforce[1],1)`\% = \frac{`r r
 
 From an individual perspective, unemployment, especially if it is long term unemployment, can be both financial and psychologically devastating.
 
-From a economy-wide perspective, unemployment means that the economy is underperforming.
+From a economy-wide perspective, unemployment means that the economy is under-performing.
 
 While the unemployment rate is arguably the *best* indicator of the labor market, it is not the whole story.
 
@@ -687,7 +687,7 @@ The median wage is the wage such that half of all workers earn more the median a
 
 The Kaitz index is often use as a shorthand to estimate the potential harm of a minimum wage.  
 
-- If Kaitz<40%, the general consensus is that the minimum wage is too low to have a noticeable unemployemnt effect.
+- If Kaitz<40%, the general consensus is that the minimum wage is too low to have a noticeable unemployment effect.
 - If Kaitz>60%, most economists believe that the minimum wage will have a large unemployment effect.
 - There is no general consensus on the 40%-60% range.
 

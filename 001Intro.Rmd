@@ -207,7 +207,7 @@ Economic **resources** are used to produce goods and services. There are many ca
 
 - land: raw materials and natural resources
 - labor: workers
-- human capital: the experience, education, skills posessed by labor
+- human capital: the experience, education, skills possessed by labor
 - physical capital: buildings, machinery, factories, equipment
 - time
 - ideas: technology, scientific know-how, etc
@@ -253,9 +253,9 @@ knitr::include_graphics("images/thoreau.jpg")
 knitr::include_graphics("images/xkcdgas.png")
 ```
 
-- Another way to think about the ideas of **Scarcity** and **Opportunity Cost** together is that they imply that all human action involves tradeoffs.
+- Another way to think about the ideas of **Scarcity** and **Opportunity Cost** together is that they imply that all human action involves trade-offs.
 
-- Because everybody is different, we all face different tradeoffs and opportunity costs for the things we do, *even if we are doing the same thing*.
+- Because everybody is different, we all face different trade-offs and opportunity costs for the things we do, *even if we are doing the same thing*.
 
 - This fact gives rise to the concept of **Comparative Advantage**
 

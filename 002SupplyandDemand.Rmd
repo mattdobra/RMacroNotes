@@ -462,7 +462,7 @@ ggplot(mapping = aes(x = q, y = p)) +
     theme_classic(base_family = "sans") +
     theme(plot.title = element_text(size = rel(1.4))) +
     ## End Base Graph ##
-    ##SUpply Right Shift ##
+    ##Supply Right Shift ##
     geom_path(data = supplyright, color = color3, size = 1.2, linetype = "dashed") + 
     annotate("text", x=9.4, y=7, label = "S[2]", color = color3, size = 6, parse = TRUE) +
     annotate("segment", x = 3.2, xend = 3.8, y = 2.8, yend = 2.2,
@@ -660,7 +660,7 @@ subcom %>%
 
 ### Examples of Substitutes
 
-- Xbox and Playstation
+- Xbox and PlayStation
 - Coke and Pepsi
 - butter and margarine
 - Jordans and Yeezys
@@ -887,7 +887,7 @@ Input prices are the main driver of shifts to supply curves.
 
 Comparative statics is comparing equilibria.
 
-1. Start with a market in equlibrium.
+1. Start with a market in equilibrium.
 2. Determine whether or not some **shock** shifts the supply curve, demand curve, or both.
       - Remember: curves only shift when something *other* than the price of the good changes!
 3. Shift the curve as appropriate
@@ -1592,7 +1592,7 @@ Overall, the impact of these policies is that the economic losses will outweigh 
 
 ## Price Controls
 
-Because price controls prevent prices from rationing the available supply, some other mechanism must take its place. Examples incldue:
+Because price controls prevent prices from rationing the available supply, some other mechanism must take its place. Examples include:
 
 - Government Rationing
 - Lines
@@ -1958,7 +1958,7 @@ There are three major benefits generated from trade:
 What benefits are there from international trade?
 
 - Trade allows for specialization.  
-- Speicalization creates the division of knowledge
+- Specialization creates the division of knowledge
 - This, in turn, generates increases in productivity
 - Increased productivity is only valuable in a world where trade exists.
 
@@ -2760,7 +2760,7 @@ When people talk about trade deficits, they are typically talking about the **cu
 
 A current account deficit implies a **capital account** surplus. 
 
-- **Capital Account** = foreign direct investment (FDI) + portfolio investment + loans to US gov't and businesses
+- **Capital Account** = foreign direct investment (FDI) + portfolio investment + loans to US govt and businesses
 
 In fact, the absolute value of the capital account is roughly equal to the absolute value of the current account!
 

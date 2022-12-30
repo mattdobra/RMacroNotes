@@ -211,7 +211,7 @@ ggplot() +
 
 <br> 
 
-Business cycles, particutlarly the contraction and the trough, have significant conesequences.
+Business cycles, particularly the contraction and the trough, have significant consequences.
 
 For example, unemployment tends to spike during recessions.
 
@@ -651,7 +651,7 @@ ggplot() +
            color = color3, size = 6, parse = TRUE) +
 ## Dashed Lines for equilibria
   annotate("segment", x=0, xend = 3, y = 2, yend = 2, linetype = "dotted") + # horizontal line
-  annotate("segment", x=3, xend = 3, y = 4, yend = 4, linetype = "dotted") + # horizongal line
+  annotate("segment", x=3, xend = 3, y = 4, yend = 4, linetype = "dotted") + # horizontal line
 ## Label Equilibria
   annotate("text", x = 3.2, y = 2.2, label = "A", color = color5, size = 6, parse = TRUE) +
   annotate("text", x = 3.2, y = 4.2, label = "B", color = color5, size = 6, parse = TRUE) +
@@ -1215,8 +1215,6 @@ The Great Depression(1929-1940) was the worst economic period in the US
 
 ## The Great Depression
 
-The Great Depression was made worse by government policies.
-
 The Great Depression began with the stock market crash in October 1929
 
 - Stock Market crashes are negative wealth shocks, which reduce spending.
@@ -1224,11 +1222,33 @@ The Great Depression began with the stock market crash in October 1929
 
 These two combine to shift the AD left
 
+Consistent with New Keynesian Theory, the economy started to recover quickly on its own.
+
+- Unemployment peaked at 9\% in December 1929/January 1930
+- By June 1930, unemployment had already begun to recover and was around 6.3\%
+
 ## The Great Depression
 
-These events causes consumers to lose confidence in banks and withdraw their money.
+There are 2 competing theories about the Great Depression.
 
-Between 1929 and 1933, roughly half of all US banks went bankrupt.
+1. President Hoover failed to react to the Depression, allowed it to get worse and the Depression was evidence of the failure of free market economies. FDR's New Deal was ultimately the thing that saved America.
+2. The Great Depression was prolonged by government policies intended to reduce the severity and duration of the Depression. This includes policies enacted by both Hoover and FDR.
+
+## The Great Depression
+
+Whereas the first story is the one commonly told in history classrooms in the US, the second theory is far more consistent with the economic record.  
+
+Ultimately, the Great Depression was made worse by government policies.
+
+June 1930 marks the beginning of government intervention to end the Great Depression (Smoot-Hawley Tariff).
+
+Following the passage of the Tariff, unemployment started to rise quickly into double-digits and stayed above 10\% for the rest of the 1930s.
+
+## The Great Depression
+
+The deepening of the Depression causes consumers to lose confidence in banks and withdraw their money.
+
+During the first 4 years of the Great Depression, roughly half of all US banks went bankrupt.
 
 This led to fewer loans, and private investment fell.
 
@@ -1253,7 +1273,7 @@ In addition to AD shocks, productivity shocks may have shifted the LRAS to the l
 - Bank failures decimated the financial sector, making it difficult for savers and investors to lend/borrow.
 - The Smoot-Hawley Tariff of 1930 was intended to boost demand for US made goods.
     - Instead, the rest of the world responded with retaliatory tariffs.
-    - Eliminating internation trade is a big negative productivity shock
+    - Eliminating international trade is a big negative productivity shock
 - The Dust Bowl: natural disasters are typically negative productivity shocks.
 
 # Fiscal Policy
@@ -1710,7 +1730,7 @@ The result is ever-rising debt
 
 ## Politics and Economics
 
-WIth higher debt, a larger share of a governments budget goes toward paying interest.
+With higher debt, a larger share of a governments budget goes toward paying interest.
 
 Countries with high debt have significant risk of default, capital flight, depression, recession,  social unrest, etc
 
