@@ -273,7 +273,7 @@ ggplot(mapping = aes(x = q, y = p)) +
          subtitle = "Market forces push prices down when there is a surplus") + # Subtitle
     ## Down arrow
        annotate("segment", x = .4, xend = .4, y = 6.8, yend = 5.2,
-             arrow = arrow(length = unit(1, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(1, "lines")), colour = color4, linewidth = 1) +    
     ##editing the x and y axes for the equilibria.  If dots aren't needed, still need to keep limit and expand##
     scale_x_continuous(expand = c(0,0), limit = c(0,10), breaks = c(3,5,7), labels = expression(Q[D],Q[1], Q[S])) + ## Set breaks = equilibrium Q
     scale_y_continuous(expand = c(0,0), limit = c(0,10), breaks = c(5,7), labels = expression(P[1], P[H])) + ## Set breaks = equilibrium Q
@@ -365,7 +365,7 @@ ggplot(mapping = aes(x = q, y = p)) +
     ## End Base Graph ##
     ## Down arrow
    annotate("segment", x = .4, xend = .4, y = 3.2, yend = 4.8,
-             arrow = arrow(length = unit(1, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(1, "lines")), colour = color4, linewidth = 1) +    
 
     ## Graph Labels -- Change title and subtitle as needed ##
     labs(x = "Quantity", y = "Price",
@@ -425,9 +425,9 @@ ggplot(mapping = aes(x = q, y = p)) +
     geom_path(data = demandright, color = color2, linewidth = 1.2, linetype = "dashed") + 
     annotate("text", x=9.4, y=3, label = "D[2]", color = color2, size = 6, parse = TRUE) +
     annotate("segment", x = 3.2, xend = 3.8, y = 7.2, yend = 7.8,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +
     annotate("segment", x = 7.2, xend = 7.8, y = 3.2, yend = 3.8,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +
     
         ## Graph Labels -- Change title and subtitle as needed ##
     labs(x = "Quantity", y = "Price",
@@ -439,9 +439,9 @@ ggplot(mapping = aes(x = q, y = p)) +
     scale_y_continuous(expand = c(0,0), limit = c(0,10), breaks = c(5,6), labels = expression(P[1], P[2])) + ## Set breaks = equilibrium Q
     ## Arrows
        annotate("segment", x = .4, xend = .4, y = 5.2, yend = 5.8,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
        annotate("segment", y = .4, yend = .4, x = 5.2, xend = 5.8,
-             arrow = arrow(length = unit(.51, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(.51, "lines")), colour = color4, linewidth = 1) +    
     ## Dashed Lines for equilibria
     annotate("segment", x=0, xend = 5, y = 5, yend = 5, linetype = "dotted") + # horizontal line
     annotate("segment", x=5, xend = 5, y = 0, yend = 5, linetype = "dotted") + # vertical line
@@ -466,9 +466,9 @@ ggplot(mapping = aes(x = q, y = p)) +
     geom_path(data = supplyright, color = color3, linewidth = 1.2, linetype = "dashed") + 
     annotate("text", x=9.4, y=7, label = "S[2]", color = color3, size = 6, parse = TRUE) +
     annotate("segment", x = 3.2, xend = 3.8, y = 2.8, yend = 2.2,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +
     annotate("segment", x = 7.2, xend = 7.8, y = 6.8, yend = 6.2,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +
     ## Graph Labels -- Change title and subtitle as needed ##
     labs(x = "Quantity", y = "Price",
          title = "Increase in Supply",
@@ -479,9 +479,9 @@ ggplot(mapping = aes(x = q, y = p)) +
     scale_y_continuous(expand = c(0,0), limit = c(0,10), breaks = c(5,4), labels = expression(P[1], P[2])) + ## Set breaks = equilibrium Q
     ## P/Q Arrows
        annotate("segment", x = .4, xend = .4, y = 4.8, yend = 4.2,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
        annotate("segment", y = .4, yend = .4, x = 5.2, xend = 5.8,
-             arrow = arrow(length = unit(.51, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(.51, "lines")), colour = color4, linewidth = 1) +    
   
     ## Dashed Lines for equilibria
     
@@ -510,9 +510,9 @@ ggplot(mapping = aes(x = q, y = p)) +
     geom_path(data = demandleft, color = color2, linewidth = 1.2, linetype = "dashed") + 
     annotate("text", x=7.4, y=1, label = "D[2]", color = color2, size = 6, parse = TRUE) +
     annotate("segment", x = 2.8, xend = 2.2, y = 6.8, yend = 6.2,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +
     annotate("segment", x = 6.8, xend = 6.2, y = 2.8, yend = 2.2,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +
 
     ## Graph Labels -- Change title and subtitle as needed ##
     labs(x = "Quantity", y = "Price",
@@ -526,9 +526,9 @@ ggplot(mapping = aes(x = q, y = p)) +
     ## P/Q Arrows (delete if no changes, edit points otherwise. 
     ## Leave .4 from axes and 0.2 from start/end point 
     annotate("segment", x = .4, xend = .4, y = 4.8, yend = 4.2,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
     annotate("segment", y = .4, yend = .4, x = 4.8, xend = 4.2,
-             arrow = arrow(length = unit(.51, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(.51, "lines")), colour = color4, linewidth = 1) +    
 
     ## Dashed Lines for equilibria
     annotate("segment", x=0, xend = 5, y = 5, yend = 5, linetype = "dotted") + # horizontal line
@@ -554,9 +554,9 @@ ggplot(mapping = aes(x = q, y = p)) +
     geom_path(data = supplyleft, color = color3, linewidth = 1.2, linetype = "dashed") +
     annotate("text", x=7.4, y=9, label = "S[2]", color = color3, size = 6, parse = TRUE) +
     annotate("segment", x =2.8, xend = 2.2, y = 3.2, yend = 3.8,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +
     annotate("segment", x = 6.8, xend = 6.2, y = 7.2, yend = 7.8,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +
     
     ## Graph Labels -- Change title and subtitle as needed ##
     labs(x = "Quantity", y = "Price",
@@ -570,9 +570,9 @@ ggplot(mapping = aes(x = q, y = p)) +
     ## P/Q Arrows (delete if no changes, edit points otherwise. 
     ## Leave .4 from axes and 0.2 from start/end point 
     annotate("segment", x = .4, xend = .4, y = 5.2, yend = 5.8,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
     annotate("segment", y = .4, yend = .4, x = 4.8, xend = 4.2,
-             arrow = arrow(length = unit(.51, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(.51, "lines")), colour = color4, linewidth = 1) +    
 
   
       ## Dashed Lines for equilibria
@@ -767,9 +767,9 @@ ggplot(mapping = aes(x = q, y = p)) +
     geom_path(data = demandleft, color = color2, linewidth = 1.2, linetype = "dashed") + 
     annotate("text", x=7.4, y=1, label = "D[2]", color = color2, size = 6, parse = TRUE) +
     annotate("segment", x = 2.8, xend = 2.2, y = 6.8, yend = 6.2,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +
     annotate("segment", x = 6.8, xend = 6.2, y = 2.8, yend = 2.2,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +
 
     ## Graph Labels -- Change title and subtitle as needed ##
     labs(x = "Quantity", y = "Price",
@@ -783,9 +783,9 @@ ggplot(mapping = aes(x = q, y = p)) +
     ## P/Q Arrows (delete if no changes, edit points otherwise. 
     ## Leave .4 from axes and 0.2 from start/end point 
     annotate("segment", x = .4, xend = .4, y = 4.8, yend = 4.2,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
     annotate("segment", y = .4, yend = .4, x = 4.8, xend = 4.2,
-             arrow = arrow(length = unit(.51, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(.51, "lines")), colour = color4, linewidth = 1) +    
 
     ## Dashed Lines for equilibria
     annotate("segment", x=0, xend = 5, y = 5, yend = 5, linetype = "dotted") + # horizontal line
@@ -829,9 +829,9 @@ ggplot(mapping = aes(x = q, y = p)) +
     geom_path(data = demandright, color = color2, linewidth = 1.2, linetype = "dashed") + 
     annotate("text", x=9.4, y=3, label = "D[2]", color = color2, size = 6, parse = TRUE) +
     annotate("segment", x = 3.2, xend = 3.8, y = 7.2, yend = 7.8,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +
     annotate("segment", x = 7.2, xend = 7.8, y = 3.2, yend = 3.8,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +
     
         ## Graph Labels -- Change title and subtitle as needed ##
     labs(x = "Quantity", y = "Price",
@@ -843,9 +843,9 @@ ggplot(mapping = aes(x = q, y = p)) +
     scale_y_continuous(expand = c(0,0), limit = c(0,10), breaks = c(5,6), labels = expression(P[1], P[2])) + ## Set breaks = equilibrium Q
     ## Arrows
        annotate("segment", x = .4, xend = .4, y = 5.2, yend = 5.8,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
        annotate("segment", y = .4, yend = .4, x = 5.2, xend = 5.8,
-             arrow = arrow(length = unit(.51, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(.51, "lines")), colour = color4, linewidth = 1) +    
     ## Dashed Lines for equilibria
     annotate("segment", x=0, xend = 5, y = 5, yend = 5, linetype = "dotted") + # horizontal line
     annotate("segment", x=5, xend = 5, y = 0, yend = 5, linetype = "dotted") + # vertical line
@@ -921,9 +921,9 @@ ggplot(mapping = aes(x = q, y = p)) +
     geom_path(data = supplyleft, color = color3, linewidth = 1.2, linetype = "dashed") +
     annotate("text", x=7.4, y=9, label = "S[2]", color = color3, size = 6, parse = TRUE) +
     annotate("segment", x =2.8, xend = 2.2, y = 3.2, yend = 3.8,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +
     annotate("segment", x = 6.8, xend = 6.2, y = 7.2, yend = 7.8,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +
     
     ## Graph Labels -- Change title and subtitle as needed ##
     labs(x = "Quantity", y = "Price",
@@ -937,9 +937,9 @@ ggplot(mapping = aes(x = q, y = p)) +
     ## P/Q Arrows (delete if no changes, edit points otherwise. 
     ## Leave .4 from axes and 0.2 from start/end point 
     annotate("segment", x = .4, xend = .4, y = 5.2, yend = 5.8,
-             arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
     annotate("segment", y = .4, yend = .4, x = 4.8, xend = 4.2,
-             arrow = arrow(length = unit(.51, "lines")), colour = color4, size = 1) +    
+             arrow = arrow(length = unit(.51, "lines")), colour = color4, linewidth = 1) +    
 
   
       ## Dashed Lines for equilibria
@@ -1230,7 +1230,7 @@ ggplot(mapping = aes(x = q, y = p)) +
   ## P/Q Arrows (delete if no changes, edit points otherwise. 
   ## Leave .4 from axes and 0.2 from start/end point 
   annotate("segment", x = .4, xend = .4, y = 5.2, yend = 6.8,
-           arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+           arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
   
   
   ## Dashed Lines for initial equilibrium
@@ -1284,7 +1284,7 @@ ggplot(mapping = aes(x = q, y = p)) +
   ## P/Q Arrows (delete if no changes, edit points otherwise. 
   ## Leave .4 from axes and 0.2 from start/end point 
   annotate("segment", x = .4, xend = .4, y = 5.2, yend = 6.8,
-           arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+           arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
   
   
   ## Dashed Lines for initial equilibrium
@@ -1418,7 +1418,7 @@ ggplot(mapping = aes(x = q, y = p)) +
   ## P/Q Arrows (delete if no changes, edit points otherwise. 
   ## Leave .4 from axes and 0.2 from start/end point 
   annotate("segment", x = .4, xend = .4, y = 4.8, yend = 3.2,
-           arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+           arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
   
   
   ## Dashed Lines for initial equilibrium
@@ -1471,7 +1471,7 @@ ggplot(mapping = aes(x = q, y = p)) +
   ## P/Q Arrows (delete if no changes, edit points otherwise. 
   ## Leave .4 from axes and 0.2 from start/end point 
   annotate("segment", x = .4, xend = .4, y = 4.8, yend = 3.2,
-           arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+           arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
   
   
   ## Dashed Lines for initial equilibrium
@@ -1834,11 +1834,11 @@ ggplot(mapping = aes(x = q, y = p)) +
   ## P/Q Arrows (delete if no changes, edit points otherwise. 
   ## Leave .4 from axes and 0.2 from start/end point 
   annotate("segment", x = .4, xend = .4, y = 5.2, yend = 6.8,
-           arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1.5) +    
+           arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1.5) +    
 
   ## Quantity Control Line and Label
   annotate("segment", x = 3, xend = 3, y = 0, yend = 8.7,
-           colour = color3, size = 1) +    
+           colour = color3, linewidth = 1) +    
   annotate("text", x=3, y=9, label = "Quota", color = color3, parse = TRUE) +
     
 
@@ -1930,7 +1930,7 @@ ggplot(mapping = aes(x = q, y = p)) +
 
   ## Quantity Control Line and Label
   annotate("segment", x = 3, xend = 3, y = 0, yend = 8.7,
-           colour = color3, size = 1) +    
+           colour = color3, linewidth = 1) +    
   annotate("text", x=3, y=9, label = "Quota", color = color3, parse = TRUE) +
     
 
@@ -2029,7 +2029,7 @@ ggplot(mapping = aes(x = q, y = p)) +
   ## P/Q Arrows (delete if no changes, edit points otherwise. 
   ## Leave .4 from axes and 0.2 from start/end point 
   annotate("segment", x = .4, xend = .4, y = 5.2, yend = 6.8,
-           arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+           arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
   
   
   ## Dashed Lines for initial equilibrium
@@ -2083,7 +2083,7 @@ ggplot(mapping = aes(x = q, y = p)) +
   ## P/Q Arrows (delete if no changes, edit points otherwise. 
   ## Leave .4 from axes and 0.2 from start/end point 
   annotate("segment", x = .4, xend = .4, y = 5.2, yend = 6.8,
-           arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+           arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
   
   
   ## Dashed Lines for initial equilibrium
@@ -2212,7 +2212,7 @@ ggplot(mapping = aes(x = q, y = p)) +
   ## P/Q Arrows (delete if no changes, edit points otherwise. 
   ## Leave .4 from axes and 0.2 from start/end point 
   annotate("segment", x = .4, xend = .4, y = 4.8, yend = 3.2,
-           arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+           arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
   
   
   ## Dashed Lines for initial equilibrium
@@ -2266,7 +2266,7 @@ ggplot(mapping = aes(x = q, y = p)) +
   ## P/Q Arrows (delete if no changes, edit points otherwise. 
   ## Leave .4 from axes and 0.2 from start/end point 
   annotate("segment", x = .4, xend = .4, y = 4.8, yend = 3.2,
-           arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+           arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
   
   
   ## Dashed Lines for initial equilibrium
@@ -2404,7 +2404,7 @@ ggplot(mapping = aes(x = q, y = p)) +
   annotate("segment", x=0, xend = 5, y = 5, yend = 5, linetype = "dotted") + # horizontal line
   annotate("segment", x=5, xend = 5, y = 0, yend = 5, linetype = "dotted") + # vertical line
   annotate("segment", x=0, xend = 7, y = 3, yend = 3, linetype = "dotted") + # horizontal line
-  annotate("segment", x=0, xend = 8, y = 4, yend = 4, color = color4, size = 1.5) + # horizontal line
+  annotate("segment", x=0, xend = 8, y = 4, yend = 4, color = color4, linewidth = 1.5) + # horizontal line
   annotate("segment", x=3, xend = 3, y = 0, yend = 3, linetype = "dotted") + # vertical line
   annotate("segment", x=7, xend = 7, y = 0, yend = 3, linetype = "dotted") # vertical line
 
@@ -2454,14 +2454,14 @@ ggplot(mapping = aes(x = q, y = p)) +
   ## P/Q Arrows (delete if no changes, edit points otherwise. 
   ## Leave .4 from axes and 0.2 from start/end point 
   annotate("segment", x = .4, xend = .4, y = 3.2, yend = 3.8,
-           arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +    
+           arrow = arrow(length = unit(.5, "lines")), colour = color4, linewidth = 1) +    
   
   
   ## Dashed Lines for initial equilibrium
   annotate("segment", x=0, xend = 5, y = 5, yend = 5, linetype = "dotted") + # horizontal line
   annotate("segment", x=5, xend = 5, y = 0, yend = 5, linetype = "dotted") + # vertical line
   annotate("segment", x=0, xend = 7, y = 3, yend = 3, linetype = "dotted") + # horizontal line
-  annotate("segment", x=0, xend = 8, y = 4, yend = 4, color = color4, size = 1.5) + # horizontal line
+  annotate("segment", x=0, xend = 8, y = 4, yend = 4, color = color4, linewidth = 1.5) + # horizontal line
   annotate("segment", x=3, xend = 3, y = 0, yend = 3, linetype = "dotted") + # vertical line
   annotate("segment", x=4, xend = 4, y = 0, yend = 4, linetype = "dotted") + # vertical line
   annotate("segment", x=6, xend = 6, y = 0, yend = 4, linetype = "dotted") + # vertical line
@@ -2510,7 +2510,7 @@ ggplot(mapping = aes(x = q, y = p)) +
   annotate("segment", x=0, xend = 5, y = 5, yend = 5, linetype = "dotted") + # horizontal line
   annotate("segment", x=5, xend = 5, y = 0, yend = 5, linetype = "dotted") + # vertical line
   annotate("segment", x=0, xend = 7, y = 3, yend = 3, linetype = "dotted") + # horizontal line
-  annotate("segment", x=0, xend = 8, y = 4, yend = 4, color = color4, size = 1.5) + # horizontal line
+  annotate("segment", x=0, xend = 8, y = 4, yend = 4, color = color4, linewidth = 1.5) + # horizontal line
   annotate("segment", x=3, xend = 3, y = 0, yend = 3, linetype = "dotted") + # vertical line
   annotate("segment", x=4, xend = 4, y = 0, yend = 4, linetype = "dotted") + # vertical line
   annotate("segment", x=6, xend = 6, y = 0, yend = 4, linetype = "dotted") + # vertical line
@@ -2598,7 +2598,7 @@ ggplot(mapping = aes(x = q, y = p)) +
   annotate("segment", x=0, xend = 5, y = 5, yend = 5, linetype = "dotted") + # horizontal line
   annotate("segment", x=5, xend = 5, y = 0, yend = 5, linetype = "dotted") + # vertical line
   annotate("segment", x=0, xend = 7, y = 3, yend = 3, linetype = "dotted") + # horizontal line
-  annotate("segment", x=0, xend = 8, y = 4, yend = 4, color = color4, size = 1.5) + # horizontal line
+  annotate("segment", x=0, xend = 8, y = 4, yend = 4, color = color4, linewidth = 1.5) + # horizontal line
   annotate("segment", x=3, xend = 3, y = 0, yend = 3, linetype = "dotted") + # vertical line
   annotate("segment", x=4, xend = 4, y = 0, yend = 4, linetype = "dotted") + # vertical line
   annotate("segment", x=6, xend = 6, y = 0, yend = 4, linetype = "dotted") + # vertical line
@@ -2676,7 +2676,7 @@ ggplot(mapping = aes(x = q, y = p)) +
   annotate("segment", x=0, xend = 5, y = 5, yend = 5, linetype = "dotted") + # horizontal line
   annotate("segment", x=5, xend = 5, y = 0, yend = 5, linetype = "dotted") + # vertical line
   annotate("segment", x=0, xend = 7, y = 3, yend = 3, linetype = "dotted") + # horizontal line
-  annotate("segment", x=0, xend = 8, y = 4, yend = 4, color = color4, size = 1.5) + # horizontal line
+  annotate("segment", x=0, xend = 8, y = 4, yend = 4, color = color4, linewidth = 1.5) + # horizontal line
   annotate("segment", x=3, xend = 3, y = 0, yend = 3, linetype = "dotted") + # vertical line
   annotate("segment", x=4, xend = 4, y = 0, yend = 4, linetype = "dotted") + # vertical line
   annotate("segment", x=6, xend = 6, y = 0, yend = 4, linetype = "dotted") + # vertical line
