@@ -160,9 +160,9 @@ All Supply curves slope upward. The primary reason for this phenomenon is:
 
 ggplot(mapping = aes(x = q, y = p)) + 
     ## Base Graph Begin**
-    geom_path(data = demand, color = color2, size = 1.2) + 
+    geom_path(data = demand, color = color2, linewidth = 1.2) + 
     annotate("text", x=8.4, y=2, label = "D[1]", color = color2, size = 6, parse = TRUE) +
-    geom_path(data = supply, color = color3, size = 1.2) + 
+    geom_path(data = supply, color = color3, linewidth = 1.2) + 
     annotate("text", x=8.4, y=8, label = "S[1]", color = color3, size = 6, parse = TRUE) +
     coord_equal() +
     theme_classic(base_family = "sans") +
@@ -213,9 +213,9 @@ To see how prices lead to equilibrium, imagine the price is not $P_{1}$ but rath
 
 ggplot(mapping = aes(x = q, y = p)) + 
     ## Base Graph Begin**
-    geom_path(data = demand, color = color2, size = 1.2) + 
+    geom_path(data = demand, color = color2, linewidth = 1.2) + 
     annotate("text", x=8.4, y=2, label = "D[1]", color = color2, size = 6, parse = TRUE) +
-    geom_path(data = supply, color = color3, size = 1.2) + 
+    geom_path(data = supply, color = color3, linewidth = 1.2) + 
     annotate("text", x=8.4, y=8, label = "S[1]", color = color3, size = 6, parse = TRUE) +
     geom_bracket(xmin = 3, xmax = 7, y.position = 7.5, label = "Surplus", tip.length = .05) +
     coord_equal() +
@@ -258,9 +258,9 @@ ggplot(mapping = aes(x = q, y = p)) +
 
 ggplot(mapping = aes(x = q, y = p)) + 
     ## Base Graph Begin**
-    geom_path(data = demand, color = color2, size = 1.2) + 
+    geom_path(data = demand, color = color2, linewidth = 1.2) + 
     annotate("text", x=8.4, y=2, label = "D[1]", color = color2, size = 6, parse = TRUE) +
-    geom_path(data = supply, color = color3, size = 1.2) + 
+    geom_path(data = supply, color = color3, linewidth = 1.2) + 
     annotate("text", x=8.4, y=8, label = "S[1]", color = color3, size = 6, parse = TRUE) +
     geom_bracket(xmin = 3, xmax = 7, y.position = 7.5, label = "Surplus", tip.length = .05) +
     coord_equal() +
@@ -308,9 +308,9 @@ What happens if the price is too low?  Now, imagine the price is not $P_{1}$ but
 
 ggplot(mapping = aes(x = q, y = p)) + 
     ## Base Graph Begin**
-    geom_path(data = demand, color = color2, size = 1.2) + 
+    geom_path(data = demand, color = color2, linewidth = 1.2) + 
     annotate("text", x=8.4, y=2, label = "D[1]", color = color2, size = 6, parse = TRUE) +
-    geom_path(data = supply, color = color3, size = 1.2) + 
+    geom_path(data = supply, color = color3, linewidth = 1.2) + 
     annotate("text", x=8.4, y=8, label = "S[1]", color = color3, size = 6, parse = TRUE) +
     geom_bracket(xmin = 3, xmax = 7, y.position = 2.5, label = "Shortage", tip.length = -.05, vjust = 3) +
     coord_equal() +
@@ -354,9 +354,9 @@ ggplot(mapping = aes(x = q, y = p)) +
 
 ggplot(mapping = aes(x = q, y = p)) + 
     ## Base Graph Begin**
-    geom_path(data = demand, color = color2, size = 1.2) + 
+    geom_path(data = demand, color = color2, linewidth = 1.2) + 
     annotate("text", x=8.4, y=2, label = "D[1]", color = color2, size = 6, parse = TRUE) +
-    geom_path(data = supply, color = color3, size = 1.2) + 
+    geom_path(data = supply, color = color3, linewidth = 1.2) + 
     annotate("text", x=8.4, y=8, label = "S[1]", color = color3, size = 6, parse = TRUE) +
     geom_bracket(xmin = 3, xmax = 7, y.position = 2.5, label = "Shortage", tip.length = -.05, vjust = 3) +
     coord_equal() +
@@ -412,9 +412,9 @@ ggplot(mapping = aes(x = q, y = p)) +
 ```{r fig.width=5,fig.height=5, out.extra='style="float:left; padding:1px"'}
 ggplot(mapping = aes(x = q, y = p)) + 
     ## Base Graph Begin**
-    geom_path(data = demand, color = color2, size = 1.2) + 
+    geom_path(data = demand, color = color2, linewidth = 1.2) + 
     annotate("text", x=8.4, y=2, label = "D[1]", color = color2, size = 6, parse = TRUE) +
-    geom_path(data = supply, color = color3, size = 1.2) + 
+    geom_path(data = supply, color = color3, linewidth = 1.2) + 
     annotate("text", x=8.4, y=8, label = "S[1]", color = color3, size = 6, parse = TRUE) +
     coord_equal() +
     theme_classic(base_family = "sans") +
@@ -422,7 +422,7 @@ ggplot(mapping = aes(x = q, y = p)) +
     ## End Base Graph ##
     
     ## Demand Right Shift ##
-    geom_path(data = demandright, color = color2, size = 1.2, linetype = "dashed") + 
+    geom_path(data = demandright, color = color2, linewidth = 1.2, linetype = "dashed") + 
     annotate("text", x=9.4, y=3, label = "D[2]", color = color2, size = 6, parse = TRUE) +
     annotate("segment", x = 3.2, xend = 3.8, y = 7.2, yend = 7.8,
              arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
@@ -454,16 +454,16 @@ ggplot(mapping = aes(x = q, y = p)) +
 
 ggplot(mapping = aes(x = q, y = p)) + 
     ## Base Graph Begin**
-    geom_path(data = demand, color = color2, size = 1.2) + 
+    geom_path(data = demand, color = color2, linewidth = 1.2) + 
     annotate("text", x=8.4, y=2, label = "D[1]", color = color2, size = 6, parse = TRUE) +
-    geom_path(data = supply, color = color3, size = 1.2) + 
+    geom_path(data = supply, color = color3, linewidth = 1.2) + 
     annotate("text", x=8.4, y=8, label = "S[1]", color = color3, size = 6, parse = TRUE) +
     coord_equal() +
     theme_classic(base_family = "sans") +
     theme(plot.title = element_text(size = rel(1.4))) +
     ## End Base Graph ##
     ##Supply Right Shift ##
-    geom_path(data = supplyright, color = color3, size = 1.2, linetype = "dashed") + 
+    geom_path(data = supplyright, color = color3, linewidth = 1.2, linetype = "dashed") + 
     annotate("text", x=9.4, y=7, label = "S[2]", color = color3, size = 6, parse = TRUE) +
     annotate("segment", x = 3.2, xend = 3.8, y = 2.8, yend = 2.2,
              arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
@@ -497,9 +497,9 @@ ggplot(mapping = aes(x = q, y = p)) +
 
 ggplot(mapping = aes(x = q, y = p)) + 
     ## Base Graph Begin**
-    geom_path(data = demand, color = color2, size = 1.2) + 
+    geom_path(data = demand, color = color2, linewidth = 1.2) + 
     annotate("text", x=8.4, y=2, label = "D[1]", color = color2, size = 6, parse = TRUE) +
-    geom_path(data = supply, color = color3, size = 1.2) + 
+    geom_path(data = supply, color = color3, linewidth = 1.2) + 
     annotate("text", x=8.4, y=8, label = "S[1]", color = color3, size = 6, parse = TRUE) +
     coord_equal() +
     theme_classic(base_family = "sans") +
@@ -507,7 +507,7 @@ ggplot(mapping = aes(x = q, y = p)) +
     ## End Base Graph ##
     
     ## Demand Left Shift ##
-    geom_path(data = demandleft, color = color2, size = 1.2, linetype = "dashed") + 
+    geom_path(data = demandleft, color = color2, linewidth = 1.2, linetype = "dashed") + 
     annotate("text", x=7.4, y=1, label = "D[2]", color = color2, size = 6, parse = TRUE) +
     annotate("segment", x = 2.8, xend = 2.2, y = 6.8, yend = 6.2,
              arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
@@ -542,16 +542,16 @@ ggplot(mapping = aes(x = q, y = p)) +
 ```{r fig.width=5,fig.height=5, out.extra='style="float:right; padding:1px"'}
 ggplot(mapping = aes(x = q, y = p)) + 
     ## Base Graph Begin**
-    geom_path(data = demand, color = color2, size = 1.2) + 
+    geom_path(data = demand, color = color2, linewidth = 1.2) + 
     annotate("text", x=8.4, y=2, label = "D[1]", color = color2, size = 6, parse = TRUE) +
-    geom_path(data = supply, color = color3, size = 1.2) + 
+    geom_path(data = supply, color = color3, linewidth = 1.2) + 
     annotate("text", x=8.4, y=8, label = "S[1]", color = color3, size = 6, parse = TRUE) +
     coord_equal() +
     theme_classic(base_family = "sans") +
     theme(plot.title = element_text(size = rel(1.4))) +
     ## End Base Graph ##
     ##Supply Left Shift ##
-    geom_path(data = supplyleft, color = color3, size = 1.2, linetype = "dashed") +
+    geom_path(data = supplyleft, color = color3, linewidth = 1.2, linetype = "dashed") +
     annotate("text", x=7.4, y=9, label = "S[2]", color = color3, size = 6, parse = TRUE) +
     annotate("segment", x =2.8, xend = 2.2, y = 3.2, yend = 3.8,
              arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
@@ -754,9 +754,9 @@ knitr::include_graphics("images/tiegenhalloween.png")
 
 ggplot(mapping = aes(x = q, y = p)) + 
     ## Base Graph Begin**
-    geom_path(data = demand, color = color2, size = 1.2) + 
+    geom_path(data = demand, color = color2, linewidth = 1.2) + 
     annotate("text", x=8.4, y=2, label = "D[1]", color = color2, size = 6, parse = TRUE) +
-    geom_path(data = supply, color = color3, size = 1.2) + 
+    geom_path(data = supply, color = color3, linewidth = 1.2) + 
     annotate("text", x=8.4, y=8, label = "S[1]", color = color3, size = 6, parse = TRUE) +
     coord_equal() +
     theme_classic(base_family = "sans") +
@@ -764,7 +764,7 @@ ggplot(mapping = aes(x = q, y = p)) +
     ## End Base Graph ##
     
     ## Demand Left Shift ##
-    geom_path(data = demandleft, color = color2, size = 1.2, linetype = "dashed") + 
+    geom_path(data = demandleft, color = color2, linewidth = 1.2, linetype = "dashed") + 
     annotate("text", x=7.4, y=1, label = "D[2]", color = color2, size = 6, parse = TRUE) +
     annotate("segment", x = 2.8, xend = 2.2, y = 6.8, yend = 6.2,
              arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
@@ -816,9 +816,9 @@ knitr::include_graphics("images/kilgariffuber.png")
 ```{r fig.width=5,fig.height=5, out.extra='style="float:left; padding:1px"'}
 ggplot(mapping = aes(x = q, y = p)) + 
     ## Base Graph Begin**
-    geom_path(data = demand, color = color2, size = 1.2) + 
+    geom_path(data = demand, color = color2, linewidth = 1.2) + 
     annotate("text", x=8.4, y=2, label = "D[1]", color = color2, size = 6, parse = TRUE) +
-    geom_path(data = supply, color = color3, size = 1.2) + 
+    geom_path(data = supply, color = color3, linewidth = 1.2) + 
     annotate("text", x=8.4, y=8, label = "S[1]", color = color3, size = 6, parse = TRUE) +
     coord_equal() +
     theme_classic(base_family = "sans") +
@@ -826,7 +826,7 @@ ggplot(mapping = aes(x = q, y = p)) +
     ## End Base Graph ##
     
     ## Demand Right Shift ##
-    geom_path(data = demandright, color = color2, size = 1.2, linetype = "dashed") + 
+    geom_path(data = demandright, color = color2, linewidth = 1.2, linetype = "dashed") + 
     annotate("text", x=9.4, y=3, label = "D[2]", color = color2, size = 6, parse = TRUE) +
     annotate("segment", x = 3.2, xend = 3.8, y = 7.2, yend = 7.8,
              arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
@@ -909,16 +909,16 @@ What happens in the market for gasoline when the price of petroleum goes up?
 ```{r fig.width=5,fig.height=5, out.extra='style="float:right; padding:1px"'}
 ggplot(mapping = aes(x = q, y = p)) + 
     ## Base Graph Begin**
-    geom_path(data = demand, color = color2, size = 1.2) + 
+    geom_path(data = demand, color = color2, linewidth = 1.2) + 
     annotate("text", x=8.4, y=2, label = "D[1]", color = color2, size = 6, parse = TRUE) +
-    geom_path(data = supply, color = color3, size = 1.2) + 
+    geom_path(data = supply, color = color3, linewidth = 1.2) + 
     annotate("text", x=8.4, y=8, label = "S[1]", color = color3, size = 6, parse = TRUE) +
     coord_equal() +
     theme_classic(base_family = "sans") +
     theme(plot.title = element_text(size = rel(1.4))) +
     ## End Base Graph ##
     ##Supply Left Shift ##
-    geom_path(data = supplyleft, color = color3, size = 1.2, linetype = "dashed") +
+    geom_path(data = supplyleft, color = color3, linewidth = 1.2, linetype = "dashed") +
     annotate("text", x=7.4, y=9, label = "S[2]", color = color3, size = 6, parse = TRUE) +
     annotate("segment", x =2.8, xend = 2.2, y = 3.2, yend = 3.8,
              arrow = arrow(length = unit(.5, "lines")), colour = color4, size = 1) +
@@ -995,7 +995,7 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6) +
   geom_polygon(data = rect1, color = color3, fill = color3, alpha = .7)+
   annotate("text", x= 1, y = 2.5, label = "Amount Spent", hjust = "inward", color = color1) +
@@ -1050,7 +1050,7 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_polygon(data = ps, color = color3, fill = color3, alpha = .7) +
   annotate("text", x = 1, y = 4, label = "Producer\nSurplus", hjust = "inward", color = color1) +
@@ -1096,9 +1096,9 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_polygon(data = ps, color = color3, fill = color3, alpha = .7) +
   annotate("text", x = 1, y = 4, label = "Producer\nSurplus", hjust = "inward", color = color1) +
@@ -1150,9 +1150,9 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_polygon(data = ps, color = color3, fill = color3, alpha = .7) +
   annotate("text", x = 1, y = 4, label = "Producer\nSurplus", hjust = "inward", color = color1) +
@@ -1208,9 +1208,9 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_bracket(xmin = 3, xmax = 7, y.position = 7.5, label = "Surplus", tip.length = .05) +
   coord_equal() +
@@ -1262,9 +1262,9 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_bracket(xmin = 3, xmax = 7, y.position = 7.5, label = "Surplus", tip.length = .05) +
   coord_equal() +
@@ -1338,9 +1338,9 @@ areae <- tibble(p = c(5, 5, 3, 0), q = c(0, 3, 3, 0))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_bracket(xmin = 3, xmax = 7, y.position = 7.5, label = "Underemployment", tip.length = .05) +
   coord_equal() +
@@ -1396,9 +1396,9 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_bracket(xmin = 3, xmax = 7, y.position = 2.5, label = "Shortage", tip.length = -.05, vjust = 3) +
   coord_equal() +
@@ -1449,9 +1449,9 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_bracket(xmin = 3, xmax = 7, y.position = 2.5, label = "Shortage", tip.length = -.05, vjust = 3) +
   coord_equal() +
@@ -1524,9 +1524,9 @@ areae <- tibble(p = c(3, 3, 0), q = c(0, 3, 0))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_bracket(xmin = 3, xmax = 7, y.position = 2.5, label = "Shortage", tip.length = -.05, vjust = 3) +
   coord_equal() +
@@ -1813,9 +1813,9 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   coord_equal() +
   theme_classic(base_family = "sans") +
@@ -1895,9 +1895,9 @@ areae <- tibble(p = c(5, 5, 3, 0), q = c(0, 3, 3, 0))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   coord_equal() +
   theme_classic(base_family = "sans") +
@@ -2008,9 +2008,9 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   coord_equal() +
   theme_classic(base_family = "sans") +
@@ -2061,9 +2061,9 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_bracket(xmin = 3, xmax = 7, y.position = 7.5, label = "Exports", tip.length = .05) +
   coord_equal() +
@@ -2134,9 +2134,9 @@ aread <- tibble(p = c(7, 7, 5), q = c(3, 7, 5))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_bracket(xmin = 3, xmax = 7, y.position = 7.5, label = "Exports", tip.length = .05) +
   coord_equal() +
@@ -2191,9 +2191,9 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   coord_equal() +
   theme_classic(base_family = "sans") +
@@ -2244,9 +2244,9 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_bracket(xmin = 3, xmax = 7, y.position = 2.5, label = "Imports", tip.length = -.05, vjust = 3) +
   coord_equal() +
@@ -2317,9 +2317,9 @@ aread <- tibble(p = c(5, 3, 3), q = c(5, 7, 3))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_bracket(xmin = 3, xmax = 7, y.position = 2.5, label = "Imports", tip.length = -.05, vjust = 3) +
   coord_equal() +
@@ -2381,9 +2381,9 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_bracket(xmin = 3, xmax = 7, y.position = 2.5, label = "Imports", tip.length = -.05, vjust = 3) +
   coord_equal() +
@@ -2432,9 +2432,9 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_bracket(xmin = 4, xmax = 6, y.position = 3.5, label = "Imports", tip.length = -.05, vjust = 3) +
   coord_equal() +
@@ -2485,9 +2485,9 @@ supply2 <- tibble(p= c(0,9), q= c(0,9))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   geom_bracket(xmin = 4, xmax = 6, y.position = 3.5, label = "Imports", tip.length = -.05, vjust = 3) +
   coord_equal() +
@@ -2557,9 +2557,9 @@ areaf <- tibble(p = c(3, 3, 0), q = c(0 ,3, 0))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   coord_equal() +
   theme_classic(base_family = "sans") +
@@ -2635,9 +2635,9 @@ areaf <- tibble(p = c(3, 3, 0), q = c(0 ,3, 0))
 
 ggplot(mapping = aes(x = q, y = p)) + 
   ## Base Graph Begin**
-  geom_path(data = demand2, color = color2, size = 1.2) + 
+  geom_path(data = demand2, color = color2, linewidth = 1.2) + 
   annotate("text", x=9.2, y=.9, label = "D", color = color2, size = 6, parse = TRUE) +
-  geom_path(data = supply2, color = color3, size = 1.2) + 
+  geom_path(data = supply2, color = color3, linewidth = 1.2) + 
   annotate("text", x=9.2, y=9.1, label = "S", color = color3, size = 6, parse = TRUE) +
   coord_equal() +
   theme_classic(base_family = "sans") +
@@ -2791,12 +2791,12 @@ data$date <- as.Date(data$date)
 ```{r}
 data %>% 
     ggplot(aes(date, current)) +
-    geom_line(color = color2, size = .7) +
+    geom_line(color = color2, linewidth = .7) +
     geom_point(color = color2, size = 1.5) +
     theme_classic()+
-    geom_line(aes(date,capital), color = color3, size = .7) +
+    geom_line(aes(date,capital), color = color3, linewidth = .7) +
     geom_point(aes(date,capital), color = color3, size = 1.5) +
-    geom_hline(aes(yintercept = 0), lty = "solid", color = color4, size = 1.2) + 
+    geom_hline(aes(yintercept = 0), lty = "solid", color = color4, linewidth = 1.2) + 
     annotate(
         geom = "text",
         x = as.Date("2012-1-01"),
