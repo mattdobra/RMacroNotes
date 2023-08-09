@@ -58,7 +58,9 @@ rm(USREC)
 
 **Inflation** is a sustained increase in the general price level within an economy.
 
-If the price level falls, then we have **Deflation**.
+**Deflation** is the inverse of inflation, and happens when the general price level within the economy is decreasing.
+
+**Disinflation** is when the inflation rate falls, but the rate of inflation is still positive.
 
 The price level going up is not the same thing as one or two prices rising.
 
@@ -66,6 +68,28 @@ The price level going up is not the same thing as one or two prices rising.
 - Inflation is when the price of all (or most) things rise.  
 
 Inflation also implies a decrease in the purchasing power of money.
+
+## Inflation
+
+<div style="float:right; width:60%;">
+
+The media and politicians are at best not very good, and at worst incredibly dishonest, when it comes to understanding the difference between *inflation*, *deflation*, and *disinflation.*
+
+For example, Jeremy Hunt (UK Minister of the Exchequer) made this statement in July 2023. This is in response to the UK inflation rate having fallen to 7.9% from its high of 11.1% in October 2022.
+
+What have this journalist and this politician gotten wrong here? 
+
+Why might they have gotten it wrong?
+
+</div>
+
+<div style="float:left; width:40%;">
+
+```{r out.width = "90%", fig.align = 'left'}
+knitr::include_graphics("images/uk_inflation.jpg")
+```
+
+</div>
 
 ## Inflation
 
@@ -478,7 +502,7 @@ knitr::include_graphics("images/friedman.jpg")
 
 ## Causes of Inflation
 
-In the 2021 inflation, politicians and political pundits argued that microeconomic forces were the cause of inflation.  
+In the 2021 inflation, politicians and political pundits argued that a variety of microeconomic forces were the cause of inflation.  
 
 We will see some examples on the next few slides.  
 
@@ -551,11 +575,13 @@ The preceding tweets illustrated 4 prominent theories on the cause of inflation,
 
 ## Causes of Inflation
 
-Blaming inflation on corporate greed is the worst of the bunch.
+Blaming inflation on corporate greed (greedflation) is the worst of the bunch.
 
 You can't explain a variable with a constant!
 
-Were corporations *less* greedy when inflation was lower?
+Were corporations *less* greedy when inflation was lower?  Was the 2023 decrease in inflation caused by a decrease in greed?
+
+It *is* true that profits rise during an inflationary period, but the rising profit is the *effect* of inflation, not its *cause*!
 
 ## Causes of Inflation
 
