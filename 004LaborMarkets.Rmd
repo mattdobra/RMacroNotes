@@ -598,7 +598,7 @@ dat$prot <- as.numeric(dat$prot)
 dat$duration <- as.numeric(dat$duration)
 ggplot(data = dat, aes(x = prot, y = duration, label = COUNTRY)) +
     ggrepel::geom_text_repel() +
-    geom_smooth(method = lm, color = color3, fill = color4) +
+    geom_smooth(method = lm, color = color3, fill = color4, linetype = "dashed") +
     # scale_y_continuous(limits = c(0,70)) +
     # scale_x_continuous(limits = c(0,4)) +
     labs(
@@ -771,7 +771,7 @@ unemp2 %>%
     mutate(kaitz = kaitz / 100) %>% 
     ggplot(aes(x = kaitz, y = unemp, label = COUNTRY)) +
     ggrepel::geom_text_repel() +
-    geom_smooth(method = lm, linetype = "dashed") +
+    geom_smooth(method = lm, color = color3, fill = color4, linetype = "dashed") +
     labs(
         title = "Kaitz Index and Unemployment",
         subtitle = "",
