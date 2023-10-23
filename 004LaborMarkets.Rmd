@@ -767,8 +767,11 @@ unemp2$unemp <- as.numeric(unemp2$unemp)
 ```
 
 ```{r warning = FALSE, message = FALSE}
-ggplot(data = unemp2, aes(x = kaitz, y = unemp, label = COUNTRY)) +
+unemp2 %>% 
+    mutate(kaitz = kaitz / 100) %>% 
+    ggplot(aes(x = kaitz, y = unemp, label = COUNTRY)) +
     ggrepel::geom_text_repel() +
+    geom_smooth(method = lm, linetype = "dashed") +
     labs(
         title = "Kaitz Index and Unemployment",
         subtitle = "",
