@@ -721,10 +721,12 @@ min2ave2$kaitz <- as.numeric(min2ave2$kaitz)
 ```
 
 ```{r warning = FALSE, message = FALSE, fig.height = 6}
-ggplot(min2ave2) +
+min2ave2 %>% 
+    mutate(kaitz = kaitz / 100) %>% 
+    ggplot() +
   geom_col(aes(x = reorder(country, kaitz), y = kaitz), fill = color2) +
   coord_flip() +
-  scale_y_continuous(labels = scales::percent, expand = c(0,NA)) +
+  scale_y_continuous(labels = scales::percent, breaks = c(0, .20, .40, .60, .80, 1.00), expand = c(0,NA)) +
  # theme(axis.text.y = element_text(size = 11)) +
   labs(title = "Kaitz Index",
        subtitle = paste("Ratio of minimum wage to median wage in ", trgtyear),
