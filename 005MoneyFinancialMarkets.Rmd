@@ -632,6 +632,7 @@ knitr::include_graphics("images/guardianinflation.jpg")
 </div>
 
 # The Quantity Theory of Money
+
 ## The Quantity Theory of Money
 
 The **Quantity Theory of Money** sets forth the general relationship between inflation, money, real GDP, and the price level
@@ -910,7 +911,6 @@ If actual inflation is *higher* than unexpected inflation $(\pi>\pi^{e})$ then i
 
 If actual inflation is *lower* than unexpected inflation $(\pi<\pi^{e})$ then inflation transfers wealth from borrowers to lenders.
 
-
 ## Inflation Undermines Financial Markets
 
 The Fisher effect leads into the next problem with inflation: inflation is very detrimental to financial markets.
@@ -1069,6 +1069,158 @@ Typically, the Fed communicates their intentions through announcements regarding
 If the Fed announces an *increase* in interest rates, they are selling bonds and reducing the money supply.
 
 if the Fed announces a *decrease* in interest rates, they are buying bonds and increasing the money supply.
+
+## Open Market Operations
+
+```{r get_FEDFUNDS, include = FALSE}
+getSymbols("FEDFUNDS", src = "FRED", return.class = "data.frame") # U3 Unemployment Rate
+fedfunds <- FEDFUNDS
+rm(FEDFUNDS)
+fedfunds <- rename(fedfunds, fedfunds = FEDFUNDS)
+fedfunds <- rownames_to_column(fedfunds, "date")
+fedfunds$date <- as.Date(fedfunds$date)
+
+curfedfunds <- fedfunds[length(fedfunds$fedfunds), ]
+
+lubridate::month(as.Date(curfedfunds$date[1]), label = TRUE, abbr = FALSE)
+
+```
+
+<div style="float:right; width:70%;">
+
+```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
+
+ggplot() +
+    geom_line(data = fedfunds, aes(x = date, y = fedfunds/100), color = color2, size = 1.2) + 
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+    geom_hline(yintercept = 0, color = color3) +
+     theme_classic()+
+    scale_y_continuous(labels = scales::percent_format(accuracy = 2),
+#                       breaks = seq(-.2,3, by = .05),
+                       limits = c(NA,NA),
+                       expand = c(0,.02)) +
+    scale_x_date(limits = as.Date(c("1955-01-01", Sys.Date())),
+        expand = c(0,0),   
+        labels = date_format("%Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1955-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "10 years"
+            )) +
+    labs(
+        title = "Federal Funds Rate",
+        subtitle = "The US Federal Funds Rate since 1955",
+        x = "Date",
+        y = "Federal Funds Rate",
+        caption = "Data from FRED, created by Matt Dobra @mattdobra"
+    ) 
+```
+
+
+</div>
+
+<div style="float:left; width:30%;">
+
+The main interest rate the Fed controls is the **Federal Funds Rate**, which is the rate that banks charge each other on overnight loans to maintain their reserve ratio. 
+
+The graph on the right shows the history of the Federal Funds rate since 1955; the Federal Funds market came into existence in the 1920s, but the Fed only collected data on it starting in mid-1954.
+
+Most central banks have a similar type of interest rate. 
+
+</div>
+
+
+## Open Market Operations
+
+<div style="float:right; width:70%;">
+
+```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
+
+fedfunds %>% 
+    filter(date>=as.Date("1978-01-01")) %>% 
+    ggplot() +
+    geom_line(aes(x = date, y = fedfunds/100), color = color2, size = 1.2) + 
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+    geom_hline(yintercept = 0, color = color3) +
+     theme_classic()+
+    scale_y_continuous(labels = scales::percent_format(accuracy = 2),
+                       expand = c(.0,.02),
+                       breaks = seq(-.2,3, by = .02),
+                       limits = c(NA,NA)) +
+    scale_x_date(limits = as.Date(c("1978-01-01", Sys.Date())),
+        expand = c(0,0),   
+        labels = date_format("%Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1910-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "5 years"
+            )) +
+    labs(
+        title = "Federal Funds Rate",
+        subtitle = "Federal Funds Rate since 1985",
+        x = "Date",
+        y = "Federal Funds Rate",
+        caption = "Data from FRED, created by Matt Dobra @mattdobra"
+    ) 
+```
+</div>
+
+<div style="float:left; width:30%;">
+
+Recall that the Federal Reserve worked to drastically cut inflation in the early 1980s as part of the  **Volcker Disinflation**.
+
+To do this, they raised interest rates considerably to rein in inflation.
+
+As the graph shows, the Fed usually reduces interest rates to stave off recessions.
+
+</div>
+
+## Open Market Operations - Covid
+
+<div style="float:right; width:70%;">
+
+```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
+
+fedfunds %>% 
+    filter(date>=as.Date("2019-01-01")) %>% 
+    ggplot() +
+    geom_line(aes(x = date, y = fedfunds/100), color = color2, size = 1.2) + 
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+    geom_hline(yintercept = 0, color = color3) +
+     theme_classic()+
+    scale_y_continuous(labels = scales::percent_format(accuracy = 2),
+                       expand = c(.0,.02),
+                       breaks = seq(-.2,3, by = .02),
+                       limits = c(NA,NA)) +
+    scale_x_date(limits = as.Date(c("2019-01-01", Sys.Date())),
+        expand = c(0,0),   
+        labels = date_format("%b %Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1910-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "6 months"
+            )) +
+    labs(
+        title = "Federal Funds Rate",
+        subtitle = "The Federal Reserve's Covid Response",
+        x = "Date",
+        y = "Federal Funds Rate",
+        caption = "Data from FRED, created by Matt Dobra @mattdobra"
+    ) 
+```
+</div>
+
+<div style="float:left; width:30%;">
+
+The action of the Fed Funds rate surrounding Covid is illustrative of the Fed's general approach to monetary policy:
+
+* They responded to the initial economic downturn by cutting interest rates -- here to basically zero
+* As the economy recovered and inflation started to accelerate, they raised interest rates to try and slow it down.
+
+</div>
 
 ## The Fed as a Lender
 
