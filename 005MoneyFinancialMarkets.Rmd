@@ -1268,11 +1268,11 @@ fundsdat %>%
 
 <div style="float:left; width:30%;">
 
-The government's Covid response generated inflation (green line)
+The government's Covid response generated inflation.
 
-The Fed was slow to respond (initially the Fed and government called the inflation "transitory."
+The Fed was slow to respond (initially the Fed and government called the inflation "transitory.")
 
-When it became clear that it wasn't transitory, the fed started inclreasing rates.
+When it became clear that inflation wasn't transitory, the Fed started increasing rates.
 
 </div>
 
