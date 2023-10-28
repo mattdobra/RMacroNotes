@@ -1122,14 +1122,12 @@ ggplot() +
 
 <div style="float:left; width:30%;">
 
-The main interest rate the Fed controls is the **Federal Funds Rate**, which is the rate that banks charge each other on overnight loans to maintain their reserve ratio. 
+The main interest rate the Fed controls is the **Federal Funds Rate** - the rate banks charge each other on overnight loans. 
 
-The graph on the right shows the history of the Federal Funds rate since 1955; the Federal Funds market came into existence in the 1920s, but the Fed only collected data on it starting in mid-1954.
+The Federal Funds market came into existence in the 1920s, but the Fed only stareted collecting data on it mid-1954.
 
-Most central banks have a similar type of interest rate. 
 
 </div>
-
 
 ## Open Market Operations
 
@@ -1173,7 +1171,7 @@ Recall that the Federal Reserve worked to drastically cut inflation in the early
 
 To do this, they raised interest rates considerably to rein in inflation.
 
-As the graph shows, the Fed usually reduces interest rates to stave off recessions.
+The Fed usually reduces interest rates to stave off recessions.
 
 </div>
 
@@ -1184,7 +1182,7 @@ As the graph shows, the Fed usually reduces interest rates to stave off recessio
 ```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
 
 fedfunds %>% 
-    filter(date>=as.Date("2019-01-01")) %>% 
+    filter(date>=as.Date("2020-01-01")) %>% 
     ggplot() +
     geom_line(aes(x = date, y = fedfunds/100), color = color2, size = 1.2) + 
     geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
@@ -1194,7 +1192,7 @@ fedfunds %>%
                        expand = c(.0,.02),
                        breaks = seq(-.2,3, by = .02),
                        limits = c(NA,NA)) +
-    scale_x_date(limits = as.Date(c("2019-01-01", Sys.Date())),
+    scale_x_date(limits = as.Date(c("2020-01-01", Sys.Date())),
         expand = c(0,0),   
         labels = date_format("%b %Y"),
         breaks = function(x)
@@ -1215,10 +1213,66 @@ fedfunds %>%
 
 <div style="float:left; width:30%;">
 
-The action of the Fed Funds rate surrounding Covid is illustrative of the Fed's general approach to monetary policy:
+The Fed Funds rate surrounding Covid is illustrative of the Fed's general approach to monetary policy:
 
-* They responded to the initial economic downturn by cutting interest rates -- here to basically zero
-* As the economy recovered and inflation started to accelerate, they raised interest rates to try and slow it down.
+* In response to the initial economic downturn, they cut rates to basically zero.
+* As the economy recovered, they raised interest rates to try to prevent inflation. 
+
+</div>
+
+## Open Market Operations - Covid
+
+```{r merge_funds_inflation, include = FALSE}
+fundsdat <- left_join(fedfunds, inflation, by = join_by(date == date))
+
+```
+
+<div style="float:right; width:70%;">
+
+```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
+colours <- c("Federal Funds" = color2, "Inflation" = color3)
+
+
+fundsdat %>% 
+    filter(date>=as.Date("2020-01-01")) %>% 
+    ggplot() +
+    geom_line(aes(x = date, y = fedfunds/100, color = "Federal Funds"), size = 1.2) + 
+    geom_line(aes(x = date, y = inflation, color = "Inflation"), size = 1.2) + 
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+    geom_hline(yintercept = 0, color = color3) +
+     theme_classic()+
+    scale_y_continuous(labels = scales::percent_format(accuracy = 2),
+                       expand = c(.0,.02),
+                       breaks = seq(-.2,3, by = .02),
+                       limits = c(NA,NA)) +
+    scale_x_date(limits = as.Date(c("2020-01-01", Sys.Date())),
+        expand = c(0,0),   
+        labels = date_format("%b %Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1910-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "6 months"
+            )) +
+    labs(
+        title = "Federal Funds Rate and Inflation",
+        subtitle = "The Federal Reserve Raised Rates in Response to Rising Inflation",
+        x = "Date",
+        y = "Federal Funds Rate, Inflation",
+        color = "Legend",
+        caption = "Data from FRED, created by Matt Dobra @mattdobra"
+    ) +
+    scale_color_manual(values = colours)  + theme(legend.position = c(0.2, 0.8))
+```
+</div>
+
+<div style="float:left; width:30%;">
+
+The government's Covid response generated inflation (green line)
+
+The Fed was slow to respond (initially the Fed and government called the inflation "transitory."
+
+When it became clear that it wasn't transitory, the fed started inclreasing rates.
 
 </div>
 
