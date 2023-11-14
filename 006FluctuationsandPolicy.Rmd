@@ -1236,7 +1236,43 @@ There are 2 competing theories about the Great Depression.
 
 ## The Great Depression
 
-Whereas the first story is the one commonly told in history classrooms in the US, the second theory is far more consistent with the economic record.  
+<div style = "float: right; width:65%;">
+
+```{r out.width = "100%"}
+knitr::include_graphics("images/horpmag1.png")
+```
+
+</div>
+
+<div style = "float: left; width:33%;">
+
+Horpedahl et. al. (2024) examined the treatment of the great depression in college textbooks:
+
+* The first story is the one commonly told in history classrooms in the US
+* The second theory is far more consistent with the economic record. 
+
+</div>
+
+## The Great Depression
+
+<div style = "float: left; width:49%;">
+
+```{r out.width = "100%"}
+knitr::include_graphics("images/horpmag2.png")
+```
+
+</div>
+
+<div style = "float: right; width:49%;">
+
+```{r out.width = "100%"}
+knitr::include_graphics("images/horpmag3.png")
+```
+
+</div>
+
+
+## The Great Depression
 
 Ultimately, the Great Depression was made worse by government policies.
 
