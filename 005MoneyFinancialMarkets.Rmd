@@ -93,6 +93,28 @@ knitr::include_graphics("images/uk_inflation.jpg")
 
 ## Inflation
 
+<div style="float:left; width:40%;">
+
+<br>
+
+Joe Biden got ratio'd for expressing a similar sentiment in November, 2023.
+
+The US inflation rate hit a high of 9.1% in June 2022 but had been in the 3%-3.5% range since June 2023. 
+
+</div>
+
+<div style="float:right; width:60%;">
+
+<br>
+
+```{r out.width = "90%", fig.align = 'left'}
+knitr::include_graphics("images/bidenflation.png")
+```
+
+</div>
+
+## Inflation
+
 A **Price Index** is used to measure inflation.
 
 An index is only a number, it is not measured in dollars.
