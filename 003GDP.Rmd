@@ -178,7 +178,7 @@ ggplot() +
 
 ***GDP per capita*** is simply GDP divided by a country's population.
 
-Let's examine more closely at the underlined parts of the definition.
+Let's examine more closely at the emphasized parts of the definition.
 
 ## GDP Calculates Market Value
 
@@ -354,7 +354,7 @@ Questions:
 
 - John Deere buys steel to make into tractors.  Does their purchase of steel add to GDP?
 - On eBay you sell your collection of Magic: The Gathering cards.  Does your sale add to GDP? 
-- An immigrant from Namibia works as a cook in a restaurant in San Francisco. Is the money he earns considered part of the GDP of the U.S. or Namibia?
+- An immigrant from Cameroon works as a cook in a restaurant in San Francisco. Is the money he earns considered part of the GDP of the U.S. or Cameroon?
 
 ## GDP Growth
 
