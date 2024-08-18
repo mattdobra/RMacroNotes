@@ -567,7 +567,7 @@ Structural unemployment has significant economic and social costs.
 
 Structural unemployment is a larger problem in countries with strong labor market regulations. 
 
-A 2013 OECD study measured the strictness of labor market regulations.  
+A 2019 OECD study measured the strictness of labor market regulations.  
 
 Having more and stronger regulations is positively correlated with duration of unemployment
 </div>
@@ -576,27 +576,38 @@ Having more and stronger regulations is positively correlated with duration of u
 
 
 ```{r include = FALSE}
-trgtyear <- 2013
+trgtyear <- 2019
 prot <- OECD::get_dataset("EPL_OV", start_time = trgtyear, end_time = trgtyear)
 prot1 <- prot %>% 
-    filter(SERIES == "EPRC_V3") %>% 
-    select(COUNTRY, ObsValue) %>% 
-    rename(prot = ObsValue)
+    filter(MEASURE == "EPL_OV",
+           VERSION == "VERSION3",
+           TIME_PERIOD == trgtyear) %>%
+    select(REF_AREA, ObsValue) %>% 
+    rename(prot = ObsValue) %>% 
+    distinct()
 filter_list <- list("", "MW", "900000", "UN5")
 dur <- OECD::get_dataset("DUR_I", start_time = trgtyear, end_time = trgtyear, filter = filter_list)
 dur1 <- dur %>% 
-    select(COUNTRY, ObsValue) %>% 
-    rename(duration = ObsValue)
+    filter(TIME_PERIOD == trgtyear,
+           AGE == "_T",
+           SEX == "_T") %>%
+    filter(DURATION == "M_6T11" | DURATION == "T_GE1") %>% 
+    group_by(REF_AREA) %>%  
+    mutate(ST_UMP = sum(as.numeric(ObsValue))) %>%  
+    select(REF_AREA, ST_UMP) %>% 
+    distinct() %>% 
+    rename(duration = ST_UMP)
 
 dat <- prot1 %>% 
-    inner_join(dur1)
+    inner_join(dur1) %>% 
+    filter(REF_AREA != "MEX")
 
 ```
 
 ```{r warning = FALSE, message = FALSE}
 dat$prot <- as.numeric(dat$prot)
 dat$duration <- as.numeric(dat$duration)
-ggplot(data = dat, aes(x = prot, y = duration, label = COUNTRY)) +
+ggplot(data = dat, aes(x = prot, y = duration, label = REF_AREA)) +
     ggrepel::geom_text_repel() +
     geom_smooth(method = lm, color = color3, fill = color4, linetype = "dashed") +
     # scale_y_continuous(limits = c(0,70)) +
@@ -605,7 +616,7 @@ ggplot(data = dat, aes(x = prot, y = duration, label = COUNTRY)) +
         title = "Labor Market Protection",
         subtitle = "Stricter labor market regulation results in longer average unemployment duration",
         x = "Index of Labor Market Regulations",
-        y = "Average Length of Unemployment (weeks)",
+        y = "Share of Unemployment Longer than 5 Months",
         caption = "Data from OECD, created by Matt Dobra @mattdobra"
     ) 
 
@@ -712,10 +723,12 @@ filter_list <- list("", "MEDIAN")
 min2ave <- OECD::get_dataset("MIN2AVE", start_time = trgtyear, end_time = trgtyear, filter = filter_list)
 
 min2ave2 <- min2ave %>% 
-  rename(kaitz = ObsValue) %>% 
-  select(COUNTRY, kaitz) %>% 
-  mutate(country = countrycode::countrycode(COUNTRY, origin = "wb", destination = "country.name")) %>% 
-  arrange(kaitz)
+    filter(TIME_PERIOD == trgtyear,
+           AGGREGATION_OPERATION == "MEDIAN") %>% 
+    rename(kaitz = ObsValue) %>% 
+    select(REF_AREA, kaitz) %>% 
+    mutate(country = countrycode::countrycode(REF_AREA, origin = "wb", destination = "country.name")) %>% 
+    arrange(kaitz)
 min2ave2$kaitz <- as.numeric(min2ave2$kaitz)
 
 ```
@@ -759,7 +772,11 @@ unemp <- OECD::get_dataset("LFS_SEXAGE_I_R", start_time = trgtyear, end_time = t
 
 unemp2 <- unemp %>% 
   rename(unemp = ObsValue) %>% 
-  select(COUNTRY, unemp) %>% 
+    filter(AGE == "_T",
+           SEX == "_T",
+           TIME_PERIOD == trgtyear,
+           MEASURE == "UNE_RATE") %>% 
+  select(REF_AREA, unemp) %>% 
   inner_join(min2ave2)
 
 stargazer::stargazer(lm(unemp ~ kaitz, data = unemp2), type = "text")
@@ -769,7 +786,7 @@ unemp2$unemp <- as.numeric(unemp2$unemp)
 ```{r warning = FALSE, message = FALSE}
 unemp2 %>% 
     mutate(kaitz = kaitz / 100) %>% 
-    ggplot(aes(x = kaitz, y = unemp, label = COUNTRY)) +
+    ggplot(aes(x = kaitz, y = unemp, label = REF_AREA)) +
     ggrepel::geom_text_repel() +
     geom_smooth(method = lm, color = color3, fill = color4, linetype = "dashed") +
     labs(

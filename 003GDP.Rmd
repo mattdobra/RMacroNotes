@@ -1695,66 +1695,77 @@ knitr::include_graphics("images/koreanight.jpg")
 - Encourage education and protects against "brain drain"
 - Encourage innovation
 
+
+
+<!-- ## Institutions -->
+
+<!-- ```{r include = FALSE} -->
+<!-- library("jsonlite") -->
+
+<!-- json_file <- 'https://datahub.io/core/corruption-perceptions-index/datapackage.json' -->
+<!-- json_data <- fromJSON(paste(readLines(json_file), collapse="")) -->
+
+<!-- # get list of all resources: -->
+<!-- print(json_data$resources$name) -->
+
+<!-- # print all tabular data(if exists any) -->
+<!-- for(i in 1:length(json_data$resources$datahub$type)){ -->
+<!--     if(json_data$resources$datahub$type[i]=='derived/csv'){ -->
+<!--         path_to_file = json_data$resources$path[i] -->
+<!--         transparency <- read.csv(url(path_to_file)) -->
+<!--         print(data) -->
+<!--     } -->
+<!-- } -->
+<!-- ``` -->
+
+<!-- <div style = "float:left; width:30%;"> -->
+<!-- ```{r} -->
+<!-- transparency %>% -->
+<!--   select(c(Jurisdiction, X2015)) %>% -->
+<!--   filter(X2015 != "-") %>% -->
+<!--   mutate(X2015 = as.numeric(X2015)) %>% -->
+<!--   slice_max(X2015, n = 10) %>% -->
+<!--   kable(format = "html", table.attr = "class=\"rmdtable\"", col.names = c("Country", "CPI")) %>%   column_spec(1, background = color2, color = color1) -->
+<!-- ``` -->
+<!-- </div> -->
+<!-- <div style = "float:left; width:30%;"> -->
+
+
+<!-- ```{r} -->
+<!-- transparency %>% -->
+<!--   select(c(Jurisdiction, X2015)) %>% -->
+<!--   filter(X2015 != "-") %>% -->
+<!--   mutate(X2015 = as.numeric(X2015)) %>% -->
+<!--   slice_min(X2015, n = 10) %>% -->
+<!--   kable(format = "html", table.attr = "class=\"rmdtable\"", col.names = c("Country", "CPI")) %>% -->
+<!--   column_spec(1, background = color2, color = color1) -->
+<!-- ``` -->
+<!-- </div> -->
+<!-- <div style = "float:right; width:35%;"> -->
+
+<!-- These tables show the most and least corrupt countries in 2015 according to Transparency International's Corruption Perception Index (CPI). -->
+
+<!-- CPI ranges from 0 (very corrupt) to 100 (very transparent). -->
+
+<!-- In 2015, the United States was tied with Austria as the 16th least corrupt country with CPI=76. -->
+
+<!-- ```{r include = FALSE} -->
+<!-- transparency %>% -->
+<!--     select(c(Jurisdiction, X2015)) %>% -->
+<!--   filter(X2015 != "-") %>% -->
+<!--   mutate(X2015 = as.numeric(X2015)) %>% -->
+<!--   mutate(rank = rank(desc(X2015))) %>% -->
+<!--   arrange(desc(X2015)) -->
+<!-- ``` -->
+
+
+
 ## Institutions
-
-```{r include = FALSE}
-library("jsonlite")
-
-json_file <- 'https://datahub.io/core/corruption-perceptions-index/datapackage.json'
-json_data <- fromJSON(paste(readLines(json_file), collapse=""))
-
-# get list of all resources:
-print(json_data$resources$name)
-
-# print all tabular data(if exists any)
-for(i in 1:length(json_data$resources$datahub$type)){
-    if(json_data$resources$datahub$type[i]=='derived/csv'){
-        path_to_file = json_data$resources$path[i]
-        transparency <- read.csv(url(path_to_file))
-        print(data)
-    }
-}
+<center>
+```{r out.width = "95%"}
+knitr::include_graphics("images/CPI2022.jpg")
 ```
-
-<div style = "float:left; width:30%;">
-```{r}
-transparency %>%
-  select(c(Jurisdiction, X2015)) %>%
-  filter(X2015 != "-") %>%
-  mutate(X2015 = as.numeric(X2015)) %>%
-  slice_max(X2015, n = 10) %>%
-  kable(format = "html", table.attr = "class=\"rmdtable\"", col.names = c("Country", "CPI")) %>%   column_spec(1, background = color2, color = color1)
-```
-</div>
-<div style = "float:left; width:30%;">
-
-
-```{r}
-transparency %>%
-  select(c(Jurisdiction, X2015)) %>%
-  filter(X2015 != "-") %>%
-  mutate(X2015 = as.numeric(X2015)) %>%
-  slice_min(X2015, n = 10) %>%
-  kable(format = "html", table.attr = "class=\"rmdtable\"", col.names = c("Country", "CPI")) %>%
-  column_spec(1, background = color2, color = color1)
-```
-</div>
-<div style = "float:right; width:35%;">
-
-These tables show the most and least corrupt countries in 2015 according to Transparency International's Corruption Perception Index (CPI).
-
-CPI ranges from 0 (very corrupt) to 100 (very transparent).
-
-In 2015, the United States was tied with Austria as the 16th least corrupt country with CPI=76.
-
-```{r include = FALSE}
-transparency %>%
-    select(c(Jurisdiction, X2015)) %>%
-  filter(X2015 != "-") %>%
-  mutate(X2015 = as.numeric(X2015)) %>%
-  mutate(rank = rank(desc(X2015))) %>%
-  arrange(desc(X2015))
-```
+</center>
 
 ## Institutions
 
