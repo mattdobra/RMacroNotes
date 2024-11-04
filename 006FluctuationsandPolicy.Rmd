@@ -278,14 +278,14 @@ The Long Run Aggregate Supply curve is perfectly vertical.  Why?
 ```{r fig.width=5,fig.height=5, out.extra='style="float:right; padding:1px"'}
 ## Base Graph, edit titles and axis points as needed
 ggplot() +
-  scale_y_continuous(expand = c(0,0), limits = c(0,8), breaks = NULL) +
+  scale_y_continuous(expand = c(0,0), limits = c(0,8), breaks = c(0)) +
   scale_x_continuous(expand = c(0,0), limits = c(0,8), breaks = c(3), labels = c("3%")) +
   labs(x = expression(dot(Y) ~ "= Real GDP Growth"), 
        y = expression(dot(P) ~ "= Inflation"),
        title = "Long Run Aggregate Supply",
        subtitle = "LRAS is perfectly vertical") + # Subtitle
 ## LRAS = 3
-  geom_path(data = lras3, mapping = aes(x = x, y = y), color = color2, size = 1.2) +
+  geom_path(data = lras3, mapping = aes(x = x, y = y), color = color2, linewidth = 1.2) +
   annotate("text", x = 3.7, y = 7.5, label = "LRAS", color = color2, size = 6, parse = TRUE) +
   theme(plot.title = element_text(size = rel(1.4))) +
   theme_classic()
@@ -308,7 +308,7 @@ ggplot() +
 ```{r fig.width=5,fig.height=5, out.extra='style="float:right; padding:1px"'}
 ## Base Graph, edit titles and axis points as needed
 ggplot() +
-  scale_y_continuous(expand = c(0,0), limits = c(0,8), breaks = NULL) +
+  scale_y_continuous(expand = c(0,0), limits = c(0,8), breaks = c(0)) +
   scale_x_continuous(expand = c(0,0), limits = c(0,8), breaks = c(1, 3, 5), labels = c("1%", "3%", "5%")) +
   labs(x = expression(dot(Y) ~ "= Real GDP Growth"), 
        y = expression(dot(P) ~ "= Inflation"),
@@ -376,7 +376,7 @@ The table on the right shows some of the possible combinations of $\dot{P}$ and 
 <div style="float:right; width:30%;">
 
 ```{r}
-dat <- tibble(spend = 5, inf = 0:5, gdp = 5:0)
+dat <- tibble(spend = 5, inf = -1:6, gdp = 6:-1)
 
 dat %>% 
     kable(format = "html", table.attr = "class=\"rmdtable\"", col.names = c("$\\dot{M}+\\dot{V}$","$\\dot{P}$", "$\\dot{Y}$")) %>% 
