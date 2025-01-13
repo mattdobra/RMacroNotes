@@ -651,7 +651,7 @@ ggplot() +
            color = color3, size = 6, parse = TRUE) +
 ## Dashed Lines for equilibria
   annotate("segment", x=0, xend = 3, y = 2, yend = 2, linetype = "dotted") + # horizontal line
-  annotate("segment", x=3, xend = 3, y = 4, yend = 4, linetype = "dotted") + # horizontal line
+  annotate("segment", x=0, xend = 3, y = 4, yend = 4, linetype = "dotted") + # horizontal line
 ## Label Equilibria
   annotate("text", x = 3.2, y = 2.2, label = "A", color = color5, size = 6, parse = TRUE) +
   annotate("text", x = 3.2, y = 4.2, label = "B", color = color5, size = 6, parse = TRUE) +
@@ -687,7 +687,7 @@ the term "Keynesian" refers to John Maynard Keynes (1883-1946) and, in particula
 
 Keynes was trying to explain the Great Depression
 
-Key idea: if prices do not adjust quickly in he short run, changes to Aggregate Demand can cause recessions.
+Key idea: if prices do not adjust quickly in the short run, changes to Aggregate Demand can cause recessions.
 
 </div>
 
