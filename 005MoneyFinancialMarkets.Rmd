@@ -125,16 +125,28 @@ There are many price indexes that economists use:
 
 - Consumer Price Index (CPI)
 - Producer Price Index (PPI)
-- GDP Deflator
+- Personal Consumption Expenditures (PCE)
 
 ## Inflation
 
-The Consumer Price index is the most commonly used measure.
+The Consumer Price index is the most commonly used measure in the News.
 
 The CPI is the average price of goods bought by a typical American consumer
 
 - Includes roughly 80,000 goods
 - Is a weighted average and heavily weights goods that consumers consume more of
+
+## Inflation
+
+When trying to control inflation, the Federal Reserve prefers to use the PCE/Core PCE 
+
+They prefer PCE because it: 
+
+- Includes urban *and* rural consumers 
+- Includes money spent on behalf of consumers in addition to personal spending
+- Allows for substitution effects when prices are volatile
+
+Core PCE takes out the most volatile elements of PCE, food and energy.
 
 ## Inflation
 
@@ -381,6 +393,84 @@ US inflation spiked following the Covid recession.
 The post-Covid inflation peak of `r 100*round(covidmaxinf,3)`%, recorded in `r lubridate::month(as.Date(tempinf1$date[1]), label = TRUE, abbr = FALSE)`, `r lubridate::year(as.Date(tempinf1$date[1]))` marked the highest inflation rate in the US since `r lubridate::month(as.Date(tempinf3$date[1]), label = TRUE, abbr = FALSE)` of `r lubridate::year(as.Date(tempinf3$date[1]))`!
 
 </div>
+
+## Inflation
+
+<div style="float:right; width:70%;">
+```{r get_PCE, include = FALSE}
+getSymbols("PCEPI", src = "FRED", return.class = "data.frame") # U3 Unemployment Rate
+pce <- PCEPI
+rm(PCEPI)
+pce <- rename(pce, pce = PCEPI)
+pce <- rownames_to_column(pce, "date")
+pce$date <- as.Date(pce$date)
+
+curpce <- pce[length(pce$pce), ]
+pce20 <- pce[length(pce$pce)-12, ]
+
+
+lubridate::month(as.Date(curcpi$date[1]), label = TRUE, abbr = FALSE)
+
+inflation_pce <- pce %>% 
+    mutate(inflation_pce = (pce-lag(pce,12))/lag(pce,12))
+
+curinflation <- inflation[length(inflation$inflation), ]
+
+```
+
+```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
+
+inflation %>% 
+    filter(date>=as.Date("2018-01-01")) %>% 
+    ggplot() +
+    geom_line(aes(x = date, y = inflation), color = color2, size = 1.2) + 
+    geom_line(data = inflation_pce %>% filter(date <= as.Date("2023-12-31")), 
+              aes(x = date, y = inflation_pce), 
+              color = color3, 
+              lty = "dashed", 
+              size = 1.2) + 
+    geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
+    geom_hline(yintercept = 0, color = color3) +
+     theme_classic()+
+    scale_y_continuous(labels = scales::percent_format(accuracy = 2),
+#                       expand = c(.04,.04),
+                       breaks = seq(-.2,3, by = .02),
+                       limits = c(NA,NA)) +
+     scale_x_date(limits = as.Date(c("2018-01-01", Sys.Date())),
+        expand = c(0,0),   
+        labels = date_format("%Y"),
+        breaks = function(x)
+            seq.Date(
+                from = as.Date("1910-01-01"),
+                to = as.Date(Sys.Date()),
+                by = "1 year"
+            )) +
+      annotate(
+        geom = "text",
+        x = as.Date("2018-6-01"),
+        y = .08,
+        label = "PCE Inflation",
+        hjust = 0,
+        vjust = 0,
+        color = color3
+    ) +
+     annotate(
+        geom = "text",
+        x = as.Date("2018-6-01"),
+        y = .087,
+        label = "CPI Inflation",
+        hjust = 0,
+        vjust = 0,
+        color = color2
+    ) +
+    labs(
+        title = "Inflation: CPI vs PCE",
+        subtitle = "Difference between CPI and PCE in annual inflation rates",
+        x = "Date",
+        y = "Inflation Rate",
+        caption = "Data from FRED, created by Matt Dobra @mattdobra"
+    ) 
+```
 
 ## Inflation
 
