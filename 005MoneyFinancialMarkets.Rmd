@@ -8,8 +8,8 @@ output:
         incremental: false
         transition: faster
         css: dobraslidestyle.css
-      
 ---
+
 ```{r setup, include=FALSE}
 library(knitr)
 library(tidyverse)
@@ -54,7 +54,8 @@ rm(USREC)
 ```
 
 # Inflation
-## Inflation 
+
+## Inflation
 
 **Inflation** is a sustained increase in the general price level within an economy.
 
@@ -64,54 +65,46 @@ rm(USREC)
 
 The price level going up is not the same thing as one or two prices rising.
 
-- For example, the gasoline price rising is not evidence of inflation.
-- Inflation is when the price of all (or most) things rise.  
+-   For example, the gasoline price rising is not evidence of inflation.
+-   Inflation is when the price of all (or most) things rise.
 
 Inflation also implies a decrease in the purchasing power of money.
 
 ## Inflation
 
-<div style="float:right; width:60%;">
-
+::: {style="float:right; width:60%;"}
 The media and politicians are at best not very good, and at worst incredibly dishonest, when it comes to understanding the difference between *inflation*, *deflation*, and *disinflation.*
 
 For example, Jeremy Hunt (UK Minister of the Exchequer) made this statement in July 2023. This is in response to the UK inflation rate having fallen to 7.9% from its high of 11.1% in October 2022.
 
-What have this journalist and this politician gotten wrong here? 
+What have this journalist and this politician gotten wrong here?
 
 Why might they have gotten it wrong?
+:::
 
-</div>
-
-<div style="float:left; width:40%;">
-
+::: {style="float:left; width:40%;"}
 ```{r out.width = "90%", fig.align = 'left'}
 knitr::include_graphics("images/uk_inflation.jpg")
 ```
-
-</div>
+:::
 
 ## Inflation
 
-<div style="float:left; width:40%;">
-
+::: {style="float:left; width:40%;"}
 <br>
 
 Joe Biden got ratio'd for expressing a similar sentiment in November, 2023.
 
-The US inflation rate hit a high of 9.1% in June 2022 but had been in the 3%-3.5% range since June 2023. 
+The US inflation rate hit a high of 9.1% in June 2022 but had been in the 3%-3.5% range since June 2023.
+:::
 
-</div>
-
-<div style="float:right; width:60%;">
-
+::: {style="float:right; width:60%;"}
 <br>
 
 ```{r out.width = "90%", fig.align = 'left'}
 knitr::include_graphics("images/bidenflation.png")
 ```
-
-</div>
+:::
 
 ## Inflation
 
@@ -123,9 +116,9 @@ It is the ratio of the average prices in one year relative to the prices in a ba
 
 There are many price indexes that economists use:
 
-- Consumer Price Index (CPI)
-- Producer Price Index (PPI)
-- Personal Consumption Expenditures (PCE)
+-   Consumer Price Index (CPI)
+-   Producer Price Index (PPI)
+-   Personal Consumption Expenditures (PCE)
 
 ## Inflation
 
@@ -133,27 +126,26 @@ The Consumer Price index is the most commonly used measure in the News.
 
 The CPI is the average price of goods bought by a typical American consumer
 
-- Includes roughly 80,000 goods
-- Is a weighted average and heavily weights goods that consumers consume more of
+-   Includes roughly 80,000 goods
+-   Is a weighted average and heavily weights goods that consumers consume more of
 
 ## Inflation
 
-When trying to control inflation, the Federal Reserve prefers to use the PCE/Core PCE 
+When trying to control inflation, the Federal Reserve prefers to use the PCE/Core PCE
 
-They prefer PCE because it: 
+They prefer PCE because it:
 
-- Includes urban *and* rural consumers 
-- Includes money spent on behalf of consumers in addition to personal spending
-- Allows for substitution effects when prices are volatile
+-   Includes urban *and* rural consumers
+-   Includes money spent on behalf of consumers in addition to personal spending
+-   Allows for substitution effects when prices are volatile
 
 Core PCE takes out the most volatile elements of PCE, food and energy.
 
 ## Inflation
 
-
-<div style="float:right; width:70%;">
+::: {style="float:right; width:70%;"}
 ```{r get_CPI, include = FALSE}
-getSymbols("CPIAUCNS", src = "FRED", return.class = "data.frame") # U3 Unemployment Rate
+getSymbols("CPIAUCNS", src = "FRED", return.class = "data.frame") # Inflation Rate
 cpi <- CPIAUCNS
 rm(CPIAUCNS)
 cpi <- rename(cpi, cpi = CPIAUCNS)
@@ -195,18 +187,16 @@ ggplot() +
         caption = "Data from FRED, created by Matt Dobra @mattdobra"
     ) 
 ```
-</div>
+:::
 
-<div style="float:left; width:30%;">
-
+::: {style="float:left; width:30%;"}
 The CPI as of `r lubridate::month(as.Date(curcpi$date[1]), label = TRUE, abbr = FALSE)`, `r lubridate::year(as.Date(curcpi$date[1]))` is `r round(curcpi$cpi[1],1)`.
 
-On its own, the CPI doesn't tell us much.  However, it becomes very useful when we look at how it changes over time for: 
+On its own, the CPI doesn't tell us much. However, it becomes very useful when we look at how it changes over time for:
 
-- Converting nominal prices to real prices
-- Measuring Inflation
-
-</div>
+-   Converting nominal prices to real prices
+-   Measuring Inflation
+:::
 
 ## Inflation
 
@@ -216,13 +206,14 @@ $Inflation\: Rate = \pi = \dot{P} = \frac{P_{t} - P_{t-1}}{P_{t-1}}$
 
 Where $P_{t}$ is the average price level (i.e. value of a price index) in year $t$.
 
-Recall that CPI in `r lubridate::month(as.Date(curcpi$date[1]), label = TRUE, abbr = FALSE)`, `r lubridate::year(as.Date(curcpi$date[1]))` is `r round(curcpi$cpi[1],1)`.  The CPI in `r lubridate::month(as.Date(cpi20$date[1]), label = TRUE, abbr = FALSE)`, `r lubridate::year(as.Date(cpi20$date[1]))` was `r round(cpi20$cpi[1],1)`.
+Recall that CPI in `r lubridate::month(as.Date(curcpi$date[1]), label = TRUE, abbr = FALSE)`, `r lubridate::year(as.Date(curcpi$date[1]))` is `r round(curcpi$cpi[1],1)`. The CPI in `r lubridate::month(as.Date(cpi20$date[1]), label = TRUE, abbr = FALSE)`, `r lubridate::year(as.Date(cpi20$date[1]))` was `r round(cpi20$cpi[1],1)`.
 
 Therefore, inflation between those two dates was $\frac{`r round(curcpi$cpi[1],1)` - `r round(cpi20$cpi[1],1)`}{`r round(cpi20$cpi[1],1)`} = `r round(100*(curcpi$cpi[1] - cpi20$cpi[1])/cpi20$cpi[1], 1)`\%$.
 
+
 ## Inflation
 
-CPI is also useful for converting prices between time periods.  
+CPI is also useful for converting prices between time periods.
 
 A **nominal price** is a price denominated in the dollar terms of the era the price appeared.
 
@@ -232,11 +223,11 @@ The conversion is simple: $Real\; Price=Nominal\;Price \frac{CPI_{Target Year}}{
 
 ## Inflation
 
-For example, imagine a product cost \$100 in 1972 and \$400 today.  
+For example, imagine a product cost \$100 in 1972 and \$400 today.
 
-While the price of this product has clearly increased in *nominal* terms, has it increased in *real* terms?  The CPI in 1972 was `r round(cpi1972$cpi[1],1)`.
+While the price of this product has clearly increased in *nominal* terms, has it increased in *real* terms? The CPI in 1972 was `r round(cpi1972$cpi[1],1)`.
 
-$Real\;Price=Nominal\;Price\frac{CPI_{`r lubridate::year(as.Date(curcpi$date[1]))`}}{CPI_{1972}}=\$100\frac{`r round(curcpi$cpi[1],1)`}{`r round(cpi1972$cpi[1],1)`}=\$`r round(100*curcpi$cpi[1]/cpi1972$cpi[1],2)`$
+$Real\;Price = Nominal\;Price \frac{CPI_{`r lubridate::year(as.Date(curcpi$date[1]))`}}{CPI_{1972}}=\$100\frac{`r round(curcpi$cpi[1],1)`}{`r round(cpi1972$cpi[1],1)`}=\$`r round(100*curcpi$cpi[1]/cpi1972$cpi[1],2)`$
 
 Therefore, this product has actually become *cheaper* in real terms: the *real* price, in current dollars, is $\$`r round(100*curcpi$cpi[1]/cpi1972$cpi[1],2)`$!
 
@@ -248,9 +239,8 @@ inflation <- cpi %>%
 
 curinflation <- inflation[length(inflation$inflation), ]
 ```
-<div style="float:right; width:70%;">
 
-
+::: {style="float:right; width:70%;"}
 ```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
 
 ggplot() +
@@ -279,23 +269,19 @@ ggplot() +
         caption = "Data from FRED, created by Matt Dobra @mattdobra"
     ) 
 ```
-</div>
+:::
 
-<div style="float:left; width:30%;">
-
+::: {style="float:left; width:30%;"}
 This graph provides a long-term look at US inflation since the creation of the Federal Reserve.
 
-US inflation rates were far more volatile and had a larger range prior to the 1980s.  
+US inflation rates were far more volatile and had a larger range prior to the 1980s.
 
 The annual inflation rate from `r lubridate::month(as.Date(curinflation$date[1]), label = TRUE, abbr = FALSE)` `r lubridate::year(as.Date(curinflation$date[1]))-1` to `r lubridate::month(as.Date(curinflation$date[1]), label = TRUE, abbr = FALSE)` `r lubridate::year(as.Date(curinflation$date[1]))` was `r 100*round(curinflation$inflation[1],3)`%.
-
-</div>
+:::
 
 ## Inflation
 
-<div style="float:right; width:70%;">
-
-
+::: {style="float:right; width:70%;"}
 ```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
 
 inflation %>% 
@@ -326,23 +312,19 @@ inflation %>%
         caption = "Data from FRED, created by Matt Dobra @mattdobra"
     ) 
 ```
-</div>
+:::
 
-<div style="float:left; width:30%;">
-
-The Federal Reserve worked to drastically cut inflation in the early 1980s.  
+::: {style="float:left; width:30%;"}
+The Federal Reserve worked to drastically cut inflation in the early 1980s.
 
 This is known as the **Volcker Disinflation**.
 
-The graph on the right shows the much smaller range of US inflation following the Volcker Disinflation.  
-
-</div>
+The graph on the right shows the much smaller range of US inflation following the Volcker Disinflation.
+:::
 
 ## Inflation
 
-<div style="float:right; width:70%;">
-
-
+::: {style="float:right; width:70%;"}
 ```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
 
 inflation %>% 
@@ -353,9 +335,10 @@ inflation %>%
     geom_hline(yintercept = 0, color = color3) +
      theme_classic()+
     scale_y_continuous(labels = scales::percent_format(accuracy = 2),
-#                       expand = c(.04,.04),
+                       # expand = c(.04,.04),
                        breaks = seq(-.2,3, by = .02),
-                       limits = c(NA,NA)) +
+                       limits = c(min(inflation$inflation[inflation$date > as.Date("2018-01-01")]) - 0.01, 
+           max(inflation$inflation[inflation$date > as.Date("2018-01-01")]) + 0.01)) +
     scale_x_date(limits = as.Date(c("2018-01-01", Sys.Date())),
         expand = c(0,0),   
         labels = date_format("%Y"),
@@ -373,10 +356,9 @@ inflation %>%
         caption = "Data from FRED, created by Matt Dobra @mattdobra"
     ) 
 ```
-</div>
+:::
 
-<div style="float:left; width:30%;">
-
+::: {style="float:left; width:30%;"}
 ```{r}
 tempinf <- inflation %>% 
   filter(date>=as.Date("2019-01-01")) 
@@ -388,15 +370,14 @@ tempinf2 <- inflation %>%
 tempinf3 <- tail(tempinf2,1)
 ```
 
-US inflation spiked following the Covid recession.  
+US inflation spiked following the Covid recession.
 
 The post-Covid inflation peak of `r 100*round(covidmaxinf,3)`%, recorded in `r lubridate::month(as.Date(tempinf1$date[1]), label = TRUE, abbr = FALSE)`, `r lubridate::year(as.Date(tempinf1$date[1]))` marked the highest inflation rate in the US since `r lubridate::month(as.Date(tempinf3$date[1]), label = TRUE, abbr = FALSE)` of `r lubridate::year(as.Date(tempinf3$date[1]))`!
-
-</div>
+:::
 
 ## Inflation
 
-<div style="float:right; width:70%;">
+::: {style="float:right; width:70%;"}
 ```{r get_PCE, include = FALSE}
 getSymbols("PCEPI", src = "FRED", return.class = "data.frame") # U3 Unemployment Rate
 pce <- PCEPI
@@ -414,7 +395,7 @@ lubridate::month(as.Date(curcpi$date[1]), label = TRUE, abbr = FALSE)
 inflation_pce <- pce %>% 
     mutate(inflation_pce = (pce-lag(pce,12))/lag(pce,12))
 
-curinflation <- inflation[length(inflation$inflation), ]
+curinflation_pce <- inflation_pce[length(inflation_pce$inflation_pce), ]
 
 ```
 
@@ -423,19 +404,20 @@ curinflation <- inflation[length(inflation$inflation), ]
 inflation %>% 
     filter(date>=as.Date("2018-01-01")) %>% 
     ggplot() +
-    geom_line(aes(x = date, y = inflation), color = color2, size = 1.2) + 
-    geom_line(data = inflation_pce %>% filter(date <= as.Date("2023-12-31")), 
+    geom_line(aes(x = date, y = inflation), color = color2, size = 1) + 
+    geom_line(data = inflation_pce, 
               aes(x = date, y = inflation_pce), 
               color = color3, 
               lty = "dashed", 
-              size = 1.2) + 
+              size = 1) +
     geom_rect(data = recession.df, aes(xmin = start, xmax = end, ymin = -Inf, ymax = +Inf), fill = color5, alpha = .3) +
     geom_hline(yintercept = 0, color = color3) +
-     theme_classic()+
+     theme_classic() +
     scale_y_continuous(labels = scales::percent_format(accuracy = 2),
 #                       expand = c(.04,.04),
                        breaks = seq(-.2,3, by = .02),
-                       limits = c(NA,NA)) +
+                       limits = c(min(inflation$inflation[inflation$date > as.Date("2018-01-01")]) - 0.01, 
+           max(inflation$inflation[inflation$date > as.Date("2018-01-01")]) + 0.01)) +
      scale_x_date(limits = as.Date(c("2018-01-01", Sys.Date())),
         expand = c(0,0),   
         labels = date_format("%Y"),
@@ -448,7 +430,7 @@ inflation %>%
       annotate(
         geom = "text",
         x = as.Date("2018-6-01"),
-        y = .08,
+        y = .04,
         label = "PCE Inflation",
         hjust = 0,
         vjust = 0,
@@ -457,7 +439,7 @@ inflation %>%
      annotate(
         geom = "text",
         x = as.Date("2018-6-01"),
-        y = .087,
+        y = .047,
         label = "CPI Inflation",
         hjust = 0,
         vjust = 0,
@@ -471,20 +453,25 @@ inflation %>%
         caption = "Data from FRED, created by Matt Dobra @mattdobra"
     ) 
 ```
+:::
+
+::: {style="float:left; width:30%;"}
+
+PCE inflation is generally a bit lower than CPI inflation:
+
+-   Current CPI inflation is `r round(100*curinflation$inflation,1)`%
+-   Current PCE inflation is `r round(100*curinflation_pce$inflation_pce, 1)`%.
+:::
 
 ## Inflation
 
-<div style = "float:right; width:30%;">
+::: {style="float:right; width:30%;"}
+<br> <br>
 
-<br>
-<br>
+Most developed economies aim to keep their rates of inflation stable and low, with typical inflation targets in the 1% - 3% range.
+:::
 
-Most developed economies aim to keep their rates of inflation stable and low, with typical inflation targets in the 1\% - 3\% range.
-
-</div>
-
-<div style = "float:left; width:70%;">
-
+::: {style="float:left; width:70%;"}
 ```{r message=FALSE, warning=FALSE, out.width = "99%"}
 
 trgtyear <- lubridate::year(Sys.Date())-6
@@ -526,8 +513,7 @@ ggplot(map2) +
 # ggplot(inflationmap, aes(x = long, y = lat, group = group)) +
 #   geom_polygon(aes(fill = inflation), color = "white")
 ```
-
-</div>
+:::
 
 ## Inflation
 
@@ -537,7 +523,7 @@ Many governments inflate their currency to fund government deficits or pay off d
 
 While this may solve short term budgetary problems, this typically creates far worse long run issues.
 
-Left unchecked, this often leads to **hyperinflation**.  **Hyperinflation** refers to very high rates of inflation; a common definition is that hyperinflation is when inflation exceeds 50% *per month*. 
+Left unchecked, this often leads to **hyperinflation**. **Hyperinflation** refers to very high rates of inflation; a common definition is that hyperinflation is when inflation exceeds 50% *per month*.
 
 ## Hyperinflation
 
@@ -561,7 +547,7 @@ The worst hyperinflation on record: Hungarian Pengo, 1945 - 1946.
 
 An item that would have cost 1 Pengo in 1945 would cost 1.3 septillion Pengo by the end of the hyperinflation!
 
-- A septillion is a big number: 1,300,000,000,000,000,000,000,000
+-   A septillion is a big number: 1,300,000,000,000,000,000,000,000
 
 Dubious distinction: the largest denomination banknote ever was the 100 quintillion pengo note.
 
@@ -574,116 +560,105 @@ knitr::include_graphics("images/pengo.jpg")
 </center>
 
 ## Zimbabwean Hyperinflation in Pictures
+
 <center>
+
 ```{r out.width = "80%"}
 knitr::include_graphics("images/zimdollar1.png")
 ```
+
 </center>
 
 ## Zimbabwean Hyperinflation in Pictures
 
 <center>
+
 ```{r out.width = "90%"}
 knitr::include_graphics("images/zimdollar2.png")
 ```
+
 </center>
 
 # What Causes Inflation?
 
 ## Causes of Inflation
 
-<div style = "float:left; width:50%;">
-
+::: {style="float:left; width:50%;"}
 Given the high rates of inflation in the US beginning in late 2021, this question has come back into public discourse.
 
-The classic economics answer comes from Milton Friedman:  "Inflation is always and everywhere a monetary phenomenon."
+The classic economics answer comes from Milton Friedman: "Inflation is always and everywhere a monetary phenomenon."
 
 In other words, inflation is determined by the rate at which money is created and spent, and NOT by microeconomic forces.
+:::
 
-</div>
-
-<div style = "float:right; width:50%;">
-
+::: {style="float:right; width:50%;"}
 <br>
 
 ```{r out.width = "90%"}
 knitr::include_graphics("images/friedman.jpg")
 ```
-
-</div>
-
-## Causes of Inflation
-
-In the 2021 inflation, politicians and political pundits argued that a variety of microeconomic forces were the cause of inflation.  
-
-We will see some examples on the next few slides.  
+:::
 
 ## Causes of Inflation
 
-<div style = "float:left; width:50%;">
+In the 2021 inflation, politicians and political pundits argued that a variety of microeconomic forces were the cause of inflation.
 
+We will see some examples on the next few slides.
+
+## Causes of Inflation
+
+::: {style="float:left; width:50%;"}
 ```{r out.width = "70%", fig.align = 'center'}
 knitr::include_graphics("images/warreninflation1.png")
 ```
+:::
 
-</div>
-
-<div style = "float:right; width:50%;">
-
+::: {style="float:right; width:50%;"}
 <br>
 
 ```{r out.width = "70%", fig.align = 'center'}
 knitr::include_graphics("images/psakiinflation1.jpg")
 ```
-
-</div>
+:::
 
 ## Causes of Inflation
 
-<div style = "float:left; width:50%;">
-
+::: {style="float:left; width:50%;"}
 ```{r out.width = "70%", fig.align = 'center'}
 knitr::include_graphics("images/warreninflation2.jpg")
 ```
+:::
 
-</div>
-
-<div style = "float:right; width:50%;">
-
+::: {style="float:right; width:50%;"}
 ```{r out.width = "70%", fig.align = 'center'}
 knitr::include_graphics("images/reichinflation.jpg")
 ```
-
-</div>
+:::
 
 ## Causes of Inflation
 
-<div style = "float:left; width:50%;">
-
+::: {style="float:left; width:50%;"}
 <br>
 
 ```{r out.width = "80%", fig.align = 'center'}
 knitr::include_graphics("images/whitehouseinflation.jpg")
 ```
+:::
 
-</div>
-
-<div style = "float:right; width:50%;">
-
+::: {style="float:right; width:50%;"}
 ```{r out.width = "70%", fig.align = 'center'}
 knitr::include_graphics("images/grahaminflation.jpg")
 ```
-
-</div>
+:::
 
 ## Causes of Inflation
 
 The preceding tweets illustrated 4 prominent theories on the cause of inflation, none of which are terribly good:
 
-* Greed
-* Lack of competition
-* Supply chain disruption
-* Government spending
+-   Greed
+-   Lack of competition
+-   Supply chain disruption
+-   Government spending
 
 ## Causes of Inflation
 
@@ -691,19 +666,19 @@ Blaming inflation on corporate greed (greedflation) is the worst of the bunch.
 
 You can't explain a variable with a constant!
 
-Were corporations *less* greedy when inflation was lower?  Was the 2023 decrease in inflation caused by a decrease in greed?
+Were corporations *less* greedy when inflation was lower? Was the 2023 decrease in inflation caused by a decrease in greed?
 
 It *is* true that profits rise during an inflationary period, but the rising profit is the *effect* of inflation, not its *cause*!
 
 ## Causes of Inflation
 
-While it is true that, *ceteris paribus*, prices tend to be higher in less competitive industries, there still needs to be a mechanism for *why* prices would rise:  
+While it is true that, *ceteris paribus*, prices tend to be higher in less competitive industries, there still needs to be a mechanism for *why* prices would rise:
 
-* Is industry concentration rising in the industries in which prices are going up?
+-   Is industry concentration rising in the industries in which prices are going up?
 
 Moreover, this view misunderstands inflation--inflation is not a rise in a specific price or set of prices, it is a rise in all prices.
 
-* Most industries carry such small weights in the CPI calculations that this mechanism can't explain inflation.
+-   Most industries carry such small weights in the CPI calculations that this mechanism can't explain inflation.
 
 ## Causes of Inflation
 
@@ -713,35 +688,31 @@ If inflation refers to prices rising across the economy, the cost-push needs to 
 
 The supply chain in the global economy is worldwide; if supply chain issues are the cause of US inflation, they should cause inflation everywhere.
 
-* Many developed countries did not experience higher than usual inflation in 2021, and none had as big a jump as did the US.
+-   Many developed countries did not experience higher than usual inflation in 2021, and none had as big a jump as did the US.
 
 ## Causes of Inflation
 
-In 2021, conservatives argued that increased government spending was the cause of inflation. This is, at best, partially true.  We will cover why this is in more detail when we get to the next set of lecture notes (covering macroeconomic policy), but:
+In 2021, conservatives argued that increased government spending was the cause of inflation. This is, at best, partially true. We will cover why this is in more detail when we get to the next set of lecture notes (covering macroeconomic policy), but:
 
-What is false: Government deficit spending, when financed through borrowing during a recession, would be expected to have minimal effect on inflation.  
+What is false: Government deficit spending, when financed through borrowing during a recession, would be expected to have minimal effect on inflation.
 
 What is true: deficit spending done *outside* of a recession is likely to increase inflation.
 
 ## Causes of Inflation
 
-The upshot is that policies targeting these issues will not affect inflation. 
+The upshot is that policies targeting these issues will not affect inflation.
 
-<div style = "float:left; width:50%;">
-
+::: {style="float:left; width:50%;"}
 ```{r out.width = "70%", fig.align = 'center'}
 knitr::include_graphics("images/whitehousemeat.jpg")
 ```
+:::
 
-</div>
-
-<div style = "float:right; width:50%;">
-
+::: {style="float:right; width:50%;"}
 ```{r out.width = "70%", fig.align = 'center'}
 knitr::include_graphics("images/guardianinflation.jpg")
 ```
-
-</div>
+:::
 
 # The Quantity Theory of Money
 
@@ -751,21 +722,21 @@ The **Quantity Theory of Money** sets forth the general relationship between inf
 
 The general form of the quantity theory is $M \cdot V=P \cdot Y$, where
 
-- $M =$ Money supply
-- $V =$ Velocity of Money
-- $P =$ Price level
-- $Y =$ real GDP
-  
+-   $M =$ Money supply
+-   $V =$ Velocity of Money
+-   $P =$ Price level
+-   $Y =$ real GDP
+
 **Velocity** ($V$) is the average number of times that a dollar is used to purchase goods/services in a year.
 
 ## The Quantity Theory of Money
 
-It is often more useful to think of the quantity theory in terms of growth rates,  $\dot{M}+\dot{V}=\dot{P}+\dot{Y}$, where
+It is often more useful to think of the quantity theory in terms of growth rates, $\dot{M}+\dot{V}=\dot{P}+\dot{Y}$, where
 
-- $\dot{M}$ is the growth rate of the money supply
-- $\dot{V}$ is the growth rate of velocity
-- $\dot{P}$ is inflation
-- $\dot{Y}$ is real GDP growth.
+-   $\dot{M}$ is the growth rate of the money supply
+-   $\dot{V}$ is the growth rate of velocity
+-   $\dot{P}$ is inflation
+-   $\dot{Y}$ is real GDP growth.
 
 With this formulation, we can rewrite this as a theory of inflation:
 
@@ -777,37 +748,31 @@ If $\dot{P}=\dot{M}+\dot{V}-\dot{Y}$, what has to happen for $\dot{P}$ to be a h
 
 Generally speaking, $\dot{V}$ and $\dot{Y}$ tend to be very small numbers.
 
-Real GDP growth, $\dot{Y}$, is limited by an economy's factors of production--capital, human capital, technology.  In most economies, $\dot{Y}$ is a number like 1 or 2 percent.  
+Real GDP growth, $\dot{Y}$, is limited by an economy's factors of production--capital, human capital, technology. In most economies, $\dot{Y}$ is a number like 1 or 2 percent.
 
-$\dot{V}$ is also generally a very small number.  Intuitively, it measures increases or decreases in spending.  The factors that move $\dot{V}$ change slowly.
+$\dot{V}$ is also generally a very small number. Intuitively, it measures increases or decreases in spending. The factors that move $\dot{V}$ change slowly.
 
 ## The Quantity Theory of Money
 
-
-
-<div style = "float:left; width:50%;">
+::: {style="float:left; width:50%;"}
 <br>
 
-If $\dot{V}$ and $\dot{Y}$ tend to be very small numbers, and $\dot{P}$ is large, it can only mean one thing.  $\dot{M}$ must be a large number.
+If $\dot{V}$ and $\dot{Y}$ tend to be very small numbers, and $\dot{P}$ is large, it can only mean one thing. $\dot{M}$ must be a large number.
 
 As Milton Friedman said, "Inflation is always and everywhere a monetary phenomenon."
+:::
 
-</div>
-
-<div style = "float:right; width:50%;">
-
+::: {style="float:right; width:50%;"}
 <br>
 
 ```{r out.width = "90%"}
 knitr::include_graphics("images/friedman.jpg")
 ```
-
-</div>
+:::
 
 ## The Quantity Theory of Money
 
-<div style = "float:left; width:70%;">
-
+::: {style="float:left; width:70%;"}
 ```{r include = FALSE}
 getSymbols("M2V", src = "FRED", return.class = "data.frame")
 getSymbols("CPIAUCSL", src = "FRED", return.class = "data.frame")
@@ -894,50 +859,47 @@ ggplot(qtom20) +
 
 
 ```
+:::
 
-</div>
-
-<div style = "float:right; width:30%;">
-
-<br>
-<br>
+::: {style="float:right; width:30%;"}
+<br> <br>
 
 Even in an economy like that of the US, where inflation is kept low, the quantity theory does a pretty good job of predicting inflation.
-
-</div>
+:::
 
 ## The Quantity Theory of Money
 
-**Deflation** is when price levels fall.  Based on the quantity theory, this would imply that $\dot{M}+\dot{V}<\dot{Y}$.
+**Deflation** is when price levels fall. Based on the quantity theory, this would imply that $\dot{M}+\dot{V}<\dot{Y}$.
 
 Economists are mixed on whether or not deflation is bad for an economy
 
-- Is deflation a cause or symptom of economic slowdown?
+-   Is deflation a cause or symptom of economic slowdown?
 
 ## The Quantity Theory of Money
-  
+
 The stability of $\dot{V}$ doesn't always hold up under extreme economic conditions.
 
-- Recessions and depressions reduce spending, meaning that falling $\dot{Y}$ causes $\dot{V}$ to fall. - In periods of hyperinflation, $\dot{V}$ tends to spike because money is losing its value so quickly.
+-   Recessions and depressions reduce spending, meaning that falling $\dot{Y}$ causes $\dot{V}$ to fall. - In periods of hyperinflation, $\dot{V}$ tends to spike because money is losing its value so quickly.
 
 # Costs of Inflation
+
 ## Costs of Inflation
 
 Why is inflation a problem?
 
-- Inflation creates "noisy" prices
-- Inflation distorts taxes
-- Inflation leads to "shoe-leather" and "menu" costs
-- Inflation redistributes wealth
-- Inflation undermines financial markets
-- Inflation is painful to stop
+-   Inflation creates "noisy" prices
+-   Inflation distorts taxes
+-   Inflation leads to "shoe-leather" and "menu" costs
+-   Inflation redistributes wealth
+-   Inflation undermines financial markets
+-   Inflation is painful to stop
 
 ## Noisy Prices
 
 Prices generated within the supply and demand framework do two very important things in an economy:
 
-- Transmit information about the scarcity of resources, and
-- Incentivize people to economize on their use of scarce resources.
+-   Transmit information about the scarcity of resources, and
+-   Incentivize people to economize on their use of scarce resources.
 
 Inflation messes with prices, and thus reduces the ability of a market to function.
 
@@ -947,31 +909,31 @@ Inflation messes with prices, and thus reduces the ability of a market to functi
 
 If a small business owner finds that she can raise her prices, is this because:
 
-- demand for her products has increased? If so, she should expand her output!
-- inflation is happening?  If so, she should not expand.
+-   demand for her products has increased? If so, she should expand her output!
+-   inflation is happening? If so, she should not expand.
 
 Inflation increases the likelihood that decision makers will make the wrong economic decisions.
 
 ## Noisy Prices
 
-**Money Illusion** is the notion that people think in nominal terms, not real terms.  
+**Money Illusion** is the notion that people think in nominal terms, not real terms.
 
-If a person gets a raise, what has happened to their real purchasing power?  
+If a person gets a raise, what has happened to their real purchasing power?
 
-- If there is no inflation, their purchasing power has gone up by the amount of their raise.  They can consume more if they choose.
-- If there is inflation, then their purchasing power has changed by the amount of their raise *less the rate of inflation*.  
-  - If their raise is perfectly offset by inflation, a person suffering from money illusion will consume more, even though their purchasing power has not changed.
+-   If there is no inflation, their purchasing power has gone up by the amount of their raise. They can consume more if they choose.
+-   If there is inflation, then their purchasing power has changed by the amount of their raise *less the rate of inflation*.
+    -   If their raise is perfectly offset by inflation, a person suffering from money illusion will consume more, even though their purchasing power has not changed.
 
 ## Inflation and Taxes
 
 Inflation is inherently a form of tax called **seigniorage**.
 
-If the government prints more money, some of the purchasing power in your money gets transferred into the newly printed money. 
+If the government prints more money, some of the purchasing power in your money gets transferred into the newly printed money.
 
-Moreover, inflation produces tax burdens and liabilities that typically harm taxpayers. For example: 
+Moreover, inflation produces tax burdens and liabilities that typically harm taxpayers. For example:
 
-- capital gains taxes are paid on nominal gains.  
-- Depreciation is based on initial purchase price.
+-   capital gains taxes are paid on nominal gains.\
+-   Depreciation is based on initial purchase price.
 
 In either case, taxpayers will pay more in tax if there is inflation.
 
@@ -999,19 +961,19 @@ To see this, let's look at the Fisher Equation: $r=i-\pi$
 
 Where:
 
-- $r$ is the real rate of return (or real interest rate)
-- $i$ is the nominal rate of return (or nominal interest rate)
-- $\pi$ is $\dot{P}$ or the inflation rate.
+-   $r$ is the real rate of return (or real interest rate)
+-   $i$ is the nominal rate of return (or nominal interest rate)
+-   $\pi$ is $\dot{P}$ or the inflation rate.
 
 ## Inflation Redistributes Wealth
 
 The intuition of the Fisher Equation is as follows:
 
-Say you borrow \$100 at 10\% interest for one year, so you will pay back \$10 in a year's time.
+Say you borrow \$100 at 10% interest for one year, so you will pay back \$10 in a year's time.
 
-If there is no inflation, the \$110 you pay back has 10\% more purchasing power than the \$100 you borrowed, so he lender is earning a *real* rate of return of 10\%. 
+If there is no inflation, the \$110 you pay back has 10% more purchasing power than the \$100 you borrowed, so he lender is earning a *real* rate of return of 10%.
 
-What if there is $\pi=\dot{P}=10\%$ instead?  When you pay back your loan of \$110 in a year, that \$110 has the same purchasing power as the \$100 you borrowed initially.  The lender gets a 0\% *real* rate of return!
+What if there is $\pi=\dot{P}=10\%$ instead? When you pay back your loan of \$110 in a year, that \$110 has the same purchasing power as the \$100 you borrowed initially. The lender gets a 0% *real* rate of return!
 
 ## Inflation Redistributes Wealth
 
@@ -1027,17 +989,17 @@ If actual inflation is *lower* than unexpected inflation $(\pi<\pi^{e})$ then in
 
 The Fisher effect leads into the next problem with inflation: inflation is very detrimental to financial markets.
 
-This is because inflation volatility increases with inflation rates.    
+This is because inflation volatility increases with inflation rates.
 
-Recall the Fisher equation, $r=i-\pi^{e}$, and assume $\pi^{e}$ is accurate within 25\%.
+Recall the Fisher equation, $r=i-\pi^{e}$, and assume $\pi^{e}$ is accurate within 25%.
 
-if $\pi^{e}$ is 2\%, then $\pi$ will lie between 1.5\% and 2.5\%; lenders are willing to take on inflation risk.
+if $\pi^{e}$ is 2%, then $\pi$ will lie between 1.5% and 2.5%; lenders are willing to take on inflation risk.
 
-But if $\pi^{e}$ is 20\%, and thus $\pi$ will be something between 15\% and 25\%, lenders are likely to be scared off.
+But if $\pi^{e}$ is 20%, and thus $\pi$ will be something between 15% and 25%, lenders are likely to be scared off.
 
 ## Inflation Undermines Financial Markets
 
-For example, during the Venezuelan hyperinflation, private lending fell by 95\%.
+For example, during the Venezuelan hyperinflation, private lending fell by 95%.
 
 If Financial institutions cannot operate, markets that rely on lending are disrupted, greatly hampering the economy.
 
@@ -1047,11 +1009,12 @@ A final reason to avoid inflation is that ending inflation has the potential to 
 
 The Volcker Disinflation provides a good example.
 
-US inflation in the 70s hovered around 10\%. The Volcker Disinflation reduced inflation to around 3\%.
+US inflation in the 70s hovered around 10%. The Volcker Disinflation reduced inflation to around 3%.
 
 Cutting inflation was necessary, however the short term effect was that this caused the US to go into a recession.
 
 # The Federal Reserve
+
 ## The Federal Reserve
 
 The Federal Reserve is the Central Bank of the United States and is broken into 12 districts.
@@ -1070,19 +1033,19 @@ You many not be aware of this, but you have been seeing references to this syste
 
 Each piece of paper currency is marked with the Federal Reserve branch that issued it!
 
-- Small notes (especially \$1s) and older notes have the seal of the reserve bank just to the left of the portrait.
-- Most modern notes have an identifier (A1, B2, ... , L12) beneath the serial number on the top left. The number is a reference to the issuing reserve bank.
+-   Small notes (especially \$1s) and older notes have the seal of the reserve bank just to the left of the portrait.
+-   Most modern notes have an identifier (A1, B2, ... , L12) beneath the serial number on the top left. The number is a reference to the issuing reserve bank.
 
 ## The Federal Reserve
 
 The Federal Reserve performs a number of functions. They:
 
-- Issue and create money
-- Have two sets of customers 
-  - US federal government 
-  - Banks
-- Regulate the financial sector (especially banks)
-- Manage the clearinghouse payment system
+-   Issue and create money
+-   Have two sets of customers
+    -   US federal government
+    -   Banks
+-   Regulate the financial sector (especially banks)
+-   Manage the clearinghouse payment system
 
 ## Money
 
@@ -1096,11 +1059,11 @@ Money can emerge spontaneously without central design.
 
 In the US, the three most important definitions of the money supply are:
 
-- The **Monetary Base** (MB): currency outstanding plus total reserves at the Fed.
-- **M1**: MB plus checkable deposits.
-- **M2**: M1 plus savings deposits, money-market deposits, and short-term CDs. 
+-   The **Monetary Base** (MB): currency outstanding plus total reserves at the Fed.
+-   **M1**: MB plus checkable deposits.
+-   **M2**: M1 plus savings deposits, money-market deposits, and short-term CDs.
 
-**Liquidity** refers to how quickly an asset can be converted into cash.  
+**Liquidity** refers to how quickly an asset can be converted into cash.
 
 MB is perfectly liquid since it *is* cash, M1 is very liquid since it includes immediately accessible deposits, and M2 is pretty liquid as well since it is money that people could access very quickly if they chose.
 
@@ -1108,11 +1071,11 @@ MB is perfectly liquid since it *is* cash, M1 is very liquid since it includes i
 
 The Federal Reserve wants to control M1 and M2, however they only have direct control over MB
 
-- M1 and M2 are influenced by the actions of private citizens and banks.
+-   M1 and M2 are influenced by the actions of private citizens and banks.
 
 M1 and M2 are created by banks due to Fractional reserve banking.
 
-**Fractional Reserve Banking** refers to a system in which banks only keep a fraction of their deposits on reserve.  
+**Fractional Reserve Banking** refers to a system in which banks only keep a fraction of their deposits on reserve.
 
 ## Money
 
@@ -1134,21 +1097,21 @@ $Money\;Multiplier=\frac{1}{Reserve\;Ratio}$
 
 ## Money
 
-Assume that banks have a reserve ratio of 10\% 
+Assume that banks have a reserve ratio of 10%
 
-- the money multiplier is then $\frac{1}{10\%}=10$
+-   the money multiplier is then $\frac{1}{10\%}=10$
 
-Also, assume and that the Fed creates \$10,000 in new money that they simply put in your account.  
+Also, assume and that the Fed creates \$10,000 in new money that they simply put in your account.
 
-- Thus, M goes up by \$10,000.
+-   Thus, M goes up by \$10,000.
 
-Because the reserve ratio is 10\%, the bank keeps \$1,000 on reserve and loans out \$9,000.
+Because the reserve ratio is 10%, the bank keeps \$1,000 on reserve and loans out \$9,000.
 
 ## Money
 
-Assume I borrow that \$9,000.  Either I put it in my bank, or buy something and it winds up in someone else's bank.  
+Assume I borrow that \$9,000. Either I put it in my bank, or buy something and it winds up in someone else's bank.
 
-- M goes up by *an additional* $9,000, and the bank lends out \$8,100.
+-   M goes up by *an additional* \$9,000, and the bank lends out \$8,100.
 
 This process continues *ad infinitum* until $\$10,000(\frac{1}{10\%})=\$100,000$ new money has been created.
 
@@ -1156,23 +1119,23 @@ This process continues *ad infinitum* until $\$10,000(\frac{1}{10\%})=\$100,000$
 
 The Fed uses three primary means by which to control the money supply
 
-- Open market operations: buying and selling US government bonds on the open market
-- Discount rate lending: lending various financial institutions, especially banks
-- Changing bank reserves: adjusting the required reserve ratio, or paying interest on reserves held at the Fed
+-   Open market operations: buying and selling US government bonds on the open market
+-   Discount rate lending: lending various financial institutions, especially banks
+-   Changing bank reserves: adjusting the required reserve ratio, or paying interest on reserves held at the Fed
 
 ## Open Market Operations
 
 **Open Market Operations** refers to the Federal Reserve buying and selling US treasury bonds.
 
-If the Fed buys bonds, they are trying to *stimulate the economy* 
+If the Fed buys bonds, they are trying to *stimulate the economy*
 
-- Buying bonds is the same as lending to the private sector, so they are adding money to the economy.
-- Buying bonds reduces interest rates, encouraging private borrowing.  
+-   Buying bonds is the same as lending to the private sector, so they are adding money to the economy.
+-   Buying bonds reduces interest rates, encouraging private borrowing.
 
-If the Fed sells bonds, they are trying to *control inflation* 
+If the Fed sells bonds, they are trying to *control inflation*
 
-- Selling bonds is the same thing as borrowing from the private sector, so they are taking money out of the economy.
-- Selling bonds increases interest rates, discouraging private borrowing.
+-   Selling bonds is the same thing as borrowing from the private sector, so they are taking money out of the economy.
+-   Selling bonds increases interest rates, discouraging private borrowing.
 
 ## Open Market Operations
 
@@ -1198,8 +1161,7 @@ lubridate::month(as.Date(curfedfunds$date[1]), label = TRUE, abbr = FALSE)
 
 ```
 
-<div style="float:right; width:70%;">
-
+::: {style="float:right; width:70%;"}
 ```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
 
 ggplot() +
@@ -1228,23 +1190,17 @@ ggplot() +
         caption = "Data from FRED, created by Matt Dobra @mattdobra"
     ) 
 ```
+:::
 
-
-</div>
-
-<div style="float:left; width:30%;">
-
-The main interest rate the Fed controls is the **Federal Funds Rate** - the rate banks charge each other on overnight loans. 
+::: {style="float:left; width:30%;"}
+The main interest rate the Fed controls is the **Federal Funds Rate** - the rate banks charge each other on overnight loans.
 
 The Federal Funds market came into existence in the 1920s, but the Fed only stareted collecting data on it mid-1954.
-
-
-</div>
+:::
 
 ## Open Market Operations
 
-<div style="float:right; width:70%;">
-
+::: {style="float:right; width:70%;"}
 ```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
 
 fedfunds %>% 
@@ -1275,22 +1231,19 @@ fedfunds %>%
         caption = "Data from FRED, created by Matt Dobra @mattdobra"
     ) 
 ```
-</div>
+:::
 
-<div style="float:left; width:30%;">
-
-Recall that the Federal Reserve worked to drastically cut inflation in the early 1980s as part of the  **Volcker Disinflation**.
+::: {style="float:left; width:30%;"}
+Recall that the Federal Reserve worked to drastically cut inflation in the early 1980s as part of the **Volcker Disinflation**.
 
 To do this, they raised interest rates considerably to rein in inflation.
 
 The Fed usually reduces interest rates to stave off recessions.
-
-</div>
+:::
 
 ## Open Market Operations - Covid
 
-<div style="float:right; width:70%;">
-
+::: {style="float:right; width:70%;"}
 ```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
 
 fedfunds %>% 
@@ -1321,16 +1274,14 @@ fedfunds %>%
         caption = "Data from FRED, created by Matt Dobra @mattdobra"
     ) 
 ```
-</div>
+:::
 
-<div style="float:left; width:30%;">
-
+::: {style="float:left; width:30%;"}
 The Fed Funds rate surrounding Covid is illustrative of the Fed's general approach to monetary policy:
 
-* In response to the initial economic downturn, they cut rates to basically zero.
-* As the economy recovered, they raised interest rates to try to prevent inflation. 
-
-</div>
+-   In response to the initial economic downturn, they cut rates to basically zero.
+-   As the economy recovered, they raised interest rates to try to prevent inflation.
+:::
 
 ## Open Market Operations - Covid
 
@@ -1339,8 +1290,7 @@ fundsdat <- left_join(fedfunds, inflation, by = join_by(date == date))
 
 ```
 
-<div style="float:right; width:70%;">
-
+::: {style="float:right; width:70%;"}
 ```{r warning = FALSE, out.width = "100%", out.extra='style="float:right; padding:1px"'}
 colours <- c("Federal Funds" = color2, "Inflation" = color3)
 
@@ -1376,17 +1326,15 @@ fundsdat %>%
     ) +
     scale_color_manual(values = colours)  + theme(legend.position = c(0.2, 0.8))
 ```
-</div>
+:::
 
-<div style="float:left; width:30%;">
-
+::: {style="float:left; width:30%;"}
 The government's Covid response generated inflation.
 
 The Fed was slow to respond (initially the Fed and government called the inflation "transitory.")
 
 When it became clear that inflation wasn't transitory, the Fed started increasing rates.
-
-</div>
+:::
 
 ## The Fed as a Lender
 
@@ -1394,43 +1342,40 @@ The Fed has the greatest influence over the **Federal Funds rate** - the interes
 
 The Fed also controls the **Discount Rate** - the rate the fed charges banks on loans.
 
-Banks typically only borrow from the Fed as a last resort in a crisis.
-The two major crises that banks might face are solvency crises and liquidity crises.
+Banks typically only borrow from the Fed as a last resort in a crisis. The two major crises that banks might face are solvency crises and liquidity crises.
 
 ## The Fed as a Lender
 
-
 A **Solvency crisis** is when the value of a bank's liabilities exceeds the value of its assets.
 
-- This tends to happen when a lot of a bank's loans default at once.
-- To ensure against this, banks hold "capital" - safe assets like government bonds.
-- To help prevent solvency crises, the Fed imposes capital requirements.
+-   This tends to happen when a lot of a bank's loans default at once.
+-   To ensure against this, banks hold "capital" - safe assets like government bonds.
+-   To help prevent solvency crises, the Fed imposes capital requirements.
 
 A **Liquidity crisis** is when a lot of a bank's depositors want to get their money at the same time
 
-- This can impact even healthy banks
-- The danger here is contagion effects and bank runs
-- The FDIC is designed to avoid liquidity crises.
+-   This can impact even healthy banks
+-   The danger here is contagion effects and bank runs
+-   The FDIC is designed to avoid liquidity crises.
 
 ## The Fed as a Lender
 
 What happens if a bank is insolvent?
 
-- Typically, the FDIC steps in and pays depositors and the bank is closed.
-- In 2008, so many banks were insolvent at the same time that the fed bailed many of them out instead.
-  - The Fed lent an estimated \$9 trillion in overnight loans between March 2008 and May 2009 to try to stave off a full-blown depression.
-  
+-   Typically, the FDIC steps in and pays depositors and the bank is closed.
+-   In 2008, so many banks were insolvent at the same time that the fed bailed many of them out instead.
+    -   The Fed lent an estimated \$9 trillion in overnight loans between March 2008 and May 2009 to try to stave off a full-blown depression.
+
 ## Bank Reserves
 
 The Fed can adjust the required reserve ratio (recall that the money multiplier is a function of the reserve ratio).
 
-- Increasing the reserve requirement decreases the money supply, decreasing the requirement increases the money supply
-- But, the required reserve ratio is a *minimum*, and cautious banks can choose to keep their ratio higher.  
+-   Increasing the reserve requirement decreases the money supply, decreasing the requirement increases the money supply
+-   But, the required reserve ratio is a *minimum*, and cautious banks can choose to keep their ratio higher.
 
 ## Bank Reserves
 
 Starting in 2008, the Fed offered interest rates on the deposits banks held at the fed.
 
-- Higher interest rates will encourage banks to sit on their money, reducing the money supply.
-- Lower rates encourage banks to lend more, increasing the money supply
-
+-   Higher interest rates will encourage banks to sit on their money, reducing the money supply.
+-   Lower rates encourage banks to lend more, increasing the money supply
